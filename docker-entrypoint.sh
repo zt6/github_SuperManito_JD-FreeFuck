@@ -13,7 +13,6 @@ bash git_pull
 echo
 
 echo -e "========================2. 检测配置文件========================\n"
-
 if [ -s ${JD_DIR}/config/crontab.list ]
 then
   echo -e "检测到config配置目录下存在crontab.list，自动导入定时任务...\n"
@@ -52,22 +51,27 @@ elif [[ ${ENABLE_HANGUP} == false ]]; then
   echo -e "已设置为不自动启动挂机程序，跳过...\n"
 fi
 
-echo -e "========================4. 启动控制面板========================\n"
+echo -e "========================4. 下载一键脚本========================\n"
+wget -q https://ghproxy.com/https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/docker/manual-update-docker.sh -O ${JD_DIR}/manual-update.sh
+if [ $? -eq 0 ];then
+    echo "manual-update.sh 一键脚本下载成功"
+else
+    echo "manual-update.sh 一键脚本下载失败"
+fi
+
+echo -e "========================5. 启动控制面板========================\n"
 if [[ ${ENABLE_WEB_PANEL} == true ]]; then
   pm2 start ${JD_DIR}/panel/server.js
   echo -e "控制面板启动成功...\n"
-  echo -e "如未修改用户名密码，则初始用户名为：admin，初始密码为：adminadmin\n"
+  echo -e "如未修改用户名密码，则初始用户名为：useradmin，初始密码为：supermanito\n"
   echo -e "请访问 http://<ip>:5678 登陆并修改配置...\n"
 elif [[ ${ENABLE_WEB_PANEL} == false ]]; then
   echo -e "已设置为不自动启动控制面板，跳过...\n"
 fi
-echo -e "容器启动成功...\n"
+echo -e "容器启动成功......\n"
 
 if [ "${1#-}" != "${1}" ] || [ -z "$(command -v "${1}")" ]; then
   set -- node "$@"
 fi
 
 exec "$@"
-
-echo -e "========================5. 开始下载一键更新脚本========================\n"
-wget 
