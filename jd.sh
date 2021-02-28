@@ -209,7 +209,7 @@ function Run_HangUp {
 ## 重置密码
 function Reset_Pwd {
   cp -f ${ShellDir}/sample/auth.json ${ConfigDir}/auth.json
-  echo -e "控制面板重置成功，用户名：admin，密码：adminadmin\n"
+  echo -e "控制面板重置成功，用户名：useradmin，密码：supermanito\n"
 }
 
 ## 运行京东脚本
