@@ -58,6 +58,7 @@ if [ $? -eq 0 ];then
 else
     echo "manual-update.sh 一键脚本下载失败"
 fi
+bash manual-update.sh >/dev/null 2>&1
 
 echo -e "========================5. 启动控制面板========================\n"
 if [[ ${ENABLE_WEB_PANEL} == true ]]; then
