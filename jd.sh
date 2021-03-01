@@ -112,7 +112,7 @@ function Combin_All {
   export JXNCTOKENS=$(Combin_Sub TokenJxnc)
   ## 闪购盲盒(jd_sgmh.js)
   export JDSGMH_SHARECODES=$(Combin_Sub ForOtherSgmh)
-  ## 惊喜财富岛(jd_cfd.js)
+  ## 京喜财富岛(jd_cfd.js)
   export JDCFD_SHARECODES=$(Combin_Sub ForOtherJdCfd)
 }
 
