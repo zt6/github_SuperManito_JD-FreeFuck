@@ -106,10 +106,8 @@ function Combin_All {
   export BOOKSHOP_SHARECODES=$(Combin_Sub ForOtherBookShop)
   ## 签到领现金(jd_cash.js)
   export JD_CASH_SHARECODES=$(Combin_Sub ForOtherCash)
-  ## 惊喜农场(jd_jxnc.js)
+  ## 京喜农场(jd_jxnc.js)
   export JXNC_SHARECODES=$(Combin_Sub ForOtherJxnc)
-  ## 京喜农场TOKEN
-  export JXNCTOKENS=$(Combin_Sub TokenJxnc)
   ## 闪购盲盒(jd_sgmh.js)
   export JDSGMH_SHARECODES=$(Combin_Sub ForOtherSgmh)
   ## 京喜财富岛(jd_cfd.js)
