@@ -90,7 +90,7 @@ __如果您觉得这个项目不错的话可以在右上角给颗⭐吗？您的
 ㅤ
 ## 四、更新教程
 #### 1. 更新一键更新脚本：
-    docker exec -it jd wget https://ghproxy.com/https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/manual-update.sh -O manual-update.sh
+    docker exec -it jd wget https://ghproxy.com/https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/docker/manual-update-docker.sh -O manual-update.sh
 #### 2. 更新获取互助码脚本：
     docker exec -it jd wget https://ghproxy.com/https://raw.githubusercontent.com/qq34347476/js_script/master/scripts/format_share_jd_code.js -O scripts/format_share_jd_code.js
 #### 3. 更新配置文件：
