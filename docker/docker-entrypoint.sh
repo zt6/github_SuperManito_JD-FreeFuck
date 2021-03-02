@@ -54,9 +54,13 @@ fi
 echo -e "========================4. 下载一键脚本========================\n"
 wget -q https://ghproxy.com/https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/docker/manual-update-docker.sh -O ${JD_DIR}/manual-update.sh
 if [ $? -eq 0 ];then
+    echo -e ''
     echo "manual-update.sh 一键脚本下载成功"
+    echo -e ''
 else
+    echo -e ''
     echo "manual-update.sh 一键脚本下载失败"
+    echo -e ''
 fi
 bash manual-update.sh >/dev/null 2>&1
 
