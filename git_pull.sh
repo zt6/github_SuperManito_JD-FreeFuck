@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+## Author:SuperManito
+## Modified:2021-3-4
 
 ## 文件路径、脚本网址、文件版本以及各种环境的判断
 ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
@@ -22,6 +24,8 @@ ContentDropTask=${ShellDir}/drop_task
 SendCount=${ShellDir}/send_count
 isTermux=${ANDROID_RUNTIME_ROOT}${ANDROID_ROOT}
 ScriptsURL=git@gitee.com:lxk0301/jd_scripts.git
+DIY_URL=https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/diy/diy.sh
+
 
 ## 更新crontab，gitee服务器同一时间限制5个链接，因此每个人更新代码必须错开时间，每次执行git_pull随机生成。
 ## 每天次数随机，更新时间随机，更新秒数随机，至少6次，至多12次，大部分为8-10次，符合正态分布。
@@ -118,7 +122,7 @@ function Diff_Cron {
     grep -vwf ${ListTask} ${ListJs} > ${ListJsAdd}
     grep -vwf ${ListJs} ${ListTask} > ${ListJsDrop}
   else
-    echo -e "${ListCron} 文件不存在，请先定义你自己的crontab.list...\n"
+    echo -e "${ListCron} 文件不存在，请先定义您自己的crontab.list...\n"
   fi
 }
 
@@ -144,7 +148,7 @@ function Notify_Version {
   if [ -f ${FileConf} ] && [[ "${VerConf}" != "${VerConfSample}" ]] && [[ ${UpdateDate} == $(date "+%Y-%m-%d") ]]
   then
     if [ ! -f ${SendCount} ]; then
-      echo -e "检测到配置文件config.sh.sample有更新\n\n更新日期: ${UpdateDate}\n当前版本: ${VerConf}\n新的版本: ${VerConfSample}\n更新内容: ${UpdateContent}\n如需使用新功能请对照config.sh.sample，将相关新参数手动增加到你自己的config.sh中，否则请无视本消息。\n" | tee ${ContentVersion}
+      echo -e "检测到配置文件config.sh.sample有更新\n\n更新日期: ${UpdateDate}\n当前版本: ${VerConf}\n新的版本: ${VerConfSample}\n更新内容: ${UpdateContent}\n如需使用新功能请对照config.sh.sample，将相关新参数手动增加到您自己的config.sh中，否则请无视本消息。\n" | tee ${ContentVersion}
       echo -e "本消息只在该新版本配置文件更新当天发送一次。" >> ${ContentVersion}
       cd ${ShellDir}
       node update.js
@@ -287,6 +291,77 @@ function Add_Cron {
   fi
 }
 
+## 自定义脚本功能
+function ExtraShell {
+  ## 代理地址
+  Proxy_URL=https://ghproxy.com/
+
+  ## 自动同步用户自定义的diy.sh
+  if [[ ${EnableExtraShellUpdate} == true ]]; then
+    wget -q $Proxy_URL$DIY_URL -O ${ShellDir}/config/diy.sh
+    if [ $? -eq 0 ];then
+      echo -e "diy脚本同步成功... "
+      echo -e ''
+    else
+      echo -e "diy脚本同步失败... "
+      echo -e ''
+    fi
+  fi
+
+  ## 调用用户自定义的diy.sh
+  if [[ ${EnableExtraShell} == true ]]; then
+    if [ -f ${FileDiy} ]; then
+      . ${FileDiy}
+    else
+      echo -e "${FileDiy} 文件不存在，跳过执行DIY脚本...\n"
+      echo -e ''
+    fi
+  fi
+}
+
+## 一键执行所有活动脚本          
+##  Author:  SuperManito
+##  Project: JD-FreeFuck
+function RUN_ALL {
+  ## 默认将 "jd、jx、jr" 开头的活动脚本加入其中
+  rm -rf ${ShellDir}/run-all.sh
+  bash ${ShellDir}/jd.sh | grep -o 'j[drx]_[a-z].*' | grep -v 'bean_change' >${ShellDir}/run-all.sh
+  sed -i "1i\jd_bean_change.js" ${ShellDir}/run-all.sh       ## 置顶京豆变动通知
+  sed -i "s#^#bash ${ShellDir}/jd.sh &#g" ${ShellDir}/run-all.sh
+  sed -i 's#.js# now#g' ${ShellDir}/run-all.sh
+  sed -i '1i\#!/bin/env bash' ${ShellDir}/run-all.sh
+  ## 自定义添加脚本
+  ## 例：echo "bash ${ShellDir}/jd.sh xxx now" >>${ShellDir}/run-all.sh
+
+
+  ## 将挂机活动移至末尾从而最后执行
+  ## 目前仅有 "疯狂的JOY" 这一个活动
+  ## 模板如下 ：
+  ## cat run-all.sh | grep xxx -wq
+  ## if [ $? -eq 0 ];then
+  ##   sed -i '/xxx/d' ${ShellDir}/run-all.sh
+  ##   echo "bash jd.sh xxx now" >>${ShellDir}/run-all.sh
+  ## fi
+  cat ${ShellDir}/run-all.sh | grep jd_crazy_joy_coin -wq
+  if [ $? -eq 0 ]; then
+    sed -i '/jd_crazy_joy_coin/d' ${ShellDir}/run-all.sh
+    echo "bash ${ShellDir}/jd.sh jd_crazy_joy_coin now" >>${ShellDir}/run-all.sh
+  fi
+
+
+  ## 去除不想加入到此脚本中的活动
+  ## 例：sed -i '/xxx/d' ${ShellDir}/run-all.sh
+  sed -i '/jd_code/d' ${ShellDir}/run-all.sh        ## 不输出所有活动列表
+  sed -i '/jd_delCoupon/d' ${ShellDir}/run-all.sh    ## 不执行 "京东家庭号" 活动
+  sed -i '/jd_family/d' ${ShellDir}/run-all.sh      ## 不执行 "删除优惠券" 活动
+
+
+  ## 去除脚本中的空行
+  sed -i '/^\s*$/d' ${ShellDir}/run-all.sh
+  ## 赋权
+  chmod 777 ${ShellDir}/run-all.sh
+}
+
 ## 在日志中记录时间与路径
 echo -e "\n--------------------------------------------------------------\n"
 echo -n "系统时间："
@@ -318,17 +393,9 @@ then
   Output_ListJsDrop
   Del_Cron
   Add_Cron
+  ExtraShell
+  RUN_ALL
 else
   echo -e "js脚本更新失败，请检查原因或再次运行git_pull.sh...\n"
   Change_ALL
-fi
-
-## 调用用户自定义的diy.sh
-if [[ ${EnableExtraShell} == true ]]; then
-  if [ -f ${FileDiy} ]
-  then
-    . ${FileDiy}
-  else
-    echo -e "${FileDiy} 文件不存在，跳过执行DIY脚本...\n"
-  fi
 fi
