@@ -51,20 +51,7 @@ elif [[ ${ENABLE_HANGUP} == false ]]; then
   echo -e "已设置为不自动启动挂机程序，跳过...\n"
 fi
 
-echo -e "========================4. 下载一键脚本========================\n"
-wget -q https://ghproxy.com/https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/docker/manual-update-docker.sh -O ${JD_DIR}/manual-update.sh
-if [ $? -eq 0 ];then
-    echo -e ''
-    echo "manual-update.sh 一键脚本下载成功"
-    echo -e ''
-else
-    echo -e ''
-    echo "manual-update.sh 一键脚本下载失败"
-    echo -e ''
-fi
-bash manual-update.sh >/dev/null 2>&1
-
-echo -e "========================5. 启动控制面板========================\n"
+echo -e "========================4. 启动控制面板========================\n"
 if [[ ${ENABLE_WEB_PANEL} == true ]]; then
   pm2 start ${JD_DIR}/panel/server.js
   echo -e "控制面板启动成功...\n"
