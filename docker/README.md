@@ -60,7 +60,7 @@
 - 启用该功能
 
       docker exec -it jd sed -i 's/EnableExtraShell=""/EnableExtraShell="true"/g' config/config.sh
-- 启用自动同步功能（选择）
+- 启用自动同步功能
 
       docker exec -it jd sed -i 's/EnableExtraShellUpdate=""/EnableExtraShellUpdate="true"/g' config/config.sh
 > _注意：1. 启用该功能后便可直接下载或同步更新本项目中的 diy 脚本，_\
