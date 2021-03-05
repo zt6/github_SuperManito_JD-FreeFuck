@@ -1,5 +1,5 @@
 # 关于 Docker 版本的《使用与更新》教程
-## 修订日期：2021年 3 月 4 日
+## 修订日期：2021年 3 月 5 日
 ㅤ
 ## 一、基础使用教程
 ***
@@ -34,29 +34,46 @@
 ㅤ
 ## 二、高阶使用教程
 #### 1. 获取互助码：
-    #导入脚本
-    docker exec -it jd wget -P scripts https://ghproxy.com/https://raw.githubusercontent.com/qq34347476/js_script/master/scripts/format_share_jd_code.js
-    #使用脚本
-    docker exec -it jd bash jd.sh format_share_jd_code.js now
-> _引用声明：这里引用了另一个大佬写的互助码脚本，比 lxk 的好用。引用项目链接：[qq34347476/quantumult-x](https://gitee.com/qq34347476/quantumult-x/tree/master)_
+    docker exec -it jd bash jd.sh get_share_code now
 #### 2. 导出互助码：
     docker exec -it jd bash export_sharecodes.sh
-#### 3. 启用挂机功能：
+> _注意：其原理是从各个活动脚本的日志中获取，只有运行完所有活动脚本后才可使用。_
+#### 3. 配置互助码与相互助力：
+
+> 示例：
+
+> MyFruit1="xxxxxxxxxxxxxxxxxxxx"\
+> MyFruit2="xxxxxxxxxxxxxxxxxxxx"\
+> MyFruit3="xxxxxxxxxxxxxxxxxxxx"\
+> MyFruit4="xxxxxxxxxxxxxxxxxxxx"\
+> MyFruit5="xxxxxxxxxxxxxxxxxxxx"\
+> MyFruit6="xxxxxxxxxxxxxxxxxxxx"\
+> MyFruitA=""\
+> MyFruitB=""
+
+> ForOtherFruit1="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}@${MyFruit6}"
+> ForOtherFruit2="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}@${MyFruit6}"
+> ForOtherFruit3="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}@${MyFruit6}"
+> ForOtherFruit4="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}@${MyFruit6}"
+> ForOtherFruit5="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}@${MyFruit6}"
+> ForOtherFruit6="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}@${MyFruit6}"
+
+#### 4. 启用挂机功能：
     docker exec -it jd bash jd.sh hangup
 > _注意：此功能为执行挂机活动脚本，可能此功能会遇到报错，使用人数较少。_
-#### 4. 导入并使用第三方活动脚本：
+#### 5. 导入并使用第三方活动脚本：
     1. 将脚本放置在该项目容器内 scripts 子目录下，也可放在外部的挂载目录（默认为/opt/jd/scripts）
     2. 然后通过命令 docker exec -it jd bash jd.sh xxx now 运行
     3. 如果您想将第三方脚本加入到 run-all.sh 一键脚本中可将脚本名改为"jd_"开头即可
 > _注意：导入的第三方活动脚本不会随项目本身活动脚本的更新而删除。_
-#### 5. 使用自定义 `diy` 脚本：
+#### 6. 使用自定义 `diy` 脚本：
 - 使用需知
 
-      1. 此脚本的用途为加入非 lxk0301大佬 的第三方脚本
-      2. 您可以开启自动同步功能跟着本人项目里的 diy 脚本走
+      1. 此脚本的用途为加入非 lxk0301大佬 的第三方活动脚本
+      2. 您可以开启自动同步功能，默认同步本人项目里的 diy 脚本
       3. 您也可以使用本项目中的模板文件自定义构建您的专属脚本
       4. 您可以将您的 diy 脚本上传到您的仓库并使用同步功能
-      5. 如果您使用了您自定义的脚本请更改同步功能里的地址
+      5. 如果您使用了您自定义的脚本请更改同步功能里的地址链接
 - 启用该功能
 
       docker exec -it jd sed -i 's/EnableExtraShell=""/EnableExtraShell="true"/g' config/config.sh
@@ -87,9 +104,7 @@
 ## 四、更新教程
 #### 1. 更新 `一键更新` 脚本：
     docker exec -it jd wget https://ghproxy.com/https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/source/git_pull.sh -O git_pull.sh
-#### 2. 更新 `获取互助码` 脚本：
-    docker exec -it jd wget https://ghproxy.com/https://raw.githubusercontent.com/qq34347476/js_script/master/scripts/format_share_jd_code.js -O scripts/format_share_jd_code.js
-#### 3. 更新 `配置文件` 模板：
+#### 2. 更新 `配置文件` 模板：
 - 备份当前配置文件
 
       docker exec -it jd mv config/config.sh config/config.sh.bak
@@ -99,13 +114,13 @@
 - 替换新版配置文件
 
       docker exec -it jd cp -f sample/config.sh.sample config/config.sh
-#### 4. 修复与升级：
+#### 3. 修复与升级：
 - 进入容器
 
       docker exec -it jd /bin/bash
 - 执行更新脚本
 
-      bash <(curl -sSL https://ghproxy.com/https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/docker/update-docker.sh)
+      bash <(curl -sSL https://ghproxy.com/https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/update.sh)
 - 退出容器
 
       exit
