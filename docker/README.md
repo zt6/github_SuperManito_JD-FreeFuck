@@ -1,5 +1,5 @@
 # 关于 Docker 版本的《使用与更新》教程
-## 修订日期：2021年 3 月 6 日
+## 修订日期：2021年 3 月 7 日
 ㅤ
 ## 一、基础使用教程
 #### 1. 查看帮助文档：
@@ -90,7 +90,7 @@
       2. 您可以开启自动同步功能，默认同步本人项目里的 diy 脚本
       3. 您也可以使用本项目中的模板文件自定义构建您的专属脚本
       4. 您可以将自制的 diy 脚本上传至您的仓库并使用同步功能
-      5. 如果您使用了自制的脚本请更改更新活动脚本里的地址链接
+      5. 如果您使用了自制的脚本请更改配置文件里的地址链接
 - 启用该功能
 
       docker exec -it jd sed -i 's/EnableExtraShell=""/EnableExtraShell="true"/g' config/config.sh
@@ -98,7 +98,7 @@
 
       docker exec -it jd sed -i 's/EnableExtraShellUpdate=""/EnableExtraShellUpdate="true"/g' config/config.sh
 > _注意：1. 启用该功能后便可直接下载或同步更新本项目中的 diy 脚本，_\
-> _ㅤㅤㅤ2. 如果您想更换同步的地址链接自行修改 `git_pull` 更新活动脚本中的相关变量。_
+> _ㅤㅤㅤ2. 如果您想更换同步的地址链接自行修改配置文件中的相关变量。_
 
 ***
 
@@ -125,9 +125,6 @@
 - 备份当前配置文件
 
       docker exec -it jd mv config/config.sh config/config.sh.bak
-- 替换新版配置文件模板
-
-      docker exec -it jd wget https://gitee.com/SuperManito/JD-FreeFuck/raw/source/sample/config.sh.sample -O sample/config.sh.sample
 - 替换新版配置文件
 
       docker exec -it jd cp -f sample/config.sh.sample config/config.sh
@@ -135,13 +132,13 @@
 - 进入容器
 
       docker exec -it jd /bin/bash
-- 执行更新脚本
+- 执行脚本
 
       bash <(curl -sSL https://gitee.com/SuperManito/JD-FreeFuck/raw/main/update.sh)
 - 退出容器
 
       exit
-> _注意：适用于后期维护，当遇到问题或优化代码需要修复时会在项目置顶通知。_
+> _注意：适用于后期维护，当遇到问题或优化代码需要修复时会在项目置顶通知，未经通知不要擅自执行此命令。_
 
 ***
 
