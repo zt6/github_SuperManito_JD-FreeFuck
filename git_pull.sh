@@ -378,7 +378,7 @@ echo -e "-----------------------------------------------"
 [[ $(date "+%-H") -le 2 ]] && Update_Cron
 
 ## 更新Shell源码
-[ -d ${ConfigDir} ] && Git_PullShell
+[ -d ${ShellDir}/.git ] && Git_PullShell
 
 
 ## 克隆或更新js脚本
