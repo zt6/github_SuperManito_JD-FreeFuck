@@ -366,19 +366,20 @@ function RUN_ALL() {
 }
 
 ## 在日志中记录时间与路径
-echo -e "\n-----------------------------------------------------------------------------"
+echo -e "\n---------------------------------------------------"
 echo -e ''
-echo -e "当前系统时间：$(date "+%Y-%m-%d %H:%M")"
+echo -e "         当前系统时间：$(date "+%Y-%m-%d %H:%M")"
 echo -e ''
-echo -e "活动脚本目录：${ScriptsDir}"
+echo -e "         活动脚本目录：${ScriptsDir}"
 echo -e ''
-echo -e "-----------------------------------------------------------------------------\n"
+echo -e "---------------------------------------------------\n"
 
 ## 更新crontab
 [[ $(date "+%-H") -le 2 ]] && Update_Cron
 
 ## 更新Shell源码
 [ -d ${ConfigDir} ] && Git_PullShell
+echo -e ''
 
 ## 克隆或更新js脚本
 [ -f ${ScriptsDir}/package.json ] && PackageListOld=$(cat ${ScriptsDir}/package.json)
@@ -386,7 +387,7 @@ echo -e "-----------------------------------------------------------------------
 
 ## 执行各函数
 if [[ ${ExitStatusScripts} -eq 0 ]]; then
-  echo -e "js脚本更新完成...\n"
+  echo -e "活动脚本更新完成......\n"
   Change_ALL
   [ -d ${ScriptsDir}/node_modules ] && Notify_Version
   Diff_Cron
@@ -398,6 +399,6 @@ if [[ ${ExitStatusScripts} -eq 0 ]]; then
   ExtraShell
   RUN_ALL
 else
-  echo -e "js脚本更新失败，请检查原因或再次运行git_pull.sh...\n"
+  echo -e "活动脚本更新失败，请检查原因或再次运行git_pull.sh...\n"
   Change_ALL
 fi
