@@ -28,7 +28,6 @@ ContentDropTask=${ShellDir}/drop_task
 SendCount=${ShellDir}/send_count
 isTermux=${ANDROID_RUNTIME_ROOT}${ANDROID_ROOT}
 ScriptsURL=git@gitee.com:lxk0301/jd_scripts.git
-DIY_URL=https://gitee.com/SuperManito/JD-FreeFuck/raw/main/diy/diy.sh
 
 
 ## 更新crontab，gitee服务器同一时间限制5个链接，因此每个人更新代码必须错开时间，每次执行git_pull随机生成。
@@ -304,7 +303,7 @@ function Add_Cron() {
 function ExtraShell() {
   ## 自动同步用户自定义的diy.sh
   if [[ ${EnableExtraShellUpdate} == true ]]; then
-    wget -q $DIY_URL -O ${ShellDir}/config/diy.sh
+    wget -q $EnableExtraShellURL -O ${FileDiy}
     if [ $? -eq 0 ]; then
       echo -e "自定义 DIY 脚本同步完成......"
       echo -e ''
