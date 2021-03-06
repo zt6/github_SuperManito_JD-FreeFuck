@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 ## Author:SuperManito
+## Project: JD-FreeFuck
 ## Modified:2021-3-7
 
 ## 文件路径、脚本网址、文件版本以及各种环境的判断
@@ -305,11 +306,11 @@ function ExtraShell() {
   if [[ ${EnableExtraShellUpdate} == true ]]; then
     wget -q $DIY_URL -O ${ShellDir}/config/diy.sh
     if [ $? -eq 0 ]; then
-      echo -e "diy脚本同步成功... "
+      echo -e "DIY脚本同步完成......"
       echo -e ''
       sleep 2s
     else
-      echo -e "diy脚本同步失败... "
+      echo -e "DIY脚本同步失败......"
       echo -e ''
       sleep 2s
     fi
@@ -327,8 +328,6 @@ function ExtraShell() {
 }
 
 ## 一键执行所有活动脚本
-##  Author:  SuperManito
-##  Project: JD-FreeFuck
 function RUN_ALL() {
   ## 默认将 "jd、jx、jr" 开头的活动脚本加入其中
   rm -rf ${ShellDir}/run-all.sh
@@ -373,7 +372,6 @@ echo -e ''
 echo -e "         活动脚本目录：${ScriptsDir}"
 echo -e ''
 echo -e "---------------------------------------------------\n"
-echo -e ''
 
 ## 更新crontab
 [[ $(date "+%-H") -le 2 ]] && Update_Cron
@@ -388,8 +386,6 @@ echo -e ''
 
 ## 执行各函数
 if [[ ${ExitStatusScripts} -eq 0 ]]; then
-  echo -e ''
-  echo -e "活动脚本更新完成......\n"
   Change_ALL
   [ -d ${ScriptsDir}/node_modules ] && Notify_Version
   Diff_Cron
@@ -400,7 +396,10 @@ if [[ ${ExitStatusScripts} -eq 0 ]]; then
   Add_Cron
   ExtraShell
   RUN_ALL
+  echo -e ''
+  echo -e "活动脚本更新完成......\n"
 else
-  echo -e "活动脚本更新失败，请检查原因或再次运行git_pull.sh...\n"
+  echo -e ''
+  echo -e "活动脚本更新失败，请检查原因或再次运行 git_pull.sh ......\n"
   Change_ALL
 fi
