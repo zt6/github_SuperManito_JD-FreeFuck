@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-## Author:SuperManito
+## Author: SuperManito
 ## Project: JD-FreeFuck
-## Modified:2021-3-7
+## Modified: 2021-3-7
 
 ## 文件路径、脚本网址、文件版本以及各种环境的判断
 ShellDir=${JD_DIR:-$(
@@ -368,9 +368,9 @@ function RUN_ALL() {
 echo -e ''
 echo -e "-----------------------------------------------"
 echo -e ''
-echo -e "       当前系统时间：$(date "+%Y-%m-%d %H:%M")"
+echo -e "        当前系统时间：$(date "+%Y-%m-%d %H:%M")"
 echo -e ''
-echo -e "       活动脚本目录：${ScriptsDir}"
+echo -e "        活动脚本目录：${ScriptsDir}"
 echo -e ''
 echo -e "-----------------------------------------------"
 
@@ -379,11 +379,13 @@ echo -e "-----------------------------------------------"
 
 ## 更新Shell源码
 [ -d ${ConfigDir} ] && Git_PullShell
-echo -e ''
+
 
 ## 克隆或更新js脚本
 [ -f ${ScriptsDir}/package.json ] && PackageListOld=$(cat ${ScriptsDir}/package.json)
 [ -d ${ScriptsDir}/.git ] && Git_PullScripts || Git_CloneScripts
+echo -e "-----------------------------------------------"
+echo -e ''
 
 ## 执行各函数
 if [[ ${ExitStatusScripts} -eq 0 ]]; then
