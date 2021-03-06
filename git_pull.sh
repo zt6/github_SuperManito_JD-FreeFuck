@@ -27,7 +27,6 @@ ContentDropTask=${ShellDir}/drop_task
 SendCount=${ShellDir}/send_count
 isTermux=${ANDROID_RUNTIME_ROOT}${ANDROID_ROOT}
 ScriptsURL=git@gitee.com:lxk0301/jd_scripts.git
-ShellURL=https://github.com/SuperManito/JD-FreeFuck/tree/source
 DIY_URL=https://gitee.com/SuperManito/JD-FreeFuck/raw/main/diy/diy.sh
 
 
@@ -54,7 +53,7 @@ function Update_Cron() {
 
 ## 更新Shell源码
 function Git_PullShell {
-  echo -e "更新 Shell 脚本，地址：${ShellURL}\n"
+  echo -e "\n更新 Shell 脚本，地址：https://github.com/SuperManito/JD-FreeFuck\n"
   cd ${ShellDir}
   git fetch --all
   ExitStatusShell=$?
@@ -63,7 +62,7 @@ function Git_PullShell {
 
 ## 克隆scripts
 function Git_CloneScripts() {
-  echo -e "克隆 lxk0301 脚本，地址：${ScriptsURL}\n"
+  echo -e "\n克隆 lxk0301 脚本，地址：https://gitee.com/lxk0301/jd_scripts\n"
   git clone -b master ${ScriptsURL} ${ScriptsDir}
   ExitStatusScripts=$?
   echo
@@ -71,7 +70,7 @@ function Git_CloneScripts() {
 
 ## 更新scripts
 function Git_PullScripts() {
-  echo -e "更新 lxk0301 脚本，地址：${ScriptsURL}\n"
+  echo -e "\n更新 lxk0301 脚本，地址：https://gitee.com/lxk0301/jd_scripts\n"
   cd ${ScriptsDir}
   git fetch --all
   ExitStatusScripts=$?
