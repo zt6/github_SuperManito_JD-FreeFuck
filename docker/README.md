@@ -1,5 +1,5 @@
 # 关于 Docker 版本的《使用与更新》教程
-## 修订日期：2021年 3 月 5 日
+## 修订日期：2021年 3 月 6 日
 ㅤ
 ## 一、基础使用教程
 #### 1. 查看帮助文档：
@@ -35,28 +35,49 @@
     docker exec -it jd bash export_sharecodes.sh
 > _注意：其原理是从各个活动脚本的日志中获取，只有运行完所有活动脚本后才可使用。_
 #### 3. 配置互助码与相互助力：
-
-> 示例：
-
-> MyFruit1="xxxxxxxxxxxxxxxxxxxx"\
-> MyFruit2="xxxxxxxxxxxxxxxxxxxx"\
-> MyFruit3="xxxxxxxxxxxxxxxxxxxx"\
-> MyFruit4="xxxxxxxxxxxxxxxxxxxx"\
-> MyFruit5="xxxxxxxxxxxxxxxxxxxx"\
-> MyFruit6="xxxxxxxxxxxxxxxxxxxx"\
+> 填法示例：
+> 
+> ################################## 1. 定义东东农场互助（选填） ##################################
+> 
+> MyFruit1="xxxxxxxxxxxxxxxxxxxxxxxxx"\
+> MyFruit2="xxxxxxxxxxxxxxxxxxxxxxxxx"\
+> MyFruit3=""\
+> MyFruit4=""\
+> MyFruit5=""\
+> MyFruit6=""\
 > MyFruitA=""\
 > MyFruitB=""
-
+> 
 > ForOtherFruit1="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}@${MyFruit6}"
-> ForOtherFruit2="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}@${MyFruit6}"
-> ForOtherFruit3="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}@${MyFruit6}"
-> ForOtherFruit4="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}@${MyFruit6}"
-> ForOtherFruit5="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}@${MyFruit6}"
-> ForOtherFruit6="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}@${MyFruit6}"
-
-#### 4. 启用挂机功能：
-    docker exec -it jd bash jd.sh hangup
-> _注意：此功能为执行挂机活动脚本，可能此功能会遇到报错，使用人数较少。_
+> ForOtherFruit2="${MyFruit1}@${MyFruit2}@${MyFruit3}@${MyFruit4}@${MyFruit5}@${MyFruit6}"\
+> ForOtherFruit3=""\
+> ForOtherFruit4=""\
+> ForOtherFruit5=""\
+> ForOtherFruit6=""
+> 
+> ################################## 2. 定义东东萌宠互助（选填） ##################################
+> 
+> MyPet1="xxxxxxxxxxxxxxxxxxxxxxxxx"\
+> MyPet2="xxxxxxxxxxxxxxxxxxxxxxxxx"\
+> MyPet3="xxxxxxxxxxxxxxxxxxxxxxxxx"\
+> MyPet4="xxxxxxxxxxxxxxxxxxxxxxxxx"\
+> MyPet5="xxxxxxxxxxxxxxxxxxxxxxxxx"\
+> MyPet6="xxxxxxxxxxxxxxxxxxxxxxxxx"\
+> MyPet7="xxxxxxxxxxxxxxxxxxxxxxxxx"\
+> MyPet8="xxxxxxxxxxxxxxxxxxxxxxxxx"\
+> MyPetA=""\
+> MyPetB=""
+> 
+> ForOtherPet1="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
+> ForOtherPet2="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
+> ForOtherPet3="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
+> ForOtherPet4="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
+> ForOtherPet5="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
+> ForOtherPet6="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
+> ForOtherPet7="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
+> ForOtherPet8="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
+#### 4. 运行挂机活动脚本：
+    docker exec -it jd bash jd.sh crazy_joy_coin now
 #### 5. 导入并使用第三方活动脚本：
     1. 将脚本放置在该项目容器内 scripts 子目录下，也可放在外部的挂载目录（默认为/opt/jd/scripts）
     2. 然后通过命令 docker exec -it jd bash jd.sh xxx now 运行
@@ -68,8 +89,8 @@
       1. 此脚本的用途为加入非 lxk0301大佬 的第三方活动脚本
       2. 您可以开启自动同步功能，默认同步本人项目里的 diy 脚本
       3. 您也可以使用本项目中的模板文件自定义构建您的专属脚本
-      4. 您可以将您的 diy 脚本上传到您的仓库并使用同步功能
-      5. 如果您使用了您自定义的脚本请更改同步功能里的地址链接
+      4. 您可以将自制的 diy 脚本上传至您的仓库并使用同步功能
+      5. 如果您使用了自制的脚本请更改更新活动脚本里的地址链接
 - 启用该功能
 
       docker exec -it jd sed -i 's/EnableExtraShell=""/EnableExtraShell="true"/g' config/config.sh
@@ -99,14 +120,14 @@
 ㅤ
 ## 四、更新教程
 #### 1. 更新 `一键更新` 脚本：
-    docker exec -it jd wget https://ghproxy.com/https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/source/git_pull.sh -O git_pull.sh
+    docker exec -it jd wget https://gitee.com/SuperManito/JD-FreeFuck/raw/source/git_pull.sh -O git_pull.sh
 #### 2. 更新 `配置文件` 模板：
 - 备份当前配置文件
 
       docker exec -it jd mv config/config.sh config/config.sh.bak
 - 替换新版配置文件模板
 
-      docker exec -it jd wget https://ghproxy.com/https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/source/sample/config.sh.sample -O sample/config.sh.sample
+      docker exec -it jd wget https://gitee.com/SuperManito/JD-FreeFuck/raw/source/sample/config.sh.sample -O sample/config.sh.sample
 - 替换新版配置文件
 
       docker exec -it jd cp -f sample/config.sh.sample config/config.sh
@@ -116,7 +137,7 @@
       docker exec -it jd /bin/bash
 - 执行更新脚本
 
-      bash <(curl -sSL https://ghproxy.com/https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/update.sh)
+      bash <(curl -sSL https://gitee.com/SuperManito/JD-FreeFuck/raw/main/update.sh)
 - 退出容器
 
       exit
