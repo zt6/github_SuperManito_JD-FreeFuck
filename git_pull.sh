@@ -306,11 +306,11 @@ function ExtraShell() {
   if [[ ${EnableExtraShellUpdate} == true ]]; then
     wget -q $DIY_URL -O ${ShellDir}/config/diy.sh
     if [ $? -eq 0 ]; then
-      echo -e "DIY脚本同步完成......"
+      echo -e "自定义 DIY 脚本同步完成......"
       echo -e ''
       sleep 2s
     else
-      echo -e "DIY脚本同步失败......"
+      echo -e "自定义 DIY 脚本同步失败......"
       echo -e ''
       sleep 2s
     fi
@@ -321,7 +321,7 @@ function ExtraShell() {
     if [ -f ${FileDiy} ]; then
       . ${FileDiy}
     else
-      echo -e "${FileDiy} 文件不存在，跳过执行DIY脚本...\n"
+      echo -e "${FileDiy} 文件不存在，跳过执行自定义 DIY 脚本...\n"
       echo -e ''
     fi
   fi
@@ -365,13 +365,14 @@ function RUN_ALL() {
 }
 
 ## 在日志中记录时间与路径
-echo -e "\n---------------------------------------------------"
 echo -e ''
-echo -e "         当前系统时间：$(date "+%Y-%m-%d %H:%M")"
+echo -e "-----------------------------------------------"
 echo -e ''
-echo -e "         活动脚本目录：${ScriptsDir}"
+echo -e "       当前系统时间：$(date "+%Y-%m-%d %H:%M")"
 echo -e ''
-echo -e "---------------------------------------------------\n"
+echo -e "       活动脚本目录：${ScriptsDir}"
+echo -e ''
+echo -e "-----------------------------------------------"
 
 ## 更新crontab
 [[ $(date "+%-H") -le 2 ]] && Update_Cron
@@ -396,10 +397,8 @@ if [[ ${ExitStatusScripts} -eq 0 ]]; then
   Add_Cron
   ExtraShell
   RUN_ALL
-  echo -e ''
   echo -e "活动脚本更新完成......\n"
 else
-  echo -e ''
   echo -e "活动脚本更新失败，请检查原因或再次运行 git_pull.sh ......\n"
   Change_ALL
 fi
