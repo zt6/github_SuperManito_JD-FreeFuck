@@ -53,7 +53,7 @@ function Update_Cron() {
 
 ## 更新Shell源码
 function Git_PullShell {
-  echo -e "\n更新 Shell 脚本，地址：https://github.com/SuperManito/JD-FreeFuck\n"
+  echo -e "\n更新 Shell 项目脚本：\n"
   cd ${ShellDir}
   git fetch --all
   ExitStatusShell=$?
@@ -62,7 +62,7 @@ function Git_PullShell {
 
 ## 克隆scripts
 function Git_CloneScripts() {
-  echo -e "\n克隆 lxk0301 脚本，地址：https://gitee.com/lxk0301/jd_scripts\n"
+  echo -e "\n克隆 lxk0301 活动脚本：\n"
   git clone -b master ${ScriptsURL} ${ScriptsDir}
   ExitStatusScripts=$?
   echo
@@ -70,7 +70,7 @@ function Git_CloneScripts() {
 
 ## 更新scripts
 function Git_PullScripts() {
-  echo -e "\n更新 lxk0301 脚本，地址：https://gitee.com/lxk0301/jd_scripts\n"
+  echo -e "\n更新 lxk0301 活动脚本：\n"
   cd ${ScriptsDir}
   git fetch --all
   ExitStatusScripts=$?
@@ -373,6 +373,7 @@ echo -e ''
 echo -e "         活动脚本目录：${ScriptsDir}"
 echo -e ''
 echo -e "---------------------------------------------------\n"
+echo -e ''
 
 ## 更新crontab
 [[ $(date "+%-H") -le 2 ]] && Update_Cron
@@ -387,6 +388,7 @@ echo -e ''
 
 ## 执行各函数
 if [[ ${ExitStatusScripts} -eq 0 ]]; then
+  echo -e ''
   echo -e "活动脚本更新完成......\n"
   Change_ALL
   [ -d ${ScriptsDir}/node_modules ] && Notify_Version
