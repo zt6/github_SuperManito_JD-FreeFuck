@@ -29,7 +29,6 @@ SendCount=${ShellDir}/send_count
 isTermux=${ANDROID_RUNTIME_ROOT}${ANDROID_ROOT}
 ScriptsURL=git@gitee.com:lxk0301/jd_scripts.git
 
-
 ## 更新crontab，gitee服务器同一时间限制5个链接，因此每个人更新代码必须错开时间，每次执行git_pull随机生成。
 ## 每天次数随机，更新时间随机，更新秒数随机，至少6次，至多12次，大部分为8-10次，符合正态分布。
 function Update_Cron() {
@@ -52,12 +51,13 @@ function Update_Cron() {
 }
 
 ## 更新Shell源码
-function Git_PullShell {
-  echo -e "\n更新 Shell 项目脚本：\n"
+function Git_PullShell() {
+  echo -e "\n更新 JD-FreeFuck 项目脚本：\n"
   cd ${ShellDir}
   git fetch --all
   ExitStatusShell=$?
   git reset --hard origin/source
+  echo
 }
 
 ## 克隆scripts
@@ -378,7 +378,6 @@ echo -e "-----------------------------------------------"
 
 ## 更新Shell源码
 [ -d ${ShellDir}/.git ] && Git_PullShell
-
 
 ## 克隆或更新js脚本
 [ -f ${ScriptsDir}/package.json ] && PackageListOld=$(cat ${ScriptsDir}/package.json)
