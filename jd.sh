@@ -82,7 +82,7 @@ function Combin_All {
   ## 闪购盲盒(jd_sgmh.js)
   export JDSGMH_SHARECODES=$(Combin_Sub ForOtherSgmh)
   ## 京喜财富岛(jd_cfd.js)
-  export JDCFD_SHARECODES=$(Combin_Sub ForOtherJdcfd)
+  export JDCFD_SHARECODES=$(Combin_Sub ForOtherCfd)
 }
 
 ## 转换JD_BEAN_SIGN_STOP_NOTIFY或JD_BEAN_SIGN_NOTIFY_SIMPLE
@@ -167,14 +167,18 @@ function Run_Pm2 {
 
 ## 运行挂机脚本
 function Run_HangUp {
-  Import_Conf $1 && Detect_Cron && Set_Env
   HangUpJs="jd_crazy_joy_coin"
   cd ${ScriptsDir}
-  if type pm2 >/dev/null 2>&1; then
-    Run_Pm2 2>/dev/null
-  else
-    Run_Nohup >/dev/null 2>&1
-  fi
+  for js in ${HangUpJs}; do
+    Import_Conf ${js} && Set_Env
+    if type pm2 >/dev/null 2>&1; then
+      pm2 flush "${js}"
+      pm2 stop ${js}.js 2>/dev/null
+      pm2 start -a ${js}.js --watch --name="${js}"
+    else
+      Run_Nohup >/dev/null 2>&1
+    fi
+  done
 }
 
 ## 重置密码
