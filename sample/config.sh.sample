@@ -1,11 +1,12 @@
-## Version: v3.31.0
+## Version: v3.31.1
 ## Modified: 2021-3-7
 ## Author: SuperManito
 ## Project: JD-FreeFuck
-## Update Content: 新增自定义 Diy 脚本同步地址变量
+## Update Content: 修改财富岛变量
 
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
+
 
 ## ---------------------------------- 使 用 说 明 ----------------------------------
 
@@ -417,21 +418,21 @@ ForOtherSgmh6=""
 
 ################################## 12. 定义京喜财富岛互助（选填） ##################################
 ## 具体填法及要求详见本文件最下方“互助码填法示例”
-MyJdcfd1=""
-MyJdcfd2=""
-MyJdcfd3=""
-MyJdcfd4=""
-MyJdcfd5=""
-MyJdcfd6=""
-MyJdcfdA=""
-MyJdcfdB=""
+MyCfd1=""
+MyCfd2=""
+MyCfd3=""
+MyCfd4=""
+MyCfd5=""
+MyCfd6=""
+MyCfdA=""
+MyCfdB=""
 
-ForOtherJdcfd1=""
-ForOtherJdcfd2=""
-ForOtherJdcfd3=""
-ForOtherJdcfd4=""
-ForOtherJdcfd5=""
-ForOtherJdcfd6=""
+ForOtherCfd1=""
+ForOtherCfd2=""
+ForOtherCfd3=""
+ForOtherCfd4=""
+ForOtherCfd5=""
+ForOtherCfd6=""
 
 
 ##################################################################################################
