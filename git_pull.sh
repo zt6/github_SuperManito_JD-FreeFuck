@@ -403,4 +403,4 @@ else
 fi
 
 ## 临时更新命令
-sed -i "s/Jdcfd/Cfd/g" ${ConfigDir}
+sed -i "s/Jdcfd/Cfd/g" ${FileConf}
