@@ -479,22 +479,23 @@ app.post('/runCmd', function(request, response) {
     if (request.session.loggedin) {
         const cmd = request.body.cmd;
         const delay = request.body.delay || 0;
+        // console.log('before exec');
         exec(cmd, (error, stdout, stderr) => {
+            // console.log(error, stdout, stderr);
             // 根据传入延时返回数据，有时太快会出问题
             setTimeout(() => {
                 if (error) {
                     console.error(`执行的错误: ${error}`);
                     response.send({ err: 1, msg: '执行出错！' });
-                    return;
-                }
-                if (stdout) {
-                    response.send({ err: 0, msg: `${stdout}` });
-                }
 
-                if (stderr) {
+                } else if (stdout) {
+                    // console.log(`stdout: ${stdout}`)
+                    response.send({ err: 0, msg: `${stdout}` });
+
+                } else if (stderr) {
                     console.error(`stderr: ${stderr}`);
                     response.send({ err: 1, msg: `${stderr}` });
-                }
+                } 
             }, delay);
         });
     } else {
