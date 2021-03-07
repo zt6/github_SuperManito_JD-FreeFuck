@@ -76,14 +76,16 @@
 > ForOtherPet6="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
 > ForOtherPet7="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
 > ForOtherPet8="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
-#### 4. 运行挂机活动脚本：
-    docker exec -it jd bash jd.sh crazy_joy_coin now
-#### 5. 导入并使用第三方活动脚本：
+#### 4. 后台运行挂机活动脚本：
+    docker exec -it jd bash jd.sh hangup
+#### 5. 停止后台运行挂机活动脚本：
+    docker exec -it jd pm2 stop jd_crazy_joy_coin
+#### 6. 导入并使用第三方活动脚本：
     1. 将脚本放置在该项目容器内 scripts 子目录下，也可放在外部的挂载目录（默认为/opt/jd/scripts）
     2. 然后通过命令 docker exec -it jd bash jd.sh xxx now 运行
     3. 如果您想将第三方脚本加入到 run-all.sh 一键脚本中可将脚本名改为"jd_"开头即可
 > _注意：导入的第三方活动脚本不会随项目本身活动脚本的更新而删除。_
-#### 6. 使用自定义 `diy` 脚本：
+#### 7. 使用自定义 `diy` 脚本：
 - 使用需知
 
       1. 此脚本的用途为加入非 lxk0301大佬 的第三方活动脚本
