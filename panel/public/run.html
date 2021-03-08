@@ -37,14 +37,37 @@
                 <button id="wrap" title="切换换行">切换换行</button>
                 <br/>
                 <button id="jd_list" class="cmd-btn" title="列出脚本">列出脚本</button>
-                <button id="jd_bean_sign" class="cmd-btn" title="京豆签到">京豆签到</button>
-                <button id="jd_fruit" class="cmd-btn" title="东东农场">东东农场</button>
-                <button id="jd_dreamFactory" class="cmd-btn" title="京喜工厂">京喜工厂</button>
-                <button id="jd_joy_reward" class="cmd-btn" title="宠汪汪积分兑换">宠汪汪积分兑换</button>
                 <button id="git_pull" title="更新脚本">更新脚本</button>
+                <button id="jd_get_share_code" class="cmd-btn" title="获取互助码">获取互助码</button>
                 <button id="export_sharecodes" title="导出所有互助码">导出所有互助码</button>
-                <button id="hangup" title="重启挂机程序">重启挂机程序</button>
+                <button id="rm_log" title="删除日志">删除日志</button>
                 <button id="resetpwd" title="重置用户名密码">重置用户名密码</button>
+                <br/>
+                <button id="jd_bean_change" class="cmd-btn" title="京豆变动通知">京豆变动通知</button>
+                <button id="jd_bean_sign" class="cmd-btn" title="京东多合一签到">京东多合一签到</button>
+                <button id="jd_bean_home" class="cmd-btn" title="领京豆额外奖励">领京豆额外奖励</button>
+                <button id="jd_cash" class="cmd-btn" title="签到领现金">签到领现金</button>
+                <button id="jd_crazy_joy_coin" class="cmd-btn" title="疯狂的JOY挂机">疯狂的JOY挂机</button>
+                <button id="hangup" title="重启后台挂机程序">重启后台挂机程序</button>
+                <br/>
+                <button id="jd_fruit" class="cmd-btn" title="东东农场">东东农场</button>
+                <button id="jd_pet" class="cmd-btn" title="东东萌宠">东东萌宠</button>
+                <button id="jd_jdfactory" class="cmd-btn" title="东东工厂">东东工厂</button>
+                <button id="jd_small_home" class="cmd-btn" title="东东小窝">东东小窝</button>
+                <button id="jd_dreamFactory" class="cmd-btn" title="京喜工厂">京喜工厂</button>
+                <button id="jd_jxnc" class="cmd-btn" title="京喜农场">京喜农场</button>
+                <button id="jd_cfd" class="cmd-btn" title="京喜财富岛">京喜财富岛</button>
+                <button id="jd_plantBean" class="cmd-btn" title="种豆得豆">种豆得豆</button>
+                <button id="jd_joy" class="cmd-btn" title="宠汪汪">宠汪汪</button>
+                <button id="jd_jdzz" class="cmd-btn" title="京东赚赚">京东赚赚</button>
+                <br/>
+                <button id="jd_unsubscribe" class="cmd-btn" title="取关店铺和商品">取关店铺和商品</button>
+                <button id="jd_price" class="cmd-btn" title="京东保价">京东保价</button>
+                <button id="jd_delCoupon" class="cmd-btn" title="删除优惠券">删除优惠券</button>
+                <button id="jd_joy_reward" class="cmd-btn" title="宠汪汪积分兑换">宠汪汪积分兑换</button>
+                <button id="jd_blueCoin" class="cmd-btn" title="东东超市蓝币兑换">东东超市蓝币兑换</button>
+                <button id="jd_car_exchange" class="cmd-btn" title="京东汽车兑换">京东汽车兑换</button>
+
                 <br/>
                 <form class="run-cmd-form" action="runCmd" method="POST">
                     <div class="cmd-section">
@@ -105,7 +128,7 @@
                 }, 1000);
             });
 
-            $('#hangup, #resetpwd, #export_sharecodes, #git_pull').click(function() {
+            $('#hangup, #resetpwd, #export_sharecodes, #git_pull, #rm_log, #run_all').click(function() {
                 let confirmTxt;
                 switch (this.id) {
                     case 'git_pull':
@@ -116,6 +139,9 @@
                         break;
                     case 'hangup':
                         confirmTxt = '确认重启挂机程序？';
+                        break;
+                    case 'rm_log':
+                        confirmTxt = '确认删除日志？';
                         break;
                     case 'resetpwd':
                         confirmTxt = '重置用户名密码？';
@@ -137,7 +163,7 @@
                 }
                 editor.setValue('');
 
-                const cmd = ['git_pull', 'export_sharecodes'].includes(this.id) ? `bash ${this.id}` : `bash jd ${this.id}`;
+                const cmd = ['git_pull', 'export_sharecodes', 'rm_log'].includes(this.id) ? `bash ${this.id}` : `bash jd ${this.id}`;
                 $.post('./runCmd', {cmd: cmd}, function (data) {
                     editor.setValue(data.msg);
 
@@ -168,7 +194,7 @@
                 }
                 editor.setValue('');
 
-                const cmd = `bash jd ${jdScript} now`;
+                const cmd = `bash ../jd.sh ${jdScript} now`;
                 $.post('./runCmd', {cmd: cmd, delay: 1000}, function (data) {
                     editor.setValue(data.msg);
 
