@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 ## Author: SuperManito
 ## Project: JD-FreeFuck
-## Modified: 2021-3-7
+## Modified: 2021-3-8
 
 ## 文件路径、脚本网址、文件版本以及各种环境的判断
-ShellDir=${JD_DIR:-$(
-  cd $(dirname $0)
-  pwd
-)}
+ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
 [[ ${JD_DIR} ]] && ShellJd=jd || ShellJd=${ShellDir}/jd.sh
 LogDir=${ShellDir}/log
 [ ! -d ${LogDir} ] && mkdir -p ${LogDir}
@@ -109,7 +106,7 @@ function Change_ALL() {
     . ${FileConf}
     if [ -n "${Cookie1}" ]; then
       Count_UserSum
-      Change_JoyRunPins
+      # Change_JoyRunPins
     fi
   fi
 }
