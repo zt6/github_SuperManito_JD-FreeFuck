@@ -401,6 +401,3 @@ else
   echo -e "活动脚本更新失败，请检查原因或再次运行 git_pull.sh ......\n"
   Change_ALL
 fi
-
-## 临时更新命令
-sed -i "s/Jdcfd/Cfd/g" ${FileConf}
