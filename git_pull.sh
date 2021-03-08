@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 ## Author: SuperManito
 ## Project: JD-FreeFuck
-## Modified: 2021-3-8
+## Modified: 2021-3-9
 
 ## 文件路径、脚本网址、文件版本以及各种环境的判断
-ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
+ShellDir=${JD_DIR:-$(
+  cd $(dirname $0)
+  pwd
+)}
 [[ ${JD_DIR} ]] && ShellJd=jd || ShellJd=${ShellDir}/jd.sh
 LogDir=${ShellDir}/log
 [ ! -d ${LogDir} ] && mkdir -p ${LogDir}
@@ -152,18 +155,28 @@ function Notify_NewTask() {
 }
 
 ## 检测配置文件版本
-function Notify_Version() {
+function Notify_Version {
+  ## 识别出两个文件的版本号
+  VerConfSample=$(grep " Version: " ${FileConfSample} | perl -pe "s|.+v((\d+\.?){3})|\1|")
+  [ -f ${FileConf} ] && VerConf=$(grep " Version: " ${FileConf} | perl -pe "s|.+v((\d+\.?){3})|\1|")
+  
+  ## 删除旧的发送记录文件
   [ -f "${SendCount}" ] && [[ $(cat ${SendCount}) != ${VerConfSample} ]] && rm -f ${SendCount}
+
+  ## 识别出更新日期和更新内容
   UpdateDate=$(grep " Date: " ${FileConfSample} | awk -F ": " '{print $2}')
   UpdateContent=$(grep " Update Content: " ${FileConfSample} | awk -F ": " '{print $2}')
-  if [ -f ${FileConf} ] && [[ "${VerConf}" != "${VerConfSample}" ]] && [[ ${UpdateDate} == $(date "+%Y-%m-%d") ]]; then
+
+  ## 如果是今天，并且版本号不一致，则发送通知
+  if [ -f ${FileConf} ] && [[ "${VerConf}" != "${VerConfSample}" ]] && [[ ${UpdateDate} == $(date "+%Y-%m-%d") ]]
+  then
     if [ ! -f ${SendCount} ]; then
-      echo -e "检测到配置文件config.sh.sample有更新\n\n更新日期: ${UpdateDate}\n当前版本: ${VerConf}\n新的版本: ${VerConfSample}\n更新内容: ${UpdateContent}\n如需使用新功能请对照config.sh.sample，将相关新参数手动增加到您自己的config.sh中，否则请无视本消息。\n" | tee ${ContentVersion}
-      echo -e "本消息只在该新版本配置文件更新当天发送一次。" >>${ContentVersion}
+      echo -e "检测到配置文件config.sh.sample有更新\n\n更新日期: ${UpdateDate}\n当前版本: ${VerConf}\n新的版本: ${VerConfSample}\n更新内容: ${UpdateContent}\n如需使用新功能请对照config.sh.sample，将相关新参数手动增加到你自己的config.sh中，否则请无视本消息。\n" | tee ${ContentVersion}
+      echo -e "本消息只在该新版本配置文件更新当天发送一次。" >> ${ContentVersion}
       cd ${ShellDir}
       node update.js
       if [ $? -eq 0 ]; then
-        echo "${VerConfSample}" >${SendCount}
+        echo "${VerConfSample}" > ${SendCount}
         [ -f ${ContentVersion} ] && rm -f ${ContentVersion}
       fi
     fi
@@ -324,39 +337,41 @@ function ExtraShell() {
 
 ## 一键执行所有活动脚本
 function RUN_ALL() {
-  ## 默认将 "jd、jx、jr" 开头的活动脚本加入其中
+  ## 临时删除以旧版脚本
   rm -rf ${ShellDir}/run-all.sh
-  bash ${ShellDir}/jd.sh | grep -io 'j[drx]_[a-z].*' | grep -v 'bean_change' >${ShellDir}/run-all.sh
-  sed -i "1i\jd_bean_change.js" ${ShellDir}/run-all.sh ## 置顶京豆变动通知
-  sed -i "s#^#bash ${ShellDir}/jd.sh &#g" ${ShellDir}/run-all.sh
-  sed -i 's#.js# now#g' ${ShellDir}/run-all.sh
-  sed -i '1i\#!/bin/env bash' ${ShellDir}/run-all.sh
+  ## 默认将 "jd、jx、jr" 开头的活动脚本加入其中
+  rm -rf ${ShellDir}/run_all.sh
+  bash ${ShellDir}/jd.sh | grep -io 'j[drx]_[a-z].*' | grep -v 'bean_change' >${ShellDir}/run_all.sh
+  sed -i "1i\jd_bean_change.js" ${ShellDir}/run_all.sh ## 置顶京豆变动通知
+  sed -i "s#^#bash ${ShellDir}/jd.sh &#g" ${ShellDir}/run_all.sh
+  sed -i 's#.js# now#g' ${ShellDir}/run_all.sh
+  sed -i '1i\#!/bin/env bash' ${ShellDir}/run_all.sh
   ## 自定义添加脚本
-  ## 例：echo "bash ${ShellDir}/jd.sh xxx now" >>${ShellDir}/run-all.sh
+  ## 例：echo "bash ${ShellDir}/jd.sh xxx now" >>${ShellDir}/run_all.sh
 
   ## 将挂机活动移至末尾从而最后执行
   ## 目前仅有 "疯狂的JOY" 这一个活动
   ## 模板如下 ：
-  ## cat run-all.sh | grep xxx -wq
+  ## cat run_all.sh | grep xxx -wq
   ## if [ $? -eq 0 ];then
-  ##   sed -i '/xxx/d' ${ShellDir}/run-all.sh
-  ##   echo "bash jd.sh xxx now" >>${ShellDir}/run-all.sh
+  ##   sed -i '/xxx/d' ${ShellDir}/run_all.sh
+  ##   echo "bash jd.sh xxx now" >>${ShellDir}/run_all.sh
   ## fi
-  cat ${ShellDir}/run-all.sh | grep jd_crazy_joy_coin -wq
+  cat ${ShellDir}/run_all.sh | grep jd_crazy_joy_coin -wq
   if [ $? -eq 0 ]; then
-    sed -i '/jd_crazy_joy_coin/d' ${ShellDir}/run-all.sh
-    echo "bash ${ShellDir}/jd.sh jd_crazy_joy_coin now" >>${ShellDir}/run-all.sh
+    sed -i '/jd_crazy_joy_coin/d' ${ShellDir}/run_all.sh
+    echo "bash ${ShellDir}/jd.sh jd_crazy_joy_coin now" >>${ShellDir}/run_all.sh
   fi
 
   ## 去除不想加入到此脚本中的活动
-  ## 例：sed -i '/xxx/d' ${ShellDir}/run-all.sh
-  sed -i '/jd_delCoupon/d' ${ShellDir}/run-all.sh ## 不执行 "京东家庭号" 活动
-  sed -i '/jd_family/d' ${ShellDir}/run-all.sh    ## 不执行 "删除优惠券" 活动
+  ## 例：sed -i '/xxx/d' ${ShellDir}/run_all.sh
+  sed -i '/jd_delCoupon/d' ${ShellDir}/run_all.sh ## 不执行 "京东家庭号" 活动
+  sed -i '/jd_family/d' ${ShellDir}/run_all.sh    ## 不执行 "删除优惠券" 活动
 
   ## 去除脚本中的空行
-  sed -i '/^\s*$/d' ${ShellDir}/run-all.sh
+  sed -i '/^\s*$/d' ${ShellDir}/run_all.sh
   ## 赋权
-  chmod 777 ${ShellDir}/run-all.sh
+  chmod 777 ${ShellDir}/run_all.sh
 }
 
 ## 在日志中记录时间与路径
