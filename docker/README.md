@@ -1,5 +1,5 @@
 # 关于 Docker 版本的《使用与更新》教程
-## 修订日期：2021年 3 月 7 日
+## 修订日期：2021年 3 月 8 日
 ㅤ
 ## 一、基础使用教程
 #### 1. 查看帮助文档：
@@ -126,10 +126,10 @@
 ## 四、更新教程
 #### 1. 更新 `一键更新` 脚本：
     docker exec -it jd wget https://gitee.com/SuperManito/JD-FreeFuck/raw/source/git_pull.sh -O git_pull.sh
-#### 2. 更新 `配置文件` 模板：
+#### 2. 更新 `配置文件` ：
 - 备份当前配置文件
 
-      docker exec -it jd mv config/config.sh config/config.sh.bak
+      docker exec -it jd mv config/config.sh config/bak/config.sh
 - 替换新版配置文件
 
       docker exec -it jd cp -f sample/config.sh.sample config/config.sh
