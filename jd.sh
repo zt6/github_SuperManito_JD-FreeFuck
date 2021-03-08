@@ -88,6 +88,8 @@ function Combin_All() {
   export JDSGMH_SHARECODES=$(Combin_Sub ForOtherSgmh)
   ## 京喜财富岛(jd_cfd.js)
   export JDCFD_SHARECODES=$(Combin_Sub ForOtherCfd)
+  ## 环球挑战赛(jd_global.js)
+  export JDGLOBAL_SHARECODES=$(Combin_Sub ForOtherGlobal)
 }
 
 ## 转换JD_BEAN_SIGN_STOP_NOTIFY或JD_BEAN_SIGN_NOTIFY_SIMPLE
