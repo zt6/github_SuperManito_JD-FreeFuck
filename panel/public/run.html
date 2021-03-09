@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>手动执行京东脚本</title>
+    <title>手动执行脚本</title>
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/codemirror.min.js"></script>
     <script type="text/javascript" src="./js/shell.js"></script>
@@ -23,9 +23,9 @@
                     <li><a href="./home">首页</a></li>
                     <li><a href="./crontab">定时设定</a></li>
                     <li><a href="./diff">对比工具</a></li>
-                    <li><a href="./shareCode">Share Code</a></li>
+                    <li><a href="./shareCode">互助码</a></li>
                     <li><a href="./diy">自定义脚本</a></li>
-                    <li class="active"><a href="./run">手动执行</a></li>
+                    <li class="active"><a href="./run">手动执行脚本</a></li>
                     <li><a href="./log">日志查询</a></li>
                     <li><a href="./viewScripts">查看脚本</a></li>
                     <li><a href="./changepwd">修改密码</a></li>
@@ -33,26 +33,42 @@
                 </ul>
             </nav>
             <header>
-                <h1>手动执行京东脚本</h1>
+                <h1>手动执行脚本</h1>
                 <button id="wrap" title="切换换行">切换换行</button>
                 <br/>
-                <button id="jd_list" class="cmd-btn" title="列出脚本">列出脚本</button>
+                <button id="jd_list" class="cmd-btn" title="列出京东活动脚本">列出京东活动脚本</button>
                 <button id="git_pull" title="更新脚本">更新脚本</button>
                 <button id="jd_get_share_code" class="cmd-btn" title="获取互助码">获取互助码</button>
                 <button id="export_sharecodes" title="导出所有互助码">导出所有互助码</button>
                 <button id="rm_log" title="删除日志">删除日志</button>
-                <button id="resetpwd" title="重置用户名密码">重置用户名密码</button>
+                <button id="hangup" title="启动/重启后台挂机程序">启动/重启后台挂机程序</button>
+                <button id="jd_crazy_joy_coin" class="cmd-btn" title="运行挂机活动脚本">运行挂机活动脚本</button>
+                <button id="resetpwd" title="重置控制面板用户名和密码">重置控制面板用户名和密码</button>
                 <br/>
                 <button id="jd_bean_change" class="cmd-btn" title="京豆变动通知">京豆变动通知</button>
                 <button id="jd_bean_sign" class="cmd-btn" title="京东多合一签到">京东多合一签到</button>
-                <button id="jd_bean_home" class="cmd-btn" title="领京豆额外奖励">领京豆额外奖励</button>
+                <button id="jd_kd" class="cmd-btn" title="京东快递签到">京东快递签到</button>
+                <button id="jx_sign" class="cmd-btn" title="京喜签到">京喜签到</button>
                 <button id="jd_cash" class="cmd-btn" title="签到领现金">签到领现金</button>
-                <button id="jd_crazy_joy_coin" class="cmd-btn" title="疯狂的JOY挂机">疯狂的JOY挂机</button>
-                <button id="hangup" title="重启后台挂机程序">重启后台挂机程序</button>
+                <button id="jd_syj" class="cmd-btn" title="微信小程序签到赚京豆">微信小程序签到赚京豆</button>
+                <button id="jd_speed" class="cmd-btn" title="天天加速">天天加速</button>
+                <button id="jd_daily_egg" class="cmd-btn" title="京东白条天天提鹅">京东白条天天提鹅</button>
+                <button id="jd_live_redrain" class="cmd-btn" title="超级直播间红包雨">超级直播间红包雨</button>
+                <br/>
+                <button id="jd_unsubscribe" class="cmd-btn" title="取关店铺和商品">取关店铺和商品</button>
+                <button id="jd_price" class="cmd-btn" title="京东保价">京东保价</button>
+                <button id="jd_delCoupon" title="删除优惠券">删除优惠券</button>
+                <button id="jd_bean_home" class="cmd-btn" title="领京豆额外奖励">领京豆额外奖励</button>
+                <button id="jd_joy_reward" class="cmd-btn" title="宠汪汪积分兑换">宠汪汪积分兑换</button>
+                <button id="jd_blueCoin" class="cmd-btn" title="东东超市蓝币兑换">东东超市蓝币兑换</button>
+                <button id="jd_car_exchange" class="cmd-btn" title="京东汽车兑换">京东汽车兑换</button>
+                <button id="jd_jxd" class="cmd-btn" title="京小兑">京小兑</button>
+                <button id="jd_joy_steal" class="cmd-btn" title="宠汪汪偷好友积分与狗粮">宠汪汪偷好友积分与狗粮</button>
                 <br/>
                 <button id="jd_fruit" class="cmd-btn" title="东东农场">东东农场</button>
                 <button id="jd_pet" class="cmd-btn" title="东东萌宠">东东萌宠</button>
                 <button id="jd_jdfactory" class="cmd-btn" title="东东工厂">东东工厂</button>
+                <button id="jd_superMarket" class="cmd-btn" title="东东超市">东东超市</button>
                 <button id="jd_small_home" class="cmd-btn" title="东东小窝">东东小窝</button>
                 <button id="jd_dreamFactory" class="cmd-btn" title="京喜工厂">京喜工厂</button>
                 <button id="jd_jxnc" class="cmd-btn" title="京喜农场">京喜农场</button>
@@ -60,23 +76,18 @@
                 <button id="jd_plantBean" class="cmd-btn" title="种豆得豆">种豆得豆</button>
                 <button id="jd_joy" class="cmd-btn" title="宠汪汪">宠汪汪</button>
                 <button id="jd_jdzz" class="cmd-btn" title="京东赚赚">京东赚赚</button>
-                <br/>
-                <button id="jd_unsubscribe" class="cmd-btn" title="取关店铺和商品">取关店铺和商品</button>
-                <button id="jd_price" class="cmd-btn" title="京东保价">京东保价</button>
-                <button id="jd_delCoupon" class="cmd-btn" title="删除优惠券">删除优惠券</button>
-                <button id="jd_joy_reward" class="cmd-btn" title="宠汪汪积分兑换">宠汪汪积分兑换</button>
-                <button id="jd_blueCoin" class="cmd-btn" title="东东超市蓝币兑换">东东超市蓝币兑换</button>
-                <button id="jd_car_exchange" class="cmd-btn" title="京东汽车兑换">京东汽车兑换</button>
-
+                <button id="jd_bookshop" class="cmd-btn" title="京东书店">京东书店</button>
+                <button id="jd_sgmh" class="cmd-btn" title="闪购盲盒">闪购盲盒</button>
                 <br/>
                 <form class="run-cmd-form" action="runCmd" method="POST">
                     <div class="cmd-section">
-                        bash jd <input id="jdScript" name="jdScript" type="text" placeholder="请输入脚本名称" required> now
+                        bash jd.sh <input id="jdScript" name="jdScript" type="text" placeholder="请输入脚本名称" required> now
                     </div>
                     <input type="submit" id="runCmd">
                 </form>
             </header>
-            <h4>运行日志</h4>
+            <h4>Tips：1. 手动执行的活动直到运行结束才会输出日志，时间较长请耐心等候。<br/>ㅤㅤㅤ2. 若执行活动脚本期间卡住，刷新当前页面即可重新执行。</h4>
+            <h4>运行日志：</h4>
             <div class="wrapper">
                 <textarea id="code" name="code" readonly="readonly"></textarea>
             </div>
@@ -100,7 +111,7 @@
             $('.cmd-btn').click(function() {
                 if (timer) {
                     Swal.fire({
-                        text: '请等待上一条任务执行完毕。',
+                        text: '请等待上一条任务执行完毕！',
                         icon: 'error'
                     });
                     return;
@@ -128,23 +139,34 @@
                 }, 1000);
             });
 
-            $('#hangup, #resetpwd, #export_sharecodes, #git_pull, #rm_log, #run_all').click(function() {
-                let confirmTxt;
+            
+
+            $('#git_pull, #export_sharecodes, #hangup, #rm_log, #resetpwd, #jd_delCoupon').click(function() {
+                let confirmTxt, cmd;
                 switch (this.id) {
                     case 'git_pull':
-                        confirmTxt = '确认更新脚本文件？';
+                        confirmTxt = '确认更新项目文件与活动脚本？';
+                        cmd = 'bash git_pull 2>&1 | tee -a ${JD_DIR}/log/git_pull.log';
                         break;
                     case 'export_sharecodes':
                         confirmTxt = '确认导出所有互助码？';
+                        cmd = `bash ${this.id}`;
                         break;
                     case 'hangup':
                         confirmTxt = '确认重启挂机程序？';
+                        cmd = `bash jd ${this.id}`;
                         break;
                     case 'rm_log':
                         confirmTxt = '确认删除日志？';
+                        cmd = `bash ${this.id}`;
                         break;
                     case 'resetpwd':
-                        confirmTxt = '重置用户名密码？';
+                        confirmTxt = '确认重置用户名与密码？';
+                        cmd = `bash jd ${this.id}`;
+                        break;
+                    case 'jd_delCoupon':
+                        confirmTxt = '确认删除优惠券（存在误删，谨慎操作）？';
+                        cmd = `bash jd ${this.id}`;
                         break;
                     default:
                         break;
@@ -156,15 +178,14 @@
 
                 if (timer) {
                     Swal.fire({
-                        text: '请等待上一条任务执行完毕。',
+                        text: '请等待上一条任务执行完毕！',
                         icon: 'error'
                     });
                     return;
                 }
                 editor.setValue('');
 
-                const cmd = ['git_pull', 'export_sharecodes', 'rm_log'].includes(this.id) ? `bash ${this.id}` : `bash jd ${this.id}`;
-                $.post('./runCmd', {cmd: cmd}, function (data) {
+                $.post('./runCmd', { cmd }, function (data) {
                     editor.setValue(data.msg);
 
                     clearInterval(timer);
@@ -179,7 +200,7 @@
                 const jdScript = $('#jdScript').val();
                 if (!jdScript) {
                     Swal.fire({
-                        text: '请先补充命令。',
+                        text: '请先补充命令！',
                         icon: 'error'
                     });
                     return;
@@ -187,7 +208,7 @@
 
                 if (timer) {
                     Swal.fire({
-                        text: '请等待上一条任务执行完毕。',
+                        text: '请等待上一条任务执行完毕！',
                         icon: 'error'
                     });
                     return;
