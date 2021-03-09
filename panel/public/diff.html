@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>在线对比合并工具 · 京东薅羊毛控制面板</title>
+    <title>对比工具 · 京东薅羊毛控制面板</title>
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/codemirror.min.js"></script>
     <script type="text/javascript" src="./js/shell.js"></script>
@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="./css/twilight.css">
     <link rel="stylesheet" type="text/css" href="./css/dracula.css">
     <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="icon" type="image/x-icon" href="https://www.jd.com/favicon.ico" />
 </head>
 
 <body>
@@ -23,11 +24,10 @@
             <nav>
                 <ul>
                     <li><a href="./home">首页</a></li>
-                    <li><a href="./crontab" >定时设定</a></li>
                     <li class="active"><a href="./diff">对比工具</a></li>
-                    <li><a href="./shareCode">互助码</a></li>
-                    <li><a href="./diy">自定义脚本</a></li>
+                    <li><a href="./crontab" >定时任务设定</a></li>
                     <li><a href="./run">手动执行脚本</a></li>
+                    <li><a href="./diy">自定义脚本</a></li>
                     <li><a href="./log">日志查询</a></li>
                     <li><a href="./viewScripts">查看脚本</a></li>
                     <li><a href="./changepwd" >修改密码</a></li>
@@ -35,22 +35,22 @@
                 </ul>
             </nav>
             <header>
-                <h1>在线对比合并工具</h1>
+                <h1>在线对比编辑工具</h1>
                 <button id="prev" title="上一个差异">上一个差异</button>
                 <button id="next" title="下一个差异">下一个差异</button>
                 <button id="wrap" title="切换换行">切换换行</button>
-                <button id="save" title="保存">保存 config.sh</button>
+                <button id="save" title="保存">保存</button>
             </header>
-            <h4>左侧为 config.sh ，右侧为 config.sh.sample</h4>
+            <h4>左侧为当前使用的配置文件，右侧为模板</h4>
             <div class="compare-wrapper">
                 <div id="compare">
                 </div>
             </div>
             <div class="sources">
-                <p>查看源文件，注意将浏览器编码切换为 UTF-8 。</p>
+                <p>查看源文件时，注意将浏览器编码切换为 UTF-8 。</p>
                 <ul>
-                    <li><a id="file1" target="_blank" href="./api/config/config">查看 config.sh</a></li>
-                    <li><a id="file2" target="_blank" href="./api/config/sample">查看 config.sh.sample</a></li>
+                    <li><a id="file1" target="_blank" href="./api/config/config">查看配置文件</a></li>
+                    <li><a id="file2" target="_blank" href="./api/config/sample">查看配置文件模板</a></li>
                 </ul>
             </div>
         </div>
