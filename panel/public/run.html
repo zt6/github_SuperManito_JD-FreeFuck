@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="./css/twilight.css">
     <link rel="stylesheet" type="text/css" href="./css/dracula.css">
     <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="icon" type="image/x-icon" href="https://www.jd.com/favicon.ico" />
 </head>
 
 <body>
@@ -21,11 +22,10 @@
             <nav>
                 <ul>
                     <li><a href="./home">首页</a></li>
-                    <li><a href="./crontab">定时设定</a></li>
                     <li><a href="./diff">对比工具</a></li>
-                    <li><a href="./shareCode">互助码</a></li>
-                    <li><a href="./diy">自定义脚本</a></li>
+                    <li><a href="./crontab">定时任务设定</a></li>
                     <li class="active"><a href="./run">手动执行脚本</a></li>
+                    <li><a href="./diy">自定义脚本</a></li>
                     <li><a href="./log">日志查询</a></li>
                     <li><a href="./viewScripts">查看脚本</a></li>
                     <li><a href="./changepwd">修改密码</a></li>
@@ -33,7 +33,7 @@
                 </ul>
             </nav>
             <header>
-                <h1>手动执行脚本</h1>
+                <h1>脚本执行工具</h1>
                 <button id="wrap" title="切换换行">切换换行</button>
                 <br/>
                 <button id="jd_list" class="cmd-btn" title="列出京东活动脚本">列出京东活动脚本</button>
@@ -79,6 +79,7 @@
                 <button id="jd_bookshop" class="cmd-btn" title="京东书店">京东书店</button>
                 <button id="jd_sgmh" class="cmd-btn" title="闪购盲盒">闪购盲盒</button>
                 <br/>
+                <br/>
                 <form class="run-cmd-form" action="runCmd" method="POST">
                     <div class="cmd-section">
                         bash jd.sh <input id="jdScript" name="jdScript" type="text" placeholder="请输入脚本名称" required> now
@@ -86,7 +87,7 @@
                     <input type="submit" id="runCmd">
                 </form>
             </header>
-            <h4>Tips：1. 手动执行的活动直到运行结束才会输出日志，时间较长请耐心等候。<br/>ㅤㅤㅤ2. 若执行活动脚本期间卡住，刷新当前页面即可重新执行。</h4>
+            <p>Tips：1. 手动执行的活动直到运行结束才会输出日志，时间较长请耐心等候。<br/>ㅤㅤㅤ2. 若执行活动脚本期间卡住，刷新当前页面即可重新执行。<p>
             <h4>运行日志：</h4>
             <div class="wrapper">
                 <textarea id="code" name="code" readonly="readonly"></textarea>
