@@ -1,21 +1,20 @@
 #!/usr/bin/env bash
 
 ## 判断环境
-ShellDir=${JD_DIR:-$(
-  cd $(dirname $0)
-  pwd
-)}
+ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
 LogDir=${ShellDir}/log
 
 ## 导入配置文件
 . ${ShellDir}/config/config.sh
 
 ## 删除运行js脚本的旧日志
-function Rm_JsLog() {
+function Rm_JsLog {
   LogFileList=$(ls -l ${LogDir}/*/*.log | awk '{print $9}')
-  for log in ${LogFileList}; do
-    LogDate=$(echo ${log} | awk -F "/" '{print $NF}' | cut -c1-10) #文件名比文件属性获得的日期要可靠
-    if [[ $(uname -s) == Darwin ]]; then
+  for log in ${LogFileList}
+  do
+    LogDate=$(echo ${log} | awk -F "/" '{print $NF}' | cut -c1-10)   #文件名比文件属性获得的日期要可靠
+    if [[ $(uname -s) == Darwin ]]
+    then
       DiffTime=$(($(date +%s) - $(date -j -f "%Y-%m-%d" "${LogDate}" +%s)))
     else
       DiffTime=$(($(date +%s) - $(date +%s -d "${LogDate}")))
@@ -25,21 +24,23 @@ function Rm_JsLog() {
 }
 
 ## 删除git_pull.sh的运行日志
-function Rm_GitPullLog() {
-  if [[ $(uname -s) == Darwin ]]; then
+function Rm_GitPullLog {
+  if [[ $(uname -s) == Darwin ]]
+  then
     DateDelLog=$(date -v-${RmLogDaysAgo}d "+%Y-%m-%d")
   else
     Stmp=$(($(date "+%s") - 86400 * ${RmLogDaysAgo}))
     DateDelLog=$(date -d "@${Stmp}" "+%Y-%m-%d")
   fi
-  LineEndGitPull=$(($(cat ${LogDir}/git_pull.log | grep -n "${DateDelLog} " | head -1 | awk -F ":" '{print $1}') - 3))
+  LineEndGitPull=$[$(cat ${LogDir}/git_pull.log | grep -n "${DateDelLog} " | head -1 | awk -F ":" '{print $1}') - 3]
   [ ${LineEndGitPull} -gt 0 ] && perl -i -ne "{print unless 1 .. ${LineEndGitPull} }" ${LogDir}/git_pull.log
 }
 
 ## 删除空文件夹
-function Rm_EmptyDir() {
+function Rm_EmptyDir {
   cd ${LogDir}
-  for dir in $(ls); do
+  for dir in $(ls)
+  do
     if [ -d ${dir} ] && [[ $(ls ${dir}) == "" ]]; then
       rm -rf ${dir}
     fi
@@ -48,8 +49,9 @@ function Rm_EmptyDir() {
 
 ## 运行
 if [ -n "${RmLogDaysAgo}" ]; then
+  echo -e "开始查找旧日志文件......\n"
   Rm_JsLog
   Rm_GitPullLog
   Rm_EmptyDir
+  echo -e "执行删除完毕......\n"
 fi
-echo -e "操作完成......"
