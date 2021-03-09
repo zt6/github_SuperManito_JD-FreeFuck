@@ -11,7 +11,7 @@ Tips="从日志中未找到任何互助码..."
 
 ## 所有有互助码的活动，只需要把脚本名称去掉前缀jd_后列在Name1中，将其中文名称列在Name2中即可。Name1和Name2中两个名称必须一一对应。
 Name1=(fruit pet plantBean jdfactory dreamFactory jdzz crazy_joy bookshop cash jxnc sgmh cfd global)
-Name2=(东东农场 东东萌宠 种豆得豆 东东工厂 京喜工厂 京东赚赚 疯狂的Joy 京东书店 签到领现金 京喜农场 闪购盲盒 京喜财富岛 环球挑战赛)
+Name2=(东东农场 东东萌宠 种豆得豆 东东工厂 京喜工厂 京东赚赚 疯狂的Joy 口袋书店 签到领现金 京喜农场 闪购盲盒 京喜财富岛 环球挑战赛)
 
 ## 导出互助码的通用程序
 function Cat_Scodes() {
