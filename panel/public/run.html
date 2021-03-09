@@ -146,7 +146,7 @@
                 switch (this.id) {
                     case 'git_pull':
                         confirmTxt = '确认更新项目文件与活动脚本？';
-                        cmd = 'bash git_pull 2>&1 | tee -a ${JD_DIR}/log/git_pull.log';
+                        cmd = `bash ${this.id}`;
                         break;
                     case 'export_sharecodes':
                         confirmTxt = '确认导出所有互助码？';
