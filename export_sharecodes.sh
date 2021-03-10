@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 ## 路径、环境判断
-ShellDir=${JD_DIR:-$(cd $(dirname $0); pwd)}
+ShellDir=${JD_DIR:-$(
+  cd $(dirname $0)
+  pwd
+)}
 LogDir=${ShellDir}/log
 ConfigDir=${ShellDir}/config
 FileConf=${ConfigDir}/config.sh
@@ -15,9 +18,8 @@ Name2=(东东农场 东东萌宠 种豆得豆 东东工厂 京喜工厂 京东�
 Name3=(Fruit Pet Bean JdFactory DreamFactory Jdzz Joy BookShop Cash Jxnc Sgmh Cfd Global)
 
 ## 导入 config.sh
-function Import_Conf {
-  if [ -f ${FileConf} ]
-  then
+function Import_Conf() {
+  if [ -f ${FileConf} ]; then
     . ${FileConf}
     if [ -z "${Cookie1}" ]; then
       echo -e "请先在 config.sh 中配置好 Cookie\n"
@@ -30,8 +32,8 @@ function Import_Conf {
 }
 
 ## 用户数量 UserSum
-function Count_UserSum {
-  for ((i=1; i<=1000; i++)); do
+function Count_UserSum() {
+  for ((i = 1; i <= 1000; i++)); do
     Tmp=Cookie$i
     CookieTmp=${!Tmp}
     [[ ${CookieTmp} ]] && UserSum=$i || break
@@ -39,25 +41,25 @@ function Count_UserSum {
 }
 
 ## 导出互助码的通用程序
-function Cat_Scodes {
+function Cat_Scodes() {
   if [ -d ${LogDir}/jd_$1 ] && [[ $(ls ${LogDir}/jd_$1) != "" ]]; then
     cd ${LogDir}/jd_$1
     ## 导出Cookie列表助力码变量
     for log in $(ls -r); do
       case $# in
-        2)
-          codes=$(cat ${log} | grep -${Opt} "开始【京东账号|您的(好友)?助力码为" | uniq | perl -0777 -pe "{s|\*||g; s|开始||g; s|\n您的(好友)?助力码为(：)?:?|：|g; s|，.+||g}" | sed -r "s/【京东账号/My$2/;s/】.*?：/='/;s/】.*?/='/;s/$/'/;s/\(每次运行都变化,不影响\)//")
-          ;;
-        3)
-          codes=$(grep -${Opt} $3 ${log} | uniq | sed -r "s/【京东账号/My$2/;s/（.*?】/='/;s/$/'/")
-          ## 添加判断，若未找到该用户互助码，则设置为空值
-          for ((user_num=1;user_num<=${UserSum};user_num++));do
-            echo -e "${codes}" | grep -${Opt}q "My$2${user_num}"
-            if [ $? -eq 1 ];then
-              codes=$(echo "${codes}" | sed -r "/My$2$(expr ${user_num} - 1)=/a\My$2${user_num}=''") 
-            fi
-          done
-          ;;
+      2)
+        codes=$(cat ${log} | grep -${Opt} "开始【京东账号|您的(好友)?助力码为" | uniq | perl -0777 -pe "{s|\*||g; s|开始||g; s|\n您的(好友)?助力码为(：)?:?|：|g; s|，.+||g}" | sed -r "s/【京东账号/My$2/;s/】.*?：/='/;s/】.*?/='/;s/$/'/;s/\(每次运行都变化,不影响\)//")
+        ;;
+      3)
+        codes=$(grep -${Opt} $3 ${log} | uniq | sed -r "s/【京东账号/My$2/;s/（.*?】/='/;s/$/'/")
+        ## 添加判断，若未找到该用户互助码，则设置为空值
+        for ((user_num = 1; user_num <= ${UserSum}; user_num++)); do
+          echo -e "${codes}" | grep -${Opt}q "My$2${user_num}"
+          if [ $? -eq 1 ]; then
+            codes=$(echo "${codes}" | sed -r "/My$2$(expr ${user_num} - 1)=/a\My$2${user_num}=''")
+          fi
+        done
+        ;;
       esac
       [[ ${codes} ]] && break
     done
@@ -65,7 +67,7 @@ function Cat_Scodes {
     if [[ ${codes} ]]; then
       ## 导出为他人助力变量
       help_code=""
-      for ((user_num=1;user_num<=${UserSum};user_num++));do
+      for ((user_num = 1; user_num <= ${UserSum}; user_num++)); do
         echo -e "${codes}" | grep -${Opt}q "My$2${user_num}=''"
         if [ $? -eq 1 ]; then
           help_code=${help_code}"\${My"$2${user_num}"}@"
@@ -75,37 +77,37 @@ function Cat_Scodes {
       ## 生成互助规则模板
       for_other_codes=""
       case $HelpType in
-        0) ### 统一优先级助力模板
-          new_code=$(echo ${help_code} | sed "s/@$//")
-          for ((user_num=1;user_num<=${UserSum};user_num++));do
-            if [ $user_num == 1 ]; then
-              for_other_codes=${for_other_codes}"ForOther"$2${user_num}"=\""${new_code}"\"\n"
-            else
-              for_other_codes=${for_other_codes}"ForOther"$2${user_num}"=\"\${ForOther"${2}1"}\"\n"
-            fi
-          done
-          ;;
-        1) ### 均匀助力模板
-          for ((user_num=1;user_num<=${UserSum};user_num++));do
-            echo ${help_code} | grep "\${My"$2${user_num}"}@" > /dev/null
-            if [ $? -eq 0 ]; then
-              left_str=$(echo ${help_code} | sed "s/\${My$2${user_num}}@/ /g" | awk '{print $1}')
-              right_str=$(echo ${help_code} | sed "s/\${My$2${user_num}}@/ /g" | awk '{print $2}')
-              mark="\${My$2${user_num}}@"
-            else
-              left_str=$(echo ${help_code} | sed "s/${mark}/ /g" | awk '{print $1}')${mark}
-              right_str=$(echo ${help_code} | sed "s/${mark}/ /g" | awk '{print $2}')
-            fi
-            new_code=$(echo ${right_str}${left_str} | sed "s/@$//")
+      0) ### 统一优先级助力模板
+        new_code=$(echo ${help_code} | sed "s/@$//")
+        for ((user_num = 1; user_num <= ${UserSum}; user_num++)); do
+          if [ $user_num == 1 ]; then
             for_other_codes=${for_other_codes}"ForOther"$2${user_num}"=\""${new_code}"\"\n"
-          done
-          ;;
-        *) ### 普通优先级助力模板
-          for ((user_num=1;user_num<=${UserSum};user_num++));do
-            new_code=$(echo ${help_code} | sed "s/\${My"$2${user_num}"}@//;s/@$//")
-            for_other_codes=${for_other_codes}"ForOther"$2${user_num}"=\""${new_code}"\"\n"
-          done
-          ;;
+          else
+            for_other_codes=${for_other_codes}"ForOther"$2${user_num}"=\"\${ForOther"${2}1"}\"\n"
+          fi
+        done
+        ;;
+      1) ### 均匀助力模板
+        for ((user_num = 1; user_num <= ${UserSum}; user_num++)); do
+          echo ${help_code} | grep "\${My"$2${user_num}"}@" >/dev/null
+          if [ $? -eq 0 ]; then
+            left_str=$(echo ${help_code} | sed "s/\${My$2${user_num}}@/ /g" | awk '{print $1}')
+            right_str=$(echo ${help_code} | sed "s/\${My$2${user_num}}@/ /g" | awk '{print $2}')
+            mark="\${My$2${user_num}}@"
+          else
+            left_str=$(echo ${help_code} | sed "s/${mark}/ /g" | awk '{print $1}')${mark}
+            right_str=$(echo ${help_code} | sed "s/${mark}/ /g" | awk '{print $2}')
+          fi
+          new_code=$(echo ${right_str}${left_str} | sed "s/@$//")
+          for_other_codes=${for_other_codes}"ForOther"$2${user_num}"=\""${new_code}"\"\n"
+        done
+        ;;
+      *) ### 普通优先级助力模板
+        for ((user_num = 1; user_num <= ${UserSum}; user_num++)); do
+          new_code=$(echo ${help_code} | sed "s/\${My"$2${user_num}"}@//;s/@$//")
+          for_other_codes=${for_other_codes}"ForOther"$2${user_num}"=\""${new_code}"\"\n"
+        done
+        ;;
       esac
 
       echo -e "${codes}\n\n${for_other_codes}" | sed s/[[:space:]]//g
@@ -118,9 +120,9 @@ function Cat_Scodes {
 }
 
 ## 汇总
-function Cat_All {
+function Cat_All() {
   echo -e "\n从最后一个日志中寻找互助码，仅供参考。"
-  for ((i=0; i<${#Name1[*]}; i++)); do
+  for ((i = 0; i < ${#Name1[*]}; i++)); do
     echo -e "\n${Name2[i]}："
     [[ $(Cat_Scodes "${Name1[i]}" "${Name3[i]}" "的${Name2[i]}好友互助码") == ${Tips} ]] && Cat_Scodes "${Name1[i]}" "${Name3[i]}" || Cat_Scodes "${Name1[i]}" "${Name3[i]}" "的${Name2[i]}好友互助码"
   done
