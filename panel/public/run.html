@@ -81,7 +81,7 @@
                 <br/>
                 <form class="run-cmd-form" action="runCmd" method="POST">
                     <div class="cmd-section">
-                        bash jd <input id="jdScript" name="jdScript" type="text" placeholder="请输入脚本名称" required> now
+                        bash jd.sh <input id="jdScript" name="jdScript" type="text" placeholder="请输入脚本名称" required> now
                     </div>
                     <input type="submit" id="runCmd">
                 </form>
@@ -215,7 +215,8 @@
                 }
                 editor.setValue('');
 
-                const cmd = `bash ../jd.sh ${jdScript} now`;
+                const jsName = this.id === 'jd_list' ? '' : this.id;
+                const cmd = `bash jd ${jdScript} now`;
                 $.post('./runCmd', {cmd: cmd, delay: 1000}, function (data) {
                     editor.setValue(data.msg);
 
