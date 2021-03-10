@@ -14,8 +14,8 @@ bash git_pull >/dev/null 2>&1
 echo
 
 echo -e "========================2. 检测配置文件========================\n"
-if [ -s ${JD_DIR}/config/crontab.list ]
-then
+
+if [ -s ${JD_DIR}/config/crontab.list ]; then
   echo -e "检测到config配置目录下存在crontab.list，自动导入定时任务...\n"
   crontab ${JD_DIR}/config/crontab.list
   echo -e "成功添加定时任务...\n"
@@ -55,7 +55,7 @@ fi
 echo -e "========================4. 启动控制面板========================\n"
 if [[ ${ENABLE_WEB_PANEL} == true ]]; then
   cd ${JD_DIR}/panel
-  pm2 start ./server.js --watch --ignore-watch="public node_modules" --name="server"
+  pm2 start ecosystem.config.js
   echo -e "控制面板启动成功...\n"
   echo -e "如未修改用户名密码，则初始用户名为：useradmin，初始密码为：supermanito\n"
   echo -e "请访问 http://<ip>:5678 登陆并修改配置...\n"
