@@ -8,7 +8,6 @@
 
 var express = require('express');
 var session = require('express-session');
-var compression = require('compression');
 var bodyParser = require('body-parser');
 var got = require('got');
 var path = require('path');
@@ -288,19 +287,6 @@ function getLastModifyFilePath(dir) {
 
 
 var app = express();
-// gzip压缩
-app.use(compression({ level: 6, filter: shouldCompress }));
-
-function shouldCompress(req, res) {
-    if (req.headers['x-no-compression']) {
-        // don't compress responses with this request header
-        return false;
-    }
-
-    // fallback to standard filter function
-    return compression.filter(req, res);
-}
-
 app.use(session({
     secret: 'secret',
     name: `connect.${Math.random()}`,
@@ -494,32 +480,22 @@ app.post('/runCmd', function(request, response) {
         const cmd = request.body.cmd;
         const delay = request.body.delay || 0;
         // console.log('before exec');
-        // exec maxBuffer 20MB
-        exec(cmd, { maxBuffer: 1024 * 1024 * 20 }, (error, stdout, stderr) => {
+        exec(cmd, (error, stdout, stderr) => {
             // console.log(error, stdout, stderr);
             // 根据传入延时返回数据，有时太快会出问题
             setTimeout(() => {
                 if (error) {
                     console.error(`执行的错误: ${error}`);
                     response.send({ err: 1, msg: '执行出错！' });
-                    return;
 
-                }
-
-                if (stdout) {
+                } else if (stdout) {
                     // console.log(`stdout: ${stdout}`)
                     response.send({ err: 0, msg: `${stdout}` });
-                    return;
 
-                }
-
-                if (stderr) {
+                } else if (stderr) {
                     console.error(`stderr: ${stderr}`);
                     response.send({ err: 1, msg: `${stderr}` });
-                    return;
-                }
-
-                response.send({ err: 0, msg: '执行结束，无结果返回。' });
+                } 
             }, delay);
         });
     } else {
@@ -532,14 +508,9 @@ app.post('/runCmd', function(request, response) {
  */
 app.get('/runLog/:jsName', function (request, response) {
     if (request.session.loggedin) {
-        const jsName = request.params.jsName;
-        let shareCodeFile = getLastModifyFilePath(path.join(rootPath, `log/${jsName}/`));
-        if (jsName === 'rm_log') {
-            shareCodeFile = path.join(rootPath, `log/${jsName}.log`)
-        }
-
+        let shareCodeFile = getLastModifyFilePath(path.join(rootPath, `log/${request.params.jsName}/`));
         if (shareCodeFile) {
-            const content = getFileContentByName(shareCodeFile);
+            content = getFileContentByName(shareCodeFile);
             response.setHeader("Content-Type", "text/plain");
             response.send(content);
         } else {
