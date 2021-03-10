@@ -1,0 +1,9 @@
+scripts*
+log*
+config*
+panel/package-lock.json
+panel/yarn.lock
+panel/node_modules*
+new_task
+drop_task
+send_count
