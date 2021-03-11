@@ -1,3 +1,7 @@
+__如果您觉得这个项目不错的话可以在右上角给颗⭐吗？您的支持是我最大的动力，方便分享给更多的朋友吗？__
+
+***
+
 # 关于 Docker 版本的《使用与更新》教程
 ## 修订日期：2021年 3 月 11 日
 ㅤ
@@ -109,13 +113,13 @@
 ㅤ
 ## 三、控制面板教程
 #### 1. 手动启用控制面板：
-    docker exec -it jd pm2 start panel/server.js
+    docker exec -it jd pm2 start panel/ecosystem.config.js
 > _注意：在某些环境下当系统重启导致控制面板无法访问提示拒绝连接时可用此命令恢复使用。_
 #### 2. 手动关闭控制面板：
-    docker exec -it jd pm2 stop panel/server.js
+    docker exec -it jd pm2 stop panel/ecosystem.config.js
 > _注意：`VPS` 平台用户关机前请先执行此命令手动停止控制面板，否则在仪表盘强制关机重启后可能会出现无法保存配置文件的问题。_
 #### 3. 重启控制面板：
-    docker exec -it jd pm2 restart panel/server.js
+    docker exec -it jd pm2 restart panel/ecosystem.config.js
 #### 4. 重置控制面板的用户名和密码：
     docker exec -it jd bash jd.sh resetpwd
 #### 5. 更改控制面板访问端口：
@@ -166,3 +170,7 @@
 #### 7. 该项目已默认配置好 `Crontab` 定时任务，定时配置文件 `crontab.list` 会通过活动脚本的更新而同步更新
 #### 8. 之前填入的 `Cookie部分内容` 具有一定的时效性，若提示失效请根据教程重新获取并手动更新
 #### 9. 我不是活动脚本的开发者，但后续使用遇到任何问题都可访问本项目寻求帮助，制作不易，理解万岁
+
+***
+
+__如果您觉得这个项目不错的话可以在右上角给颗⭐吗？您的支持是我最大的动力，方便分享给更多的朋友吗？__
