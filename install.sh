@@ -202,7 +202,7 @@ function ProjectDeployment() {
     cd $BASE/panel
     npm install || npm install --registry=https://registry.npm.taobao.org
     npm install -g pm2
-    pm2 start server.js
+    pm2 start ecosystem.config.js
     ## 拉取活动脚本
     bash $BASE/git_pull.sh
     bash $BASE/git_pull.sh >/dev/null 2>&1
@@ -215,9 +215,6 @@ function ProjectDeployment() {
     ## 定义全局变量
     echo "export JD_DIR=$BASE" >>/etc/profile
     source /etc/profile
-    ## 赋权所有项目文件
-    chmod 777 $BASE/*
-    chmod 777 /usr/local/bin/*
 }
 
 ## 更改配置文件：
