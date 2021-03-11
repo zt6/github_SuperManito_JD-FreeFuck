@@ -237,7 +237,7 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
       sed -i '33c Cookie4=""' config/config.sh
       sed -i '34c Cookie5=""' config/config.sh
       sed -i '35c Cookie6=""' config/config.sh
-> _参考命令：sed -i '30c Cookie1="pt_key=xxxxxxx;pt_pin=xxxxx;"' config/config.sh_
+> _参考命令：`sed -i '30c Cookie1="pt_key=xxxxxxx;pt_pin=xxxxx;"' config/config.sh`_
 
 > _注意：1. 执行此命令前 `Linux` 版需要进入项目安装目录，`Docker` 版需要进入容器内，_\
 > _ㅤㅤㅤ2. 用几个账号就执行几行命令，此操作对应配置文件中的第 30~35 行内容，_\
@@ -249,11 +249,11 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 ***
 
 ## 四、使用项目
-#### __使用教程：__
-- __`Linux`  版本ㅤㅤ[点击此处前往](https://github.com/SuperManito/JD-FreeFuck/wiki/Linux-Use-And-Update-Tutorial)__
+#### __使用与更新教程：__
+- __`Linux`  版本ㅤ [点击此处前往](https://github.com/SuperManito/JD-FreeFuck/wiki/Linux-Use-And-Update-Tutorial)__
 - __`Docker` 版本 ㅤ[点击此处前往](https://github.com/SuperManito/JD-FreeFuck/wiki/Docker-Use-And-Update-Tutorial)__
 > _注意：您使用的是哪个版本就用哪个版本的教程，不要错用、混用，更不要擅自使用本项目外的命令，否则出现问题后果自负！_
-#### __通知与更新：__
+#### __项目通知：__
 - 项目后续的 `更新` `修复` `通知` 都会在项目页置顶，请保持关注本项目或订阅 `Telegram` 通知频道
 > `更新` 代表有新的内容增加，您可以更新也可以继续使用之前的版本，不影响当前使用，除非说明需要重新部署\
 > `修复` 代表有错误已经修复完毕需要您执行相关命令解决相应的问题，如有特殊命令需要执行会在 Wiki 首页发布\
