@@ -1,6 +1,6 @@
 #!/bin/env bash
 ## Author:SuperManito
-## Modified:2021-3-10
+## Modified:2021-3-11
 
 ## ======================================== 说 明 =========================================================
 ##                                                                                                        #
@@ -190,9 +190,6 @@ function ProjectDeployment() {
     ## 创建目录
     mkdir $BASE/config
     mkdir $BASE/log
-    ## 定义全局变量
-    echo "export JD_DIR=$BASE" >>/etc/profile
-    source /etc/profile
     ## 根据安装目录配置定时任务
     sed -i "s#BASE#$BASE#g" $BASE/sample/computer.list.sample
     ## 创建项目配置文件与定时任务配置文件
@@ -207,15 +204,17 @@ function ProjectDeployment() {
     npm install -g pm2
     pm2 start server.js
     ## 拉取活动脚本
-    cd $BASE
-    bash git_pull.sh
-    bash git_pull.sh >/dev/null 2>&1
+    bash $BASE/git_pull.sh
+    bash $BASE/git_pull.sh >/dev/null 2>&1
     ## 创建软链接
     ln -sf $BASE/jd.sh /usr/local/bin/jd
     ln -sf $BASE/git_pull.sh /usr/local/bin/git_pull
     ln -sf $BASE/rm_log.sh /usr/local/bin/rm_log
     ln -sf $BASE/export_sharecodes.sh /usr/local/bin/export_sharecodes
     ln -sf /opt/jd/run_all.sh /usr/local/bin/run_all
+    ## 定义全局变量
+    echo "export JD_DIR=$BASE" >>/etc/profile
+    source /etc/profile
     ## 赋权所有项目文件
     chmod 777 $BASE/*
     chmod 777 /usr/local/bin/*
