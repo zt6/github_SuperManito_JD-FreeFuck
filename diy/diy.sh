@@ -1,34 +1,28 @@
 #!/usr/bin/env bash
 ## Author:SuperManito
-## Modified:2021-3-8
+## Modified:2021-3-11
 
 ##############################  作  者  昵  称  （必填）  ##############################
 # 使用空格隔开
-author_list="i-chenzhe JDMyself whyour"
+author_list="SuperManito"
 
-## 添加更多作者昵称（必填）示例：author_list="i-chenzhe whyour testuser"  直接追加，不要新定义变量
+## 目前使用本人收集的脚本库
 
 ##############################  作  者  脚  本  地  址  URL  （必填）  ##############################
 # 例如：https://raw.sevencdn.com/whyour/hundun/master/quanx/jx_nc.js
 # 1.从作者库中随意挑选一个脚本地址，每个作者的地址添加一个即可，无须重复添加
 # 2.将地址最后的 “脚本名称+后缀” 剪切到下一个变量里（my_scripts_list_xxx）
-scripts_base_url_1=https://raw.sevencdn.com/i-chenzhe/qx/main/
-scripts_base_url_2=https://raw.sevencdn.com/573462273/JDMyself/main/scripts/
-scripts_base_url_3=https://raw.sevencdn.com/whyour/hundun/master/quanx/
+scripts_base_url_1=https://gitee.com/SuperManito/scripts/raw/master/
 
 ## 添加更多脚本地址URL示例：scripts_base_url_3=https://raw.sevencdn.com/SuperManito/JD-FreeFuck/main/
 
 ##############################  作  者  脚  本  名  称  （必填）  ##############################
 # 将相应作者的脚本填写到以下变量中
-my_scripts_list_1="jd_entertainment.js jd_shake.js jd_shakeBean.js"
-my_scripts_list_2="jd_axc.js jd_xxl_gh.js"
-my_scripts_list_3="jx_factory_component.js"
+my_scripts_list_1="jd_entertainment.js jd_shakeBean.js jd_axc.js jd_xxl_gh.js jd_factory_component.js jd_marketLottery.js jd_superDay.js"
 
-## 活动脚本名称1：百变大咖秀、摇一摇、摇京豆
-## 活动脚本名称2：东东爱消除、个护爱消除
-## 活动脚本名称3：京喜工厂Plus
+## 活动脚本名称1：百变大咖秀、摇京豆、东东爱消除、个护爱消除、京喜工厂Plus、京东超市-大转盘、超级品类日
 
-## 添加更多脚本名称示例：my_scripts_list_3="jd_test1.js jd_test2.js jd_test3.js ......"
+## 目前使用本人收集的脚本库
 
 ##############################  随  机  函  数  ##########################################
 rand() {
@@ -40,7 +34,7 @@ rand() {
 cd ${ShellDir}
 index=1
 for author in $author_list; do
-  echo -e "开始下载 $author 的脚本"
+  echo -e "开始下载第三方活动脚本"
   # 下载my_scripts_list中的每个js文件，重命名增加前缀"作者昵称_"，增加后缀".new"
   eval scripts_list=\$my_scripts_list_${index}
   #echo $scripts_list
@@ -77,10 +71,10 @@ done
 
 ##########################  删  除  旧  的  失  效  活  动  ##########################
 ## 删除旧版本失效的活动示例： rm -rf ${ScriptsDir}/jd_test.js
-rm -rf ${ScriptsDir}/jd_jump-jump.js
 rm -rf ${ScriptsDir}/jd_jump_jump.js
 rm -rf ${ScriptsDir}/jd_xmf.js
-rm -rf ${ScriptsDir}/format_share_jd_code.js
+rm -rf ${ScriptsDir}/jd_shake.js
+rm -rf ${ScriptsDir}/jx_factory_component
 
 
 ##############################  修  正  定  时  任  务  ##########################################
@@ -88,8 +82,9 @@ rm -rf ${ScriptsDir}/format_share_jd_code.js
 ## 修正定时任务示例：sed -i "s|bash jd jd_test|bash ${ShellDir}/jd.sh test|g" ${ListCron}
 ##                 sed -i "s|bash jd jd_ceshi|bash ${ShellDir}/jd.sh ceshi|g" ${ListCron}
 sed -i "s|bash jd jd_entertainment|bash ${ShellDir}/jd.sh jd_entertainment|g" ${ListCron}
-sed -i "s|bash jd jd_shake|bash ${ShellDir}/jd.sh jd_shake|g" ${ListCron}
 sed -i "s|bash jd jd_shakeBean|bash ${ShellDir}/jd.sh jd_shakeBean|g" ${ListCron}
 sed -i "s|bash jd jd_axc|bash ${ShellDir}/jd.sh jd_axc|g" ${ListCron}
 sed -i "s|bash jd jd_xxl_gh|bash ${ShellDir}/jd.sh jd_xxl_gh|g" ${ListCron}
-sed -i "s|bash jd jx_factory_component|bash ${ShellDir}/jd.sh jx_factory_component|g" ${ListCron}
+sed -i "s|bash jd jd_factory_component|bash ${ShellDir}/jd.sh jd_factory_component|g" ${ListCron}
+sed -i "s|bash jd jd_marketLottery|bash ${ShellDir}/jd.sh jd_marketLottery|g" ${ListCron}
+sed -i "s|bash jd jd_superDay|bash ${ShellDir}/jd.sh jd_superDay|g" ${ListCron}
