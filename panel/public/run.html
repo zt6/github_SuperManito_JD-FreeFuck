@@ -71,7 +71,7 @@
                 <button id="jd_blueCoin" class="cmd-btn" title="东东超市蓝币兑换">东东超市蓝币兑换</button>
                 <button id="jd_car_exchange" class="cmd-btn" title="京东汽车兑换">京东汽车兑换</button>
                 <button id="jd_joy_steal" class="cmd-btn" title="宠汪汪偷好友积分与狗粮">宠汪汪偷好友积分与狗粮</button>
-                <br/>
+                <br />
                 <button id="jd_fruit" class="cmd-btn" title="东东农场">东东农场</button>
                 <button id="jd_pet" class="cmd-btn" title="东东萌宠">东东萌宠</button>
                 <button id="jd_plantBean" class="cmd-btn" title="种豆得豆">种豆得豆</button>
@@ -105,9 +105,9 @@
                 <br />
             </header>
             &nbsp;
-                    <div class="wrapper">
-                        <textarea id="code" name="code" readonly="readonly"></textarea>
-                    </div>
+            <div class="wrapper">
+                <textarea id="code" name="code" readonly="readonly"></textarea>
+            </div>
         </div>
     </div>
     <script>
@@ -161,65 +161,66 @@
             });
 
 
-            $('#git_pull, #export_sharecodes, #hangup, #rm_log, #resetpwd, #jd_delCoupon, #crazy_joy_coin, #run_all').click(function () {
-                let confirmTxt, cmd;
-                switch (this.id) {
-                    case 'git_pull':
-                        confirmTxt = '确认更新项目文件与活动脚本？';
-                        cmd = `bash ${this.id}`;
-                        break;
-                    case 'export_sharecodes':
-                        confirmTxt = '确认格式化导出互助码？';
-                        cmd = `bash ${this.id}`;
-                        break;
-                    case 'hangup':
-                        confirmTxt = '确认启动/重启挂机程序？';
-                        cmd = `bash jd.sh ${this.id}`;
-                        break;
-                    case 'rm_log':
-                        confirmTxt = '确认删除日志？';
-                        cmd = `bash ${this.id}`;
-                        break;
-                    case 'resetpwd':
-                        confirmTxt = '确认重置用户名与密码？';
-                        cmd = `bash jd.sh ${this.id}`;
-                        break;
-                    case 'jd_delCoupon':
-                        confirmTxt = '确认删除优惠券（存在误删，谨慎操作）？';
-                        cmd = `bash jd.sh ${this.id}`;
-                        break;
-                    case 'crazy_joy_coin':
-                        confirmTxt = '确认停止后台挂机程序？';
-                        cmd = `pm2 stop jd_${this.id}`;
-                        break;
-                    default:
-                        break;
-                }
+            $('#git_pull, #export_sharecodes, #hangup, #rm_log, #resetpwd, #jd_delCoupon, #crazy_joy_coin, #run_all')
+                .click(function () {
+                    let confirmTxt, cmd;
+                    switch (this.id) {
+                        case 'git_pull':
+                            confirmTxt = '确认更新项目文件与活动脚本？';
+                            cmd = `bash ${this.id}`;
+                            break;
+                        case 'export_sharecodes':
+                            confirmTxt = '确认格式化导出互助码？';
+                            cmd = `bash ${this.id}`;
+                            break;
+                        case 'hangup':
+                            confirmTxt = '确认启动/重启挂机程序？';
+                            cmd = `bash jd.sh ${this.id}`;
+                            break;
+                        case 'rm_log':
+                            confirmTxt = '确认删除日志？';
+                            cmd = `bash ${this.id}`;
+                            break;
+                        case 'resetpwd':
+                            confirmTxt = '确认重置用户名与密码？';
+                            cmd = `bash jd.sh ${this.id}`;
+                            break;
+                        case 'jd_delCoupon':
+                            confirmTxt = '确认删除优惠券（存在误删，谨慎操作）？';
+                            cmd = `bash jd.sh ${this.id}`;
+                            break;
+                        case 'crazy_joy_coin':
+                            confirmTxt = '确认停止后台挂机程序？';
+                            cmd = `pm2 stop jd_${this.id}`;
+                            break;
+                        default:
+                            break;
+                    }
 
-                if (!confirm(confirmTxt)) {
-                    return;
-                }
+                    if (!confirm(confirmTxt)) {
+                        return;
+                    }
 
-                if (timer) {
-                    Swal.fire({
-                        text: '请等待上一条任务执行完毕！',
-                        icon: 'error'
+                    if (timer) {
+                        Swal.fire({
+                            text: '请等待上一条任务执行完毕！',
+                            icon: 'error'
+                        });
+                        return;
+                    }
+                    editor.setValue('');
+
+                    $.post('./runCmd', {
+                        cmd
+                    }, function (data) {
+                        editor.setValue(data.msg);
+
+                        clearInterval(timer);
+                        timer = 0;
                     });
-                    return;
-                }
-                editor.setValue('');
 
-                $.post('./runCmd', {
-                    cmd
-                }, function (data) {
-                    editor.setValue(data.msg);
-
-                    clearInterval(timer);
-                    timer = 0;
+                    timer = 1;
                 });
-
-                timer = 1;
-            });
 
 
             $('#runCmd').click(function () {
@@ -245,7 +246,7 @@
                 const cmd = `bash jd.sh ${jdScript} now`;
                 $.post('./runCmd', {
                     cmd: cmd,
-                    delay: 1000
+                    delay: 500
                 }, function (data) {
                     editor.setValue(data.msg);
 
