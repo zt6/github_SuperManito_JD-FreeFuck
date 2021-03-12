@@ -170,11 +170,11 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 - `Linux`
 
       curl -sSL https://get.daocloud.io/docker | sh
-> _ㅤㅤ注意：部分设备环境默认集成 `Docker Server` 客户端，如果没有安装请先执行此官方脚本一键安装。_
+> _ㅤ注意：部分设备环境默认集成 `Docker Server` 客户端，如果没有安装请先执行此官方脚本一键安装。_
 - `Windows / MacOS`
 
       官方安装教程：https://docs.docker.com/desktop
-> _ㅤㅤ注意：`Docker Desktop` 对系统版本有一定的要求，且与虚拟机存在兼容性问题，遇到问题请自行解决。_
+> _ㅤ注意：`Docker Desktop` 对系统版本有一定的要求，且与虚拟机存在兼容性问题，遇到问题请自行解决。_
 #### __下载镜像：__
     docker pull registry.cn-hangzhou.aliyuncs.com/supermanito/jd
 > _注意：此镜像大约需要占用 `239MB` 的空闲存储空间，目前最新版本的镜像ID为 `d9df47b78ff6` 。_
@@ -232,12 +232,12 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
       sed -i '33c Cookie4=""' config/config.sh
       sed -i '34c Cookie5=""' config/config.sh
       sed -i '35c Cookie6=""' config/config.sh
-> _ㅤㅤ参考命令：`sed -i '30c Cookie1="pt_key=xxxxxxx;pt_pin=xxxxx;"' config/config.sh`_
+> _ㅤ参考命令：`sed -i '30c Cookie1="pt_key=xxxxxxx;pt_pin=xxxxx;"' config/config.sh`_
 
-> _ㅤㅤ注意：1. 执行此命令前 `Linux` 版需要进入项目安装目录，`Docker` 版需要进入容器内。_\
-> _ㅤㅤㅤㅤㅤ2. 用几个账号就执行几行命令，此操作对应配置文件中的第 30~35 行内容。_\
-> _ㅤㅤㅤㅤㅤ3. 超出6个账号后需要自行在 `config.sh` 配置文件中创建变量，各个账号之间不能有空变量。_\
-> _ㅤㅤㅤㅤㅤ4. 否则从空变量起下面的账号将不能被识别，例如 Cookie2 没有填则 Cookie3 及以下的所有账号都不能被识别。_
+> _ㅤ注意：1. 执行此命令前 `Linux` 版需要进入项目安装目录，`Docker` 版需要进入容器内。_\
+> _ㅤㅤㅤㅤ2. 用几个账号就执行几行命令，此操作对应配置文件中的第 30~35 行内容。_\
+> _ㅤㅤㅤㅤ3. 超出6个账号后需要自行在 `config.sh` 配置文件中创建变量，各个账号之间不能有空变量。_\
+> _ㅤㅤㅤㅤ4. 否则从空变量起下面的账号将不能被识别，例如 Cookie2 没有填则 Cookie3 及以下的所有账号都不能被识别。_
 #### __配置消息推送：__（可选）
 > _详见 `config.sh` 配置文件中 `推送通知环境变量` 板块的注释内容，教程很详细......_
 
