@@ -177,7 +177,7 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 > _注意：部分设备环境默认集成 `Docker Server` 客户端，如果没有安装请先执行此官方脚本一键安装。_\
 - `Windows / MacOS`
 
-      查看详细安装教程[点击此处](https://docs.docker.com/desktop)
+      安装教程：https://docs.docker.com/desktop
 > _注意：`Docker Desktop` 对系统版本有一定的要求，且与虚拟机存在兼容性问题，遇到问题请自行解决。_
 #### __下载镜像：__
     docker pull registry.cn-hangzhou.aliyuncs.com/supermanito/jd
