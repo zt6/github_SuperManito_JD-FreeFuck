@@ -1,6 +1,6 @@
-## Version: v3.32.5
-## Date: 2021-3-11
-## Update Content: 新增 "定义京喜农场控制通知推送级别" 控制脚本功能环境变量(29)
+## Version: v3.32.6
+## Date: 2021-3-12
+## Update Content: 更新了推送通知环境变量 "Push Plus" 的教程(8)
 
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -189,8 +189,8 @@ export QYWX_AM=""
 export IGOT_PUSH_KEY=""
 
 
-## 8. Push Plus 
-## 教程：http://pushplus.hxtrip.com
+## 8. Push Plus
+## 教程：http://www.pushplus.plus
 ## 下方填写您的Token，微信扫码登录后一对一推送或一对多推送下面的token
 export PUSH_PLUS_TOKEN=""
 
