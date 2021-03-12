@@ -144,8 +144,7 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 3. 如在拉取活动脚本时失败提示 `ssh: connect to host gitee.com port 22: Connection timed out` 是由于您使用平台的 `22` 端口不可用所导致，自行解决处理。
 4. 如在拉取活动脚本时失败提示 `Repository more than 5 connections` 是由于 `Gitee` 限制了每秒同时拉取项目的IP不能超过 `5` 个所导致，此报错为正常现象，重新执行更新命令即可。
 5. 部署成功后无法访问 `控制面板` 浏览器提示 `无法访问此网站` 是由于 `5678` 端口外部不能访问所导致。
-6. 如果 `控制面板` 功能未安装成功可根据《使用与更新》教程之<控制面板教程>的第7条命令重新安装。ㅤ[点此前往查看](https://github.com/SuperManito/JD-FreeFuck/wiki/Linux-Use-And-Update-Tutorial#7-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF)
-
+6. 如果 `控制面板` 功能未安装成功可根据《使用与更新》教程之<控制面板教程>的第7条命令重新安装。[点此查看](https://github.com/SuperManito/JD-FreeFuck/wiki/Linux-Use-And-Update-Tutorial#7-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF)
 ㅤ
 
 ***
@@ -204,7 +203,7 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 1. 如在拉取活动脚本时失败提示 `ssh: connect to host gitee.com port 22: Connection timed out` 是由于您使用平台的 `22` 端口不可用所导致，自行解决处理。
 2. 如在拉取活动脚本时失败提示 `Repository more than 5 connections` 是由于 `Gitee` 限制了每秒同时拉取项目的IP不能超过 `5` 个所导致，此报错为正常现象，重新执行更新命令即可。
 3. 部署成功后无法访问 `控制面板` 浏览器提示 `无法访问此网站` 是由于容器映射的 `主机端口` （默认5678）外部不能访问所导致。
-4. 如果 `控制面板` 功能未安装成功可根据《使用与更新》教程之<控制面板教程>的第7条命令重新安装。ㅤ[点此前往查看](https://github.com/SuperManito/JD-FreeFuck/wiki/Docker-Use-And-Update-Tutorial#7-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF)
+4. 如果 `控制面板` 功能未安装成功可根据《使用与更新》教程之<控制面板教程>的第7条命令重新安装。[点此查看](https://github.com/SuperManito/JD-FreeFuck/wiki/Docker-Use-And-Update-Tutorial#7-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF)
 
 
 ***
