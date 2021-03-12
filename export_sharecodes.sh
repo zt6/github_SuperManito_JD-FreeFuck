@@ -14,7 +14,7 @@ Tips="从日志中未找到任何互助码"
 ## 所有有互助码的活动，只需要把脚本名称去掉前缀 jd_ 后列在 Name1 中，将其中文名称列在 Name2 中，对应 config.sh 中互助码后缀列在 Name3 中即可。
 ## Name1、 Name2 和 Name3 中的三个名称必须一一对应。
 Name1=(fruit pet plantBean jdfactory dreamFactory jdzz crazy_joy bookshop cash jxnc sgmh cfd global)
-Name2=(东东农场 东东萌宠 种豆得豆 东东工厂 京喜工厂 京东赚赚 疯狂的Joy 口袋书店 签到领现金 京喜农场 闪购盲盒 京喜财富岛 环球挑战赛)
+Name2=(东东农场 东东萌宠 京东种豆得豆 东东工厂 京喜工厂 京东赚赚 crazyJoy任务 口袋书店 签到领现金 京喜农场 闪购盲盒 京喜财富岛 环球挑战赛)
 Name3=(Fruit Pet Bean JdFactory DreamFactory Jdzz Joy BookShop Cash Jxnc Sgmh Cfd Global)
 
 ## 导入 config.sh
