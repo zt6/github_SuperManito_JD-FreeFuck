@@ -18,13 +18,13 @@ scripts_base_url_1=https://gitee.com/SuperManito/scripts/raw/master/
 
 ##############################  作  者  脚  本  名  称  （必填）  ##############################
 # 将相应作者的脚本填写到以下变量中
-my_scripts_list_1="jd_entertainment.js jd_shakeBean.js jd_axc.js jd_xxl_gh.js jd_factory_component.js jd_marketLottery.js jd_superDay.js"
+my_scripts_list_1="jd_entertainment.js jd_shakeBean.js jd_axc.js jd_xxl_gh.js jd_factory_component.js jd_marketLottery.js jd_superDay.js jd_xmf.js"
 
 ## 活动脚本名称1：百变大咖秀、摇京豆、东东爱消除、个护爱消除、京喜工厂Plus、京东超市-大转盘、超级品类日
 
 ## 目前使用本人收集的脚本库
 
-##############################  随  机  函  数  ##########################################
+##############################  随  机  函  数  ##############################
 rand() {
   min=$1
   max=$(($2 - $min + 1))
@@ -69,15 +69,14 @@ for author in $author_list; do
   index=$(($index + 1))
 done
 
-##########################  删  除  旧  的  失  效  活  动  ##########################
+##############################  删  除  失  效  的  活  动  脚  本  ##############################
 ## 删除旧版本失效的活动示例： rm -rf ${ScriptsDir}/jd_test.js
 rm -rf ${ScriptsDir}/jd_jump_jump.js
-rm -rf ${ScriptsDir}/jd_xmf.js
 rm -rf ${ScriptsDir}/jd_shake.js
 rm -rf ${ScriptsDir}/jx_factory_component
 
 
-##############################  修  正  定  时  任  务  ##########################################
+##############################  修  正  定  时  任  务  ##############################
 ## 注意两边修改内容区别在于中间内容"jd"、"${ShellDir}/jd.sh"
 ## 修正定时任务示例：sed -i "s|bash jd jd_test|bash ${ShellDir}/jd.sh test|g" ${ListCron}
 ##                 sed -i "s|bash jd jd_ceshi|bash ${ShellDir}/jd.sh ceshi|g" ${ListCron}
@@ -88,3 +87,4 @@ sed -i "s|bash jd jd_xxl_gh|bash ${ShellDir}/jd.sh jd_xxl_gh|g" ${ListCron}
 sed -i "s|bash jd jd_factory_component|bash ${ShellDir}/jd.sh jd_factory_component|g" ${ListCron}
 sed -i "s|bash jd jd_marketLottery|bash ${ShellDir}/jd.sh jd_marketLottery|g" ${ListCron}
 sed -i "s|bash jd jd_superDay|bash ${ShellDir}/jd.sh jd_superDay|g" ${ListCron}
+sed -i "s|bash jd jd_xmf|bash ${ShellDir}/jd.sh jd_xmf|g" ${ListCron}
