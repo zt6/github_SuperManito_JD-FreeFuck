@@ -73,7 +73,7 @@ done
 ## 删除旧版本失效的活动示例： rm -rf ${ScriptsDir}/jd_test.js
 rm -rf ${ScriptsDir}/jd_jump_jump.js
 rm -rf ${ScriptsDir}/jd_shake.js
-rm -rf ${ScriptsDir}/jx_factory_component
+rm -rf ${ScriptsDir}/jx_factory_component.js
 
 
 ##############################  修  正  定  时  任  务  ##############################
