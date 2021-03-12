@@ -1,5 +1,5 @@
 # 关于 Docker 版本的《使用与更新》教程
-## 修订日期：2021年 3 月 11 日
+## 修订日期：2021年 3 月 12 日
 ㅤ
 ## 一、基础使用教程
 #### 1. 查看帮助文档：
@@ -11,8 +11,8 @@
     source run_all.sh 或 . run_all.sh
     #退出容器
     exit
-> _注意：1. 此脚本内容为 `执行所有活动脚本` ，您还可对照此脚本中的内容定制此脚本，_\
-> _ㅤㅤㅤ2. 此一键脚本会在最后执行挂机活动脚本，您可以根据使用需知的第`5`条停止其运行，_\
+> _注意：1. 此脚本内容为 `执行所有活动脚本` ，您还可对照此脚本中的内容定制此脚本。_\
+> _ㅤㅤㅤ2. 此一键脚本会在最后执行挂机活动脚本，您可以根据使用需知的第`5`条停止其运行。_\
 > _ㅤㅤㅤ3. 除手动运行活动脚本外该项目还会通过定时的方式自动执行活动脚本，注意看日志。_
 #### 3. 一键更新活动脚本：
     docker exec -it jd bash git_pull.sh
@@ -99,7 +99,7 @@
 - 启用自动同步功能
 
       docker exec -it jd sed -i 's/EnableExtraShellUpdate=""/EnableExtraShellUpdate="true"/g' config/config.sh
-> _注意：1. 启用该功能后便可直接下载或同步更新本项目中的 diy 脚本，_\
+> _注意：1. 启用该功能后便可直接下载或同步更新本项目中的 diy 脚本。_\
 > _ㅤㅤㅤ2. 如果您想更换同步的地址链接自行修改配置文件中的相关变量。_
 
 > 目前项目已增设 Issues 专题，如果您想推荐某位作者的第三方活动脚本并将它加入到本项目自定义脚本中，您可以在其下方留言。
@@ -126,6 +126,14 @@
     cd panel
     yarn install || yarn install --registry=https://registry.npm.taobao.org
     exit
+#### 7. 重新安装控制面板：
+    docker exec -it jd /bin/bash
+    cd panel
+    yarn install || yarn install --registry=https://registry.npm.taobao.org
+    npm install -g pm2
+    pm2 start ecosystem.config.js
+    exit
+> _注意：此命令适用于在容器初始化过程中安装失败时使用。_
 
 ***
 
