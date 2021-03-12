@@ -144,12 +144,8 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 3. 如在拉取活动脚本时失败提示 `ssh: connect to host gitee.com port 22: Connection timed out` 是由于您使用平台的 `22` 端口不可用所导致，自行解决处理。
 4. 如在拉取活动脚本时失败提示 `Repository more than 5 connections` 是由于 `Gitee` 限制了每秒同时拉取项目的IP不能超过 `5` 个所导致，此报错为正常现象，重新执行更新命令即可。
 5. 部署成功后无法访问 `控制面板` 浏览器提示 `无法访问此网站` 是由于 `5678` 端口外部不能访问所导致。
-6. 如果 `控制面板` 功能未安装成功可执行下面的命令重新安装：
+6. 如果 `控制面板` 功能未安装成功可根据《使用与更新》教程之<控制面板教程>的第7条命令重新安装。ㅤ[点此前往查看](https://github.com/SuperManito/JD-FreeFuck/wiki/Linux-Use-And-Update-Tutorial#7-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF)
 
-       cd /opt/jd/panel
-       npm install || npm install --registry=https://registry.npm.taobao.org
-       npm install -g pm2
-       pm2 start ecosystem.config.js
 ㅤ
 
 ***
@@ -174,11 +170,11 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 - `Linux`
 
       curl -sSL https://get.daocloud.io/docker | sh
-> _注意：部分设备环境默认集成 `Docker Server` 客户端，如果没有安装请先执行此官方脚本一键安装。_\
+> _ㅤㅤ注意：部分设备环境默认集成 `Docker Server` 客户端，如果没有安装请先执行此官方脚本一键安装。_
 - `Windows / MacOS`
 
-      安装教程：https://docs.docker.com/desktop
-> _注意：`Docker Desktop` 对系统版本有一定的要求，且与虚拟机存在兼容性问题，遇到问题请自行解决。_
+      官方安装教程：https://docs.docker.com/desktop
+> _ㅤㅤ注意：`Docker Desktop` 对系统版本有一定的要求，且与虚拟机存在兼容性问题，遇到问题请自行解决。_
 #### __下载镜像：__
     docker pull registry.cn-hangzhou.aliyuncs.com/supermanito/jd
 > _注意：此镜像大约需要占用 `239MB` 的空闲存储空间，目前最新版本的镜像ID为 `d9df47b78ff6` 。_
@@ -197,7 +193,7 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
     registry.cn-hangzhou.aliyuncs.com/supermanito/jd
 > 友情提示：请完整复制上面的命令，如果您不了解 `Docker` 容器技术，不要自作聪明删减后面的注释内容
 
-> _注意：1.如果是旁路由，容器网络类型需使用ㅤ`host` 模式，请将 `--network bridge` 参数改成 `--network host`。_\
+> _注意：1.如果是旁路由，容器网络类型需使用 `host` 模式，请将 `--network bridge` 参数改成 `--network host`。_\
 > _ㅤㅤㅤ2.如果设备不存在 `opt` 目录，请先通过命令 `mkdir -p /opt/jd` 创建主机目录，您也可以自定义挂载目录。_\
 > _ㅤㅤㅤ3.如果您想将挂载目录替换为当前所在目录，将 `/opt/jd` 参数改成 `$PWD` 即可，注意不要忽略后面的文件夹。_\
 > _ㅤㅤㅤ4.如果您想多台容器，将容器名修改为其它名称即可，后续使用中的命令参数也需要随之更改。_
@@ -208,14 +204,8 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 1. 如在拉取活动脚本时失败提示 `ssh: connect to host gitee.com port 22: Connection timed out` 是由于您使用平台的 `22` 端口不可用所导致，自行解决处理。
 2. 如在拉取活动脚本时失败提示 `Repository more than 5 connections` 是由于 `Gitee` 限制了每秒同时拉取项目的IP不能超过 `5` 个所导致，此报错为正常现象，重新执行更新命令即可。
 3. 部署成功后无法访问 `控制面板` 浏览器提示 `无法访问此网站` 是由于容器映射的 `主机端口` （默认5678）外部不能访问所导致。
-4. 如果 `控制面板` 功能未安装成功可执行下面的命令重新安装：
+4. 如果 `控制面板` 功能未安装成功可根据《使用与更新》教程之<控制面板教程>的第7条命令重新安装。ㅤ[点此前往查看](https://github.com/SuperManito/JD-FreeFuck/wiki/Docker-Use-And-Update-Tutorial#7-%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF)
 
-       docker exec -it jd /bin/bash
-       cd panel
-       yarn install || yarn install --registry=https://registry.npm.taobao.org
-       npm install -g pm2
-       pm2 start ecosystem.config.js
-       exit
 
 ***
 
@@ -242,12 +232,12 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
       sed -i '33c Cookie4=""' config/config.sh
       sed -i '34c Cookie5=""' config/config.sh
       sed -i '35c Cookie6=""' config/config.sh
-> _参考命令：`sed -i '30c Cookie1="pt_key=xxxxxxx;pt_pin=xxxxx;"' config/config.sh`_
+> _ㅤㅤ参考命令：`sed -i '30c Cookie1="pt_key=xxxxxxx;pt_pin=xxxxx;"' config/config.sh`_
 
-> _注意：1. 执行此命令前 `Linux` 版需要进入项目安装目录，`Docker` 版需要进入容器内。_\
-> _ㅤㅤㅤ2. 用几个账号就执行几行命令，此操作对应配置文件中的第 30~35 行内容。_\
-> _ㅤㅤㅤ3. 超出6个账号后需要自行在 `config.sh` 配置文件中创建变量，各个账号之间不能有空变量。_\
-> _ㅤㅤㅤ4. 否则从空变量起下面的账号将不能被识别，例如 Cookie2 没有填则 Cookie3 及以下的所有账号都不能被识别。_
+> _ㅤㅤ注意：1. 执行此命令前 `Linux` 版需要进入项目安装目录，`Docker` 版需要进入容器内。_\
+> _ㅤㅤㅤㅤㅤ2. 用几个账号就执行几行命令，此操作对应配置文件中的第 30~35 行内容。_\
+> _ㅤㅤㅤㅤㅤ3. 超出6个账号后需要自行在 `config.sh` 配置文件中创建变量，各个账号之间不能有空变量。_\
+> _ㅤㅤㅤㅤㅤ4. 否则从空变量起下面的账号将不能被识别，例如 Cookie2 没有填则 Cookie3 及以下的所有账号都不能被识别。_
 #### __配置消息推送：__（可选）
 > _详见 `config.sh` 配置文件中 `推送通知环境变量` 板块的注释内容，教程很详细......_
 
@@ -271,7 +261,7 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 - 停止控制面板与后台挂机程序的运行：
 
       pm2 stop /opt/jd/panel/ecosystem.config.js
-      pm2 stop crazy_joy_coin
+      pm2 stop jd_crazy_joy_coin
 - 删除项目文件：
 
       rm -rf /opt/jd
@@ -279,9 +269,10 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 
       apt remove -y git perl moreutils nodejs npm 或 yum remove -y git perl moreutils nodejs npm
 #### `Docker` 版本
-- 停止控制面板运行：
+- 停止控制面板与后台挂机程序的运行：
 
       docker exec -it jd /bin/bash pm2 stop panel/ecosystem.config.js
+      docker exec -it jd pm2 stop jd_crazy_joy_coin
 - 删除容器：
 
       docker rm -f jd
