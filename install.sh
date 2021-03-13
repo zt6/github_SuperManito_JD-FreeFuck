@@ -1,6 +1,6 @@
 #!/bin/env bash
 ## Author:SuperManito
-## Modified:2021-3-11
+## Modified:2021-3-13
 
 ## ======================================== 说 明 =========================================================
 ##                                                                                                        #
@@ -123,6 +123,8 @@ function EnvStructures() {
     systemctl reload firewalld >/dev/null 2>&1
     ## 基于 Debian 发行版和及其衍生发行版的软件包安装
     if [ $SYSTEM = "Debian" ]; then
+        ## 更新软件源，列出索引
+        apt update
         ## 卸载 Nodejs 旧版本，从而确保安装新版本
         apt remove -y nodejs npm >/dev/null 2>&1
         rm -rf /etc/apt/sources.list.d/nodesource.list
@@ -135,6 +137,8 @@ function EnvStructures() {
         apt autoremove -y
     ## 基于 RedHat 发行版和及其衍生发行版的软件包安装
     elif [ $SYSTEM = "RedHat" ]; then
+        ## 更新软件源，建立本地缓存
+        yum makecache
         ## 卸载 Nodejs 旧版本，从而确保安装新版本
         yum remove -y nodejs npm >/dev/null 2>&1
         rm -rf /etc/yum.repos.d/nodesource-*.repo
