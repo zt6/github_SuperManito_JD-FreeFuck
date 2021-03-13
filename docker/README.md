@@ -78,7 +78,7 @@
 > ForOtherPet7="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
 > ForOtherPet8="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
 #### 4. 后台运行挂机活动脚本：
-    docker exec -it jd bash jd.sh hangup
+    docker exec -it jd pm2 start jd_crazy_joy_coin
 #### 5. 停止后台运行挂机活动脚本：
     docker exec -it jd pm2 stop jd_crazy_joy_coin
 #### 6. 导入并使用第三方活动脚本：
