@@ -4,6 +4,7 @@ config*
 panel/package-lock.json
 panel/yarn.lock
 panel/node_modules*
+panel/server.js
 new_task
 drop_task
 send_count
