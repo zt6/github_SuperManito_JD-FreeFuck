@@ -1,9 +1,10 @@
 # 关于 Docker 版本的《使用与更新》教程
-## 修订日期：2021年 3 月 12 日
+## 修订日期：2021年 3 月 14 日
 ㅤ
 ## 一、基础使用教程
-#### 1. 查看帮助文档：
-    docker exec -it jd cat docker/README.md
+#### 1. 进入与退出容器：
+    docker exec -it jd /bin/bash
+> _注意：`exit` 为退出容器；大部分命令都可在容器外部执行，但部分复制命令只能在容器内执行。_
 #### 2. 手动运行一键脚本开始您的薅羊毛行为：
     #进入容器
     docker exec -it jd /bin/bash
@@ -11,19 +12,19 @@
     source run_all.sh 或 . run_all.sh
     #退出容器
     exit
-> _注意：1. 此脚本内容为 `执行所有活动脚本` ，您还可对照此脚本中的内容定制此脚本。_\
+> _注意：1. 此脚本为执行所有活动脚本` ，共有几十个活动脚本，时间较长且与账号数量成正比。_\
 > _ㅤㅤㅤ2. 此一键脚本会在最后执行挂机活动脚本，您可以根据使用需知的第`5`条停止其运行。_\
-> _ㅤㅤㅤ3. 除手动运行活动脚本外该项目还会通过定时的方式自动执行活动脚本，注意看日志。_
-#### 3. 一键更新活动脚本：
+> _ㅤㅤㅤ3. 除手动运行活动脚本外该项目还会通过定时的方式自动执行活动脚本，注意看日志。_\
+> _ㅤㅤㅤ4. 执行此脚本后无需守在电脑旁，会自动在最后无限制运行挂机活动脚本，需要您手动停止。_
+#### 3. 一键更新脚本：
     docker exec -it jd bash git_pull.sh
 #### 4. 执行特定活动脚本：
     docker exec -it jd bash jd.sh xxx      # 如果设置了随机延迟并且当时时间不在0-2、30-31、59分内，将随机延迟一定秒数
     docker exec -it jd bash jd.sh xxx now  # 无论是否设置了随机延迟，均立即运行
 > _注意：具体查看活动脚本列表可通过命令 `docker exec -it jd bash jd.sh` 查看， `xxx` 为脚本名。_
-
-#### 5. 进入与退出容器：
-    docker exec -it jd /bin/bash
-> _注意：`exit`退出容器。_
+#### 5. 查看帮助文档：
+    docker exec -it jd cat docker/README.md
+> _注意：此文档为《使用与更新》教程，即当前页面内容，保持项目同步更新。_
 
 ***
 
@@ -88,7 +89,7 @@
 #### 7. 使用 `diy` 自定义脚本：
 - 使用需知
 
-      1. 此脚本的用途为加入非 lxk0301 大佬的第三方活动脚本
+      1. 此脚本的用途为加入非 lxk0301 的第三方活动脚本
       2. 您可以开启自动同步功能，默认同步本人项目里的 diy 脚本
       3. 您也可以使用本项目中的模板文件自定义构建您的专属脚本
       4. 您可以将自制的 diy 脚本上传至您的仓库并使用同步功能
@@ -118,15 +119,13 @@
     docker exec -it jd pm2 restart panel/ecosystem.config.js
 #### 4. 重置控制面板的用户名和密码：
     docker exec -it jd bash jd.sh resetpwd
-#### 5. 更改控制面板访问端口：
-    1. 编辑 panel/server.js 文件中的最后，将 5678 改成您想更换的端口号
-    2. 重启控制面板完成更改
-#### 6. 升级控制面板：
+#### 5. 升级控制面板：
     docker exec -it jd /bin/bash
     cd panel
     yarn install || yarn install --registry=https://registry.npm.taobao.org
     exit
-#### 7. 重新安装控制面板：
+> _注意：如果您更改了默认访问端口，那么在执行此命令后需要重新修改。_
+#### 6. 重新安装控制面板：
     docker exec -it jd /bin/bash
     cd panel
     yarn install || yarn install --registry=https://registry.npm.taobao.org
