@@ -175,7 +175,7 @@
                             break;
                         case 'hangup':
                             confirmTxt = '确认启动/重启挂机程序？';
-                            cmd = `bash jd.sh ${this.id}`;
+                            cmd = `pm2 start jd_${this.id}`;
                             break;
                         case 'rm_log':
                             confirmTxt = '确认删除日志？';
