@@ -173,14 +173,16 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 - `Linux`
 
       curl -sSL https://get.daocloud.io/docker | sh
-> _ㅤ注意：部分设备环境默认集成 `Docker Server` 客户端，如果没有安装请先执行此官方脚本一键安装。_
+> _ㅤ注意：1.部分设备环境默认集成 `Docker Server` 客户端，如果没有安装请先执行此官方脚本一键安装。_\
+> _ㅤㅤㅤㅤ2.执行此脚本期间不会输出下载速度，若时间过长可终止执行，请更换 `Docker CE` 国内源并根据 [官方文档](https://docs.docker.com/engine/install) 手动安装。_
 - `Windows / MacOS`
 
       官方安装教程：https://docs.docker.com/desktop
 > _ㅤ注意：`Docker Desktop` 对系统版本有一定的要求，且与虚拟机存在兼容性问题，遇到问题请自行解决。_
 #### __下载镜像：__
     docker pull registry.cn-hangzhou.aliyuncs.com/supermanito/jd
-> _注意：此镜像大约需要占用 `239MB` 的空闲存储空间，目前最新版本的镜像ID为 `d9df47b78ff6` 。_
+> _注意：1.此镜像大约需要占用 `239MB` 的空闲存储空间，目前最新版本的镜像ID为 `d9df47b78ff6` 。_\
+> _ㅤㅤㅤ2.若下载速度较慢，请配置镜像加速器以解决网速慢的问题。_
 #### __启动容器：__
     docker run -dit \
     -v /opt/jd/scripts:/jd/scripts `# 设置活动脚本的主机挂载目录为/opt/jd/scripts` \
