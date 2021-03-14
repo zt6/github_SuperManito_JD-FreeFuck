@@ -473,7 +473,8 @@ export JD_BEAN_SIGN_STOP_NOTIFY=""
 
 
 ################################## 3. 定义京东多合一签到推送签到结果通知类型（选填） ##################################
-## 默认推送签到简洁结果，填 "true" 表示推送简洁通知，具体效果查看效果图：https://gitee.com/lxk0301/jd_docker/blob/master/icon/bean_sign_simple.jpg
+## 默认推送签到简洁结果，填 "true" 表示推送简洁通知
+## 具体效果查看效果图：https://gitee.com/lxk0301/jd_docker/blob/master/icon/bean_sign_simple.jpg
 export JD_BEAN_SIGN_NOTIFY_SIMPLE=""
 
 
