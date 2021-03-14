@@ -301,7 +301,7 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 ***
 
 ## 明天会更好
-<img src="https://gitee.com/SuperManito/JD-FreeFuck/raw/main/icon/thank.jpg" width="300" height="300" alt="微信赞赏码"/><br/>
+<img src="./icon/thank.jpg" width="300" height="300" alt="微信赞赏码"/><br/>
 ### 开发不易、维护艰辛，如果您愿意支持此项目，可对我打赏，感激不尽！
 
 ***
