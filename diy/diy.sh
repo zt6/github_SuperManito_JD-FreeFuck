@@ -18,7 +18,7 @@ scripts_base_url_1=https://gitee.com/SuperManito/scripts/raw/master/
 
 ##############################  作  者  脚  本  名  称  （必填）  ##############################
 # 将相应作者的脚本填写到以下变量中
-my_scripts_list_1="jd_entertainment.js jd_shakeBean.js jd_axc.js jd_xxl_gh.js jd_factory_component.js jd_marketLottery.js jd_superDay.js jd_xmf.js jd_wish.js  jd_lenovo.js jd_mother_jump.js jd_oneplus.js"
+my_scripts_list_1="jd_entertainment.js jd_shakeBean.js jd_jdaxc.js jd_xxl_gh.js jd_factory_component.js jd_marketLottery.js jd_superDay.js jd_xmf.js jd_wish.js  jd_lenovo.js jd_mother_jump.js jd_oneplus.js"
 
 ## 活动脚本名称1：百变大咖秀、摇京豆、东东爱消除、个护爱消除、京喜工厂Plus、京东超市-大转盘、超级品类日、众筹许愿池、科技打造品质生活、母婴跳一跳、一加盲盒
 
@@ -74,6 +74,7 @@ done
 rm -rf ${ScriptsDir}/jd_jump_jump.js
 rm -rf ${ScriptsDir}/jd_shake.js
 rm -rf ${ScriptsDir}/jx_factory_component.js
+rm -rf ${ScriptsDir}/jd_axc.js
 
 
 ##############################  修  正  定  时  任  务  ##############################
@@ -82,7 +83,7 @@ rm -rf ${ScriptsDir}/jx_factory_component.js
 ##                 sed -i "s|bash jd jd_ceshi|bash ${ShellDir}/jd.sh ceshi|g" ${ListCron}
 sed -i "s|bash jd jd_entertainment|bash ${ShellDir}/jd.sh jd_entertainment|g" ${ListCron}
 sed -i "s|bash jd jd_shakeBean|bash ${ShellDir}/jd.sh jd_shakeBean|g" ${ListCron}
-sed -i "s|bash jd jd_axc|bash ${ShellDir}/jd.sh jd_axc|g" ${ListCron}
+sed -i "s|bash jd jd_jdaxc|bash ${ShellDir}/jd.sh jd_jdaxc|g" ${ListCron}
 sed -i "s|bash jd jd_xxl_gh|bash ${ShellDir}/jd.sh jd_xxl_gh|g" ${ListCron}
 sed -i "s|bash jd jd_factory_component|bash ${ShellDir}/jd.sh jd_factory_component|g" ${ListCron}
 sed -i "s|bash jd jd_marketLottery|bash ${ShellDir}/jd.sh jd_marketLottery|g" ${ListCron}
