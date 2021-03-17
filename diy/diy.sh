@@ -24,7 +24,6 @@ my_scripts_list_1="jd_entertainment.js jd_shakeBean.js jd_marketLottery.js jd_su
 my_scripts_list_2="jd_jdaxc.js jd_xxl_gh.js"
 my_scripts_list_3="jd_factory_component.js"
 
-
 ## 活动脚本名称1：百变大咖秀、摇京豆、京东超市-大转盘、超级品类日、众筹许愿池、科技打造品质生活、母婴跳一跳、一加盲盒
 ## 活动脚本名称2：东东爱消除、个护爱消除
 ## 活动脚本名称3：京喜工厂Plus
@@ -41,7 +40,8 @@ rand() {
 cd ${ShellDir}
 index=1
 for author in $author_list; do
-  echo -e "开始下载 $author 的脚本"
+  echo -e "开始下载 $author 的活动脚本："
+  echo -e ''
   # 下载my_scripts_list中的每个js文件，重命名增加前缀"作者昵称_"，增加后缀".new"
   eval scripts_list=\$my_scripts_list_${index}
   #echo $scripts_list
