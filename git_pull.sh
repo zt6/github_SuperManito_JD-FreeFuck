@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ## Author: SuperManito
 ## Project: JD-FreeFuck
-## Modified: 2021-3-10
+## Modified: 2021-3-18
 
 ## 文件路径、脚本网址、文件版本以及各种环境的判断
 ShellDir=${JD_DIR:-$(
@@ -334,7 +334,7 @@ function ExtraShell() {
 }
 
 ## 一键执行所有活动脚本
-function RUN_ALL() {
+function Run_All() {
   ## 临时删除以旧版脚本
   rm -rf ${ShellDir}/run-all.sh
   ## 默认将 "jd、jx、jr" 开头的活动脚本加入其中
@@ -372,13 +372,28 @@ function RUN_ALL() {
   chmod 777 ${ShellDir}/run_all.sh
 }
 
+## 项目提醒
+function Tips() {
+  echo -e "\033[31m +------------------------- 郑 重 提 醒 -------------------------+ \033[0m"
+  echo -e "\033[31m |                                                               | \033[0m"
+  echo -e "\033[31m |  本项目开源免费使用，并且不可分享在国内的任何媒体与网站上！   | \033[0m"
+  echo -e "\033[31m |                                                               | \033[0m"
+  echo -e "\033[31m |  如果在其它地方发现以付费的形式传播与使用请举报并向我反馈！   | \033[0m"
+  echo -e "\033[31m |                                                               | \033[0m"
+  echo -e "\033[31m |  近期发现有人通过本项目和活动脚本非法牟利，已收集到相关证据！ | \033[0m"
+  echo -e "\033[31m |                                                               | \033[0m"
+  echo -e "\033[31m |  请停止你的违法行为，立即从咸鱼等国内平台上下架，好自为之！   | \033[0m"
+  echo -e "\033[31m |                                                               | \033[0m"
+  echo -e "\033[31m +---------------------------------------------------------------+ \033[0m"
+}
+
 ## 在日志中记录时间与路径
 echo -e ''
 echo -e "-----------------------------------------------"
 echo -e ''
-echo -e "        当前系统时间：$(date "+%Y-%m-%d %H:%M")"
+echo -e "       当前系统时间：$(date "+%Y-%m-%d %H:%M")"
 echo -e ''
-echo -e "        活动脚本目录：${ScriptsDir}"
+echo -e "       活动脚本目录：${ScriptsDir}"
 echo -e ''
 echo -e "-----------------------------------------------"
 
@@ -405,9 +420,11 @@ if [[ ${ExitStatusScripts} -eq 0 ]]; then
   Del_Cron
   Add_Cron
   ExtraShell
-  RUN_ALL
+  Run_All
   echo -e "活动脚本更新完成......\n"
 else
   echo -e "活动脚本更新失败，请检查原因或再次运行 git_pull.sh ......\n"
   Change_ALL
 fi
+echo -e ''
+Tips
