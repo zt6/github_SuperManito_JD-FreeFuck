@@ -293,7 +293,7 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
       rm -rf /opt/jd
 - 删除镜像：
 
-      docker rmi -f supermanito/jd
+      docker rmi -f registry.cn-hangzhou.aliyuncs.com/supermanito/jd
 > __若您 `已接受` 本项目中的声明，您必须在下载后的 `24小时` 内从计算机中完全删除相关内容。__
 
 ***
