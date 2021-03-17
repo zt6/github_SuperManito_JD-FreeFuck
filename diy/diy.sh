@@ -1,26 +1,33 @@
 #!/usr/bin/env bash
 ## Author:SuperManito
-## Modified:2021-3-17
+## Modified:2021-3-18
 
 ##############################  作  者  昵  称  （必填）  ##############################
 # 使用空格隔开
-author_list="SuperManito"
-
-## 目前使用本人收集的脚本库
+author_list="i-chenzhe shylocks whyour"
 
 ##############################  作  者  脚  本  地  址  URL  （必填）  ##############################
 # 例如：https://raw.sevencdn.com/whyour/hundun/master/quanx/jx_nc.js
 # 1.从作者库中随意挑选一个脚本地址，每个作者的地址添加一个即可，无须重复添加
 # 2.将地址最后的 “脚本名称+后缀” 剪切到下一个变量里（my_scripts_list_xxx）
+
+## 目前使用本人收集的项目脚本库用于代替CDN加速
 scripts_base_url_1=https://gitee.com/SuperManito/scripts/raw/master/
+scripts_base_url_2=https://gitee.com/SuperManito/scripts/raw/master/
+scripts_base_url_3=https://gitee.com/SuperManito/scripts/raw/master/
 
 ## 添加更多脚本地址URL示例：scripts_base_url_3=https://raw.sevencdn.com/SuperManito/JD-FreeFuck/main/
 
 ##############################  作  者  脚  本  名  称  （必填）  ##############################
 # 将相应作者的脚本填写到以下变量中
-my_scripts_list_1="jd_entertainment.js jd_shakeBean.js jd_jdaxc.js jd_xxl_gh.js jd_factory_component.js jd_marketLottery.js jd_superDay.js jd_xmf.js jd_wish.js  jd_lenovo.js jd_mother_jump.js jd_oneplus.js"
+my_scripts_list_1="jd_entertainment.js jd_shakeBean.js jd_marketLottery.js jd_superDay.js jd_xmf.js jd_wish.js  jd_lenovo.js jd_mother_jump.js jd_oneplus.js"
+my_scripts_list_2="jd_jdaxc.js jd_xxl_gh.js"
+my_scripts_list_3="jd_factory_component.js"
 
-## 活动脚本名称1：百变大咖秀、摇京豆、东东爱消除、个护爱消除、京喜工厂Plus、京东超市-大转盘、超级品类日、众筹许愿池、科技打造品质生活、母婴跳一跳、一加盲盒
+
+## 活动脚本名称1：百变大咖秀、摇京豆、京东超市-大转盘、超级品类日、众筹许愿池、科技打造品质生活、母婴跳一跳、一加盲盒
+## 活动脚本名称2：东东爱消除、个护爱消除
+## 活动脚本名称3：京喜工厂Plus
 
 ## 目前使用本人收集的脚本库
 
@@ -34,7 +41,7 @@ rand() {
 cd ${ShellDir}
 index=1
 for author in $author_list; do
-  echo -e "开始下载第三方活动脚本"
+  echo -e "开始下载 $author 的脚本"
   # 下载my_scripts_list中的每个js文件，重命名增加前缀"作者昵称_"，增加后缀".new"
   eval scripts_list=\$my_scripts_list_${index}
   #echo $scripts_list
