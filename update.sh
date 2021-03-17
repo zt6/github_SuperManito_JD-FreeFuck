@@ -1,25 +1,12 @@
 #!/bin/env bash
 ## Author:SuperManito
-## Date:2021-3-9
+## Date:2021-3-
 
 ## 项目安装目录
 BASE=/opt/jd
-## 一键更新脚本地址
-Git_Pull_URL=https://gitee.com/SuperManito/JD-FreeFuck/raw/source/git_pull.sh
 
-## 删除旧的脚本
-rm -rf $BASE/manual-update.sh
-## 更新一键脚本
-wget $Git_Pull_URL -O git_pull.sh
-## 定义全局变量
-echo "export JD_DIR=$BASE" >>/etc/profile
-source /etc/profile
-## 创建软链接
-ln -sf $BASE/jd.sh /usr/local/bin/jd
-ln -sf $BASE/git_pull.sh /usr/local/bin/git_pull
-ln -sf $BASE/rm_log.sh /usr/local/bin/rm_log
-ln -sf $BASE/export_sharecodes.sh /usr/local/bin/export_sharecodes
-ln -sf /opt/jd/run_all.sh /usr/local/bin/run_all
+
+
 ## 更新活动脚本
 bash $BASE/git_pull.sh
 
