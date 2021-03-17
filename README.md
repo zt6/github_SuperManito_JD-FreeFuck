@@ -184,7 +184,7 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
       官方安装教程：https://docs.docker.com/desktop
 > _ㅤ注意：`Docker Desktop` 对系统版本有一定的要求，且与虚拟机存在兼容性问题，遇到问题请自行解决。_
 #### __下载镜像：__
-    docker pull supermanito/jd
+    docker pull registry.cn-hangzhou.aliyuncs.com/supermanito/jd
 > _注意：1.此镜像大约需要占用 `239MB` 的空闲存储空间，目前最新版本的镜像ID为 `d9df47b78ff6` 。_\
 > _ㅤㅤㅤ2.若下载速度较慢，可配置镜像加速器以解决网速的问题。_
 #### __启动容器：__
@@ -199,7 +199,7 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
     --network bridge `# 设置容器网络类型为桥接，直连主机` \
     --hostname jd `# 设置容器内主机名为 jd ` \
     --restart always `# 设置容器开机自启` \
-    supermanito/jd
+    registry.cn-hangzhou.aliyuncs.com/supermanito/jd
 > 友情提示：请完整复制上面的命令，如果您不了解 `Docker` 容器技术，不要自作聪明删减后面的注释内容！
 
 > _注意：1.如果是旁路由，容器网络类型需使用 `host` 模式，请将 `--network bridge` 参数改成 `--network host`。_\
