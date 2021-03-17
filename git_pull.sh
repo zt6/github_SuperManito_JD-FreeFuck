@@ -316,7 +316,7 @@ function ExtraShell() {
       echo -e ''
       sleep 2s
     else
-      echo -e "自定义 DIY 脚本同步失败......"
+      echo -e "\033[31m自定义 DIY 脚本同步失败！\033[0m"
       echo -e ''
       sleep 2s
     fi
@@ -374,12 +374,13 @@ function Run_All() {
 
 ## 在日志中记录时间与路径
 echo -e ''
-echo -e "+-----------------------------------------------------------+"
+echo -e "+----------------- 开 始 执 行 更 新 脚 本 -----------------+"
 echo -e ''
 echo -e "   活动脚本目录：${ScriptsDir}"
 echo -e ''
 echo -e "   当前系统时间：$(date "+%Y-%m-%d %H:%M")"
 echo -e ''
+echo -e "+-----------------------------------------------------------+"
 
 ## 更新crontab
 [[ $(date "+%-H") -le 2 ]] && Update_Cron
@@ -418,6 +419,6 @@ if [[ ${ExitStatusScripts} -eq 0 ]]; then
   Run_All
   echo -e "活动脚本更新完成......\n"
 else
-  echo -e "活动脚本更新失败，请检查原因或再次运行 git_pull.sh ......\n"
+  echo -e "\033[31m活动脚本更新失败，请检查原因或再次运行 git_pull.sh ......\033[0m"
   Change_ALL
 fi
