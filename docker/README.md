@@ -1,5 +1,5 @@
 # 关于 Docker 版本的《使用与更新》教程
-## 修订日期：2021年 3 月 14 日
+## 修订日期：2021 年 3 月 19 日
 ㅤ
 ## 一、基础使用教程
 #### 1. 进入与退出容器：
@@ -19,9 +19,9 @@
 #### 3. 一键更新脚本：
     docker exec -it jd bash git_pull.sh
 #### 4. 执行特定活动脚本：
-    docker exec -it jd bash jd.sh xxx      # 如果设置了随机延迟并且当时时间不在0-2、30-31、59分内，将随机延迟一定秒数
-    docker exec -it jd bash jd.sh xxx now  # 无论是否设置了随机延迟，均立即运行
-> _注意：具体查看活动脚本列表可通过命令 `docker exec -it jd bash jd.sh` 查看， `xxx` 为脚本名。_
+    docker exec -it jd bash jd xxx      # 如果设置了随机延迟并且当时时间不在0-2、30-31、59分内，将随机延迟一定秒数
+    docker exec -it jd bash jd xxx now  # 无论是否设置了随机延迟，均立即运行
+> _注意：具体查看活动脚本列表可通过命令 `docker exec -it jd bash jd` 查看， `xxx` 为脚本名。_
 #### 5. 查看帮助文档：
     docker exec -it jd cat docker/README.md
 > _注意：此文档为《使用与更新》教程，即当前页面内容，保持项目同步更新。_
@@ -31,7 +31,7 @@
 ㅤ
 ## 二、高阶使用教程
 #### 1. 获取互助码：
-    docker exec -it jd bash jd.sh get_share_code now
+    docker exec -it jd bash jd get_share_code now
 #### 2. 格式化导出互助码：
     docker exec -it jd bash export_sharecodes.sh
 > _注意：其原理是从各个活动脚本的日志中获取，只有运行完所有活动脚本后才可使用。_
@@ -78,12 +78,12 @@
 > ForOtherPet7="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
 > ForOtherPet8="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
 #### 4. 后台运行挂机活动脚本：
-    docker exec -it jd pm2 start jd_crazy_joy_coin
+    docker exec -it jd bash jd hangup
 #### 5. 停止后台运行挂机活动脚本：
     docker exec -it jd pm2 stop jd_crazy_joy_coin
 #### 6. 导入并使用第三方活动脚本：
     1. 将脚本放置在该项目容器内 scripts 子目录下，也可放在外部的挂载目录（默认为/opt/jd/scripts）
-    2. 然后通过命令 docker exec -it jd bash jd.sh xxx now 运行
+    2. 然后通过命令 docker exec -it jd bash jd xxx now 运行
     3. 如果您想将第三方脚本加入到 run_all.sh 一键脚本中可将脚本名改为"jd_"开头即可
 > _注意：导入的第三方活动脚本不会随项目本身活动脚本的更新而删除。_
 #### 7. 使用 `diy` 自定义脚本：
@@ -118,7 +118,7 @@
 #### 3. 重启控制面板：
     docker exec -it jd pm2 restart panel/ecosystem.config.js
 #### 4. 重置控制面板的用户名和密码：
-    docker exec -it jd bash jd.sh resetpwd
+    docker exec -it jd bash jd resetpwd
 #### 5. 升级控制面板：
     docker exec -it jd /bin/bash
     cd panel
