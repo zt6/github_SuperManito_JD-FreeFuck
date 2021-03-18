@@ -1,18 +1,19 @@
 #!/bin/env bash
 ## Author:SuperManito
-## Modified:2021-3-13
+## Modified:2021-3-18
 
-## ======================================== 说 明 =========================================================
+## ======================================= 项 目 说 明 =====================================================
 ##                                                                                                        #
-## 项目名称：《京东薅羊毛》一键部署 For Linux                                                              #
-## 项目用途：通过自动化脚本参与JD商城的各种活动从而获取京豆用于购物抵扣                                     #
-## 适用系统：仅支持 Debian 与 Redhat 发行版和及其衍生发行版                                                #
-## 温馨提示：尽量使用最新的稳定版系统，并且安装语言使用简体中文                                             #
-##           如果您使用的是 CentOS 系统且最小化安装，请通过 SSH 的方式进入到终端                            #
-## 本项目基于 Evine 前辈公布的源码，目前由本人维护并继续开发                                                #
-## 本项目使用的活动脚本来自 lxk0301 大佬的 jd_scripts 项目                                                 #
+## 项目名称：《京东薅羊毛》一键部署 For Linux                                                                #
+## 项目用途：通过自动化脚本参与京东商城的各种活动从而获取京豆用于购物抵扣                                       #
+##           还可通过某些活动免费领取商品或现金红包                                                          #
+##                                                                                                        #
+## 适用系统：仅支持 Debian 与 Redhat 发行版和及其衍生发行版                                                  #
+## 温馨提示：尽量使用最新的稳定版系统，并且安装语言使用简体中文                                                #
+##           如果您使用的是 CentOS 系统且最小化安装，请通过 SSH 的方式进入到终端                               # 
 ##                                                                                                        #
 ## ========================================================================================================
+
 
 ## ======================================= 定 义 相 关 变 量 ===============================================
 ## 安装目录
@@ -21,12 +22,13 @@ BASE="/opt/jd"
 JD_BASE_BRANCH="source"
 ## 项目地址
 JD_BASE_URL="https://gitee.com/SuperManito/JD-FreeFuck.git"
-## 私钥
+## 活动脚本库私钥
 KEY="-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcn\nNhAAAAAwEAAQAAAQEAvRQk2oQqLB01iVnJKrnI3tTfJyEHzc2ULVor4vBrKKWOum4dbTeT\ndNWL5aS+CJso7scJT3BRq5fYVZcz5ra0MLMdQyFL1DdwurmzkhPYbwcNrJrB8abEPJ8ltS\nMoa0X9ecmSepaQFedZOZ2YeT/6AAXY+cc6xcwyuRVQ2ZJ3YIMBrRuVkF6nYwLyBLFegzhu\nJJeU5o53kfpbTCirwK0h9ZsYwbNbXYbWuJHmtl5tEBf2Hz+5eCkigXRq8EhRZlSnXfhPr2\n32VCb1A/gav2/YEaMPSibuBCzqVMVruP5D625XkxMdBdLqLBGWt7bCas7/zH2bf+q3zac4\nLcIFhkC6XwAAA9BjE3IGYxNyBgAAAAdzc2gtcnNhAAABAQC9FCTahCosHTWJWckqucje1N\n8nIQfNzZQtWivi8GsopY66bh1tN5N01YvlpL4ImyjuxwlPcFGrl9hVlzPmtrQwsx1DIUvU\nN3C6ubOSE9hvBw2smsHxpsQ8nyW1IyhrRf15yZJ6lpAV51k5nZh5P/oABdj5xzrFzDK5FV\nDZkndggwGtG5WQXqdjAvIEsV6DOG4kl5TmjneR+ltMKKvArSH1mxjBs1tdhta4kea2Xm0Q\nF/YfP7l4KSKBdGrwSFFmVKdd+E+vbfZUJvUD+Bq/b9gRow9KJu4ELOpUxWu4/kPrbleTEx\n0F0uosEZa3tsJqzv/MfZt/6rfNpzgtwgWGQLpfAAAAAwEAAQAAAQEAnMKZt22CBWcGHuUI\nytqTNmPoy2kwLim2I0+yOQm43k88oUZwMT+1ilUOEoveXgY+DpGIH4twusI+wt+EUVDC3e\nlyZlixpLV+SeFyhrbbZ1nCtYrtJutroRMVUTNf7GhvucwsHGS9+tr+96y4YDZxkBlJBfVu\nvdUJbLfGe0xamvE114QaZdbmKmtkHaMQJOUC6EFJI4JmSNLJTxNAXKIi3TUrS7HnsO3Xfv\nhDHElzSEewIC1smwLahS6zi2uwP1ih4fGpJJbU6FF/jMvHf/yByHDtdcuacuTcU798qT0q\nAaYlgMd9zrLC1OHMgSDcoz9/NQTi2AXGAdo4N+mnxPTHcQAAAIB5XCz1vYVwJ8bKqBelf1\nw7OlN0QDM4AUdHdzTB/mVrpMmAnCKV20fyA441NzQZe/52fMASUgNT1dQbIWCtDU2v1cP6\ncG8uyhJOK+AaFeDJ6NIk//d7o73HNxR+gCCGacleuZSEU6075Or2HVGHWweRYF9hbmDzZb\nCLw6NsYaP2uAAAAIEA3t1BpGHHek4rXNjl6d2pI9Pyp/PCYM43344J+f6Ndg3kX+y03Mgu\n06o33etzyNuDTslyZzcYUQqPMBuycsEb+o5CZPtNh+1klAVE3aDeHZE5N5HrJW3fkD4EZw\nmOUWnRj1RT2TsLwixB21EHVm7fh8Kys1d2ULw54LVmtv4+O3cAAACBANkw7XZaZ/xObHC9\n1PlT6vyWg9qHAmnjixDhqmXnS5Iu8TaKXhbXZFg8gvLgduGxH/sGwSEB5D6sImyY+DW/OF\nbmIVC4hwDUbCsTMsmTTTgyESwmuQ++JCh6f2Ams1vDKbi+nOVyqRvCrAHtlpaqSfv8hkjK\npBBqa/rO5yyYmeJZAAAAFHJvb3RAbmFzLmV2aW5lLnByZXNzAQIDBAUG\n-----END OPENSSH PRIVATE KEY-----"
 ## ========================================================================================================
 
+
 ## ======================================= 定 义 账 户 Cookie ==============================================
-## 京东账户
+##
 COOKIE1='""'
 COOKIE2='""'
 COOKIE3='""'
@@ -36,8 +38,9 @@ COOKIE6='""'
 ##
 ## 配置京东账户注意事项：
 ## 1. 将 Cookie部分内容 填入"双引号"内，例 Cookie1='"pt_key=xxxxxx;pt_pin=xxxxxx;"'
-## 2. 本项目可同时运行无限个账号，从第7个账户开始需要自行在项目 config.sh 配置文件中定义变量例如Cookie7=""
+## 2. 本项目可同时运行无限个账号，从第7个账户开始需要自行在项目 config.sh 配置文件中定义变量，例如Cookie7=""
 ## ========================================================================================================
+
 
 ## 定义变量：
 ## 判定系统是基于 Debian 还是 RedHat
@@ -159,7 +162,9 @@ function PrivateKeyInstallation() {
     ls /root/.ssh | grep id_rsa.bak -wq
     if [ $? -eq 0 ]; then
         rm -rf /root/.ssh/id_rsa
+        echo -e ''
         echo -e "\033[32m检测到已备份的私钥，跳过备份操作...... \033[0m"
+        echo -e ''
         sleep 2s
     else
         mv /root/.ssh/id_rsa /root/.ssh/id_rsa.bak >/dev/null 2>&1
@@ -168,7 +173,9 @@ function PrivateKeyInstallation() {
     ls /root/.ssh | grep id_rsa.pub.bak -wq
     if [ $? -eq 0 ]; then
         rm -rf /root/.ssh/id_rsa.pub
+        echo -e ''
         echo -e "\033[32m检测到已备份的公钥，跳过备份操作...... \033[0m"
+        echo -e ''
         sleep 2s
     else
         mv /root/.ssh/id_rsa.pub /root/.ssh/id_rsa.pub.bak >/dev/null 2>&1
@@ -245,25 +252,6 @@ function PanelJudgment() {
     fi
 }
 
-## 失败原因提示：
-function PrivateKeyFailureTips() {
-    echo -e ''
-    echo -e "\033[31m -------------- 私钥安装失败，退出部署脚本 -------------- \033[0m"
-    echo -e "\033[31m 原因：1. 在 /root/.ssh 目录下没有检测到私钥文件 \033[0m"
-    echo -e "\033[31m      2. 可能由于 /root/.ssh 目录创建失败导致私 \033[0m"
-    exit
-}
-
-## 失败原因提示：
-function NodejsFailureTips() {
-    echo -e ''
-    echo -e "\033[31m -------------- Nodejs安装失败，退出部署脚本 -------------- \033[0m"
-    echo -e "\033[31m 原因：1. 由于网络环境导致软件包下载失败 \033[0m"
-    echo -e "\033[31m      2. 或由于其它软件包未安装成功间接导致 Nodejs 安装失败 \033[0m"
-    echo -e "\033[31m      3. 您使用的 Linux 发行版可能不受本项目支持 \033[0m"
-    exit
-}
-
 ## 欢迎语：
 function Welcome() {
     echo -e ''
@@ -296,6 +284,23 @@ function DownloadTip() {
     echo -e "\033[32m +---------------------------------------------------------------+ \033[0m"
     echo -e ''
     echo -e ''
+}
+
+## 失败原因提示：
+function PrivateKeyFailureTips() {
+    echo -e ''
+    echo -e "\033[31m -------------- 私钥安装失败，退出部署脚本 -------------- \033[0m"
+    echo -e "\033[31m 原因：1. 在 /root/.ssh 目录下没有检测到私钥文件 \033[0m"
+    echo -e "\033[31m      2. 可能由于 /root/.ssh 目录创建失败导致 \033[0m"
+    echo -e "\033[31m      3. 权限不足的问题 \033[0m"
+    exit
+}
+function NodejsFailureTips() {
+    echo -e ''
+    echo -e "\033[31m -------------- Nodejs安装失败，退出部署脚本 -------------- \033[0m"
+    echo -e "\033[31m 原因：1. 由于网络环境导致软件包下载失败 \033[0m"
+    echo -e "\033[31m      2. 您使用的 Linux 发行版可能不受本项目支持 \033[0m"
+    exit
 }
 
 ## 控制面板使用需知：
