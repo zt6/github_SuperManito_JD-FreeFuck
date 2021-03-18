@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## Author:SuperManito
-## Modified:2021-3-18
+## Modified:2021-3-19
 
 ##############################  作  者  昵  称  （必填）  ##############################
 # 使用空格隔开
@@ -20,11 +20,11 @@ scripts_base_url_3=https://gitee.com/SuperManito/scripts/raw/master/
 
 ##############################  作  者  脚  本  名  称  （必填）  ##############################
 # 将相应作者的脚本填写到以下变量中
-my_scripts_list_1="jd_entertainment.js jd_shakeBean.js jd_marketLottery.js jd_superDay.js jd_xmf.js jd_wish.js  jd_lenovo.js jd_mother_jump.js jd_oneplus.js"
+my_scripts_list_1="jd_entertainment.js jd_shakeBean.js jd_marketLottery.js jd_superDay.js jd_xmf.js jd_wish.js  jd_lenovo.js jd_mother_jump.js jd_oneplus.js jd_super5G.js"
 my_scripts_list_2="jd_jdaxc.js jd_xxl_gh.js"
 my_scripts_list_3="jd_factory_component.js"
 
-## 活动脚本名称1：百变大咖秀、摇京豆、京东超市-大转盘、超级品类日、众筹许愿池、科技打造品质生活、母婴跳一跳、一加盲盒
+## 活动脚本名称1：百变大咖秀、摇京豆、京东超市-大转盘、超级品类日、众筹许愿池、科技打造品质生活、母婴跳一跳、一加盲盒、5G超级盲盒
 ## 活动脚本名称2：东东爱消除、个护爱消除
 ## 活动脚本名称3：京喜工厂Plus
 
@@ -78,13 +78,14 @@ done
 
 ##############################  删  除  失  效  的  活  动  脚  本  ##############################
 ## 删除旧版本失效的活动示例： rm -rf ${ScriptsDir}/jd_test.js
-rm -rf ${ScriptsDir}/jd_jump_jump.js
-rm -rf ${ScriptsDir}/jd_shake.js
-rm -rf ${ScriptsDir}/jx_factory_component.js
 rm -rf ${ScriptsDir}/jd_axc.js
+rm -rf ${ScriptsDir}/jd_shake.js
+rm -rf ${ScriptsDir}/jd_jump_jump.js
+rm -rf ${ScriptsDir}/jx_factory_component.js
 
 
 ##############################  修  正  定  时  任  务  ##############################
+## 目前两个版本都做了软链接，但为了 Linux 旧版用户可以使用，继续将软链接更改为具体文件
 ## 注意两边修改内容区别在于中间内容"jd"、"${ShellDir}/jd.sh"
 ## 修正定时任务示例：sed -i "s|bash jd jd_test|bash ${ShellDir}/jd.sh test|g" ${ListCron}
 ##                 sed -i "s|bash jd jd_ceshi|bash ${ShellDir}/jd.sh ceshi|g" ${ListCron}
@@ -100,3 +101,4 @@ sed -i "s|bash jd jd_wish|bash ${ShellDir}/jd.sh jd_wish|g" ${ListCron}
 sed -i "s|bash jd jd_lenovo|bash ${ShellDir}/jd.sh jd_lenovo|g" ${ListCron}
 sed -i "s|bash jd jd_mother_jump|bash ${ShellDir}/jd.sh jd_mother_jump|g" ${ListCron}
 sed -i "s|bash jd jd_oneplus|bash ${ShellDir}/jd.sh jd_oneplus|g" ${ListCron}
+sed -i "s|bash jd jd_super5G|bash ${ShellDir}/jd.sh jd_super5G|g" ${ListCron}
