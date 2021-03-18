@@ -1,6 +1,6 @@
 #!/bin/env bash
 ## Author:SuperManito
-## Modified:2021-3-18
+## Modified:2021-3-19
 
 ## ======================================= 项 目 说 明 =====================================================
 ##                                                                                                        #
@@ -119,11 +119,13 @@ function EnvStructures() {
         ## 重新建立缓存
         yum makecache
     fi
+
     ## 修改系统时区：
     timedatectl set-timezone "Asia/Shanghai"
     ## 放行控制面板需要用到的端口
     firewall-cmd --zone=public --add-port=5678/tcp --permanent >/dev/null 2>&1
     systemctl reload firewalld >/dev/null 2>&1
+
     ## 基于 Debian 发行版和及其衍生发行版的软件包安装
     if [ $SYSTEM = "Debian" ]; then
         ## 更新软件源，列出索引
@@ -155,7 +157,7 @@ function EnvStructures() {
     fi
 }
 
-## 安装私钥：
+## 部署私钥：
 function PrivateKeyInstallation() {
     mkdir -p /root/.ssh
     ## 检测当前用户是否存在私钥，如存在执行备份操作
