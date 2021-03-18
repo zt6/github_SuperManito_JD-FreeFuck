@@ -4,7 +4,10 @@
 ## 一、基础使用教程
 #### 1. 进入与退出容器：
     docker exec -it jd /bin/bash
-> _注意：`exit` 为退出容器；大部分命令都可在容器外部执行，但部分复制命令只能在容器内执行。_
+> _注意：1. `exit` 为退出容器；大部分命令都可在容器外部执行，但部分复杂命令只能在容器内执行。_\
+> _ㅤㅤㅤ2. 如果您修改了默认的容器名称，当使用下面所有的命令时则需要将 `jd` 替换为新的名称。_\
+> _ㅤㅤㅤ3. 下面的命令中如果前面加上了 `docker exec -it jd` 则表示在容器外部运行此命令。_\
+> _ㅤㅤㅤ4. 例如 `docker exec -it newname bash jd.sh xxx now` ，也可使用 `容器ID` 代替。_
 #### 2. 手动运行一键脚本开始您的薅羊毛行为：
     #进入容器
     docker exec -it jd /bin/bash
@@ -12,26 +15,26 @@
     source run_all.sh 或 . run_all.sh
     #退出容器
     exit
-> _注意：1. 此脚本为执行所有活动脚本` ，共有几十个活动脚本，时间较长且与账号数量成正比。_\
-> _ㅤㅤㅤ2. 此一键脚本会在最后执行挂机活动脚本，您可以根据使用需知的第`5`条停止其运行。_\
-> _ㅤㅤㅤ3. 除手动运行活动脚本外该项目还会通过定时的方式自动执行活动脚本，注意看日志。_\
-> _ㅤㅤㅤ4. 执行此脚本后无需守在电脑旁，会自动在最后无限制运行挂机活动脚本，需要您手动停止。_
+> _注意：1. 此脚本的作用为执行所有活动脚本，共有高达几十个活动脚本，时间较长且与账号数量成正比。_\
+> _ㅤㅤㅤ2. 除手动运行活动脚本外该项目还会通过定时的方式自动执行活动脚本，可通过日志查看运行记录。_\
+> _ㅤㅤㅤ3. 执行此脚本后无需守在电脑旁，会自动在最后无限制运行挂机活动脚本，直到您手动停止运行为止。_
 #### 3. 一键更新脚本：
     docker exec -it jd bash git_pull.sh
+> _注意：每次使用前请执行此命令，确保使用最新的项目脚本和活动脚本，此脚本也配置了定时任务可自动执行。_
 #### 4. 执行特定活动脚本：
-    docker exec -it jd bash jd xxx      # 如果设置了随机延迟并且当时时间不在0-2、30-31、59分内，将随机延迟一定秒数
-    docker exec -it jd bash jd xxx now  # 无论是否设置了随机延迟，均立即运行
-> _注意：具体查看活动脚本列表可通过命令 `docker exec -it jd bash jd` 查看， `xxx` 为脚本名。_
+    docker exec -it jd bash jd.sh xxx      # 如果设置了随机延迟并且当时时间不在0-2、30-31、59分内，将随机延迟一定秒数
+    docker exec -it jd bash jd.sh xxx now  # 无论是否设置了随机延迟，均立即运行
+> _注意：具体查看活动脚本列表可通过命令 `docker exec -it jd bash jd.sh` 查看， `xxx` 为脚本名。_
 #### 5. 查看帮助文档：
     docker exec -it jd cat docker/README.md
-> _注意：此文档为《使用与更新》教程，即当前页面内容，保持项目同步更新。_
+> _注意：此文档为《使用与更新》教程，即当前页面内容，跟随项目同步更新。_
 
 ***
 
 ㅤ
 ## 二、高阶使用教程
 #### 1. 获取互助码：
-    docker exec -it jd bash jd get_share_code now
+    docker exec -it jd bash jd.sh get_share_code now
 #### 2. 格式化导出互助码：
     docker exec -it jd bash export_sharecodes.sh
 > _注意：其原理是从各个活动脚本的日志中获取，只有运行完所有活动脚本后才可使用。_
@@ -77,27 +80,28 @@
 > ForOtherPet6="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
 > ForOtherPet7="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
 > ForOtherPet8="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
-#### 4. 后台运行挂机活动脚本：
-    docker exec -it jd bash jd hangup
-#### 5. 停止后台运行挂机活动脚本：
+#### 4. 启动/重启后台运行挂机活动脚本程序：
+    docker exec -it jd bash jd.sh hangup
+> _注意：当有新的账号添加后必须重启此程序，否则此程序将继续执行之前配置文件中的账号。_
+#### 5. 停止后台运行挂机活动脚本程序：
     docker exec -it jd pm2 stop jd_crazy_joy_coin
 #### 6. 导入并使用第三方活动脚本：
     1. 将脚本放置在该项目容器内 scripts 子目录下，也可放在外部的挂载目录（默认为/opt/jd/scripts）
-    2. 然后通过命令 docker exec -it jd bash jd xxx now 运行
+    2. 然后通过命令 docker exec -it jd bash jd.sh xxx now 运行
     3. 如果您想将第三方脚本加入到 run_all.sh 一键脚本中可将脚本名改为"jd_"开头即可
 > _注意：导入的第三方活动脚本不会随项目本身活动脚本的更新而删除。_
 #### 7. 使用 `diy` 自定义脚本：
 - 使用需知
 
-      1. 此脚本的用途为加入非 lxk0301 的第三方活动脚本
-      2. 您可以开启自动同步功能，默认同步本人项目里的 diy 脚本
+      1. 此脚本的用途为收集并添加第三方作者编写的活动脚本
+      2. 您可以开启自动同步功能，默认同步本人项目中的 diy 脚本
       3. 您也可以使用本项目中的模板文件自定义构建您的专属脚本
-      4. 您可以将自制的 diy 脚本上传至您的仓库并使用同步功能
+      4. 您可以将自制的 diy 脚本上传至您的仓库并使用自动同步功能
       5. 如果您使用了自制的脚本请更改配置文件里的地址链接
 - 启用该功能
 
       docker exec -it jd sed -i 's/EnableExtraShell=""/EnableExtraShell="true"/g' config/config.sh
-- 启用自动同步功能
+- 启用自动同步功能（选择）
 
       docker exec -it jd sed -i 's/EnableExtraShellUpdate=""/EnableExtraShellUpdate="true"/g' config/config.sh
 > _ㅤ注意：1. 启用该功能后便可直接下载或同步更新本项目中的 diy 脚本。_\
@@ -118,7 +122,7 @@
 #### 3. 重启控制面板：
     docker exec -it jd pm2 restart panel/ecosystem.config.js
 #### 4. 重置控制面板的用户名和密码：
-    docker exec -it jd bash jd resetpwd
+    docker exec -it jd bash jd.sh resetpwd
 #### 5. 升级控制面板：
     docker exec -it jd /bin/bash
     cd panel
