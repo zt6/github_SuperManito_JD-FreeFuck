@@ -104,7 +104,7 @@ function Combin_All() {
   export JDZZ_SHARECODES=$(Combin_Sub ForOtherJdzz)
   ## 疯狂的Joy(jd_crazy_joy.js)
   export JDJOY_SHARECODES=$(Combin_Sub ForOtherJoy)
-  ## 京东书店(jd_bookshop.js)
+  ## 口袋书店(jd_bookshop.js)
   export BOOKSHOP_SHARECODES=$(Combin_Sub ForOtherBookShop)
   ## 签到领现金(jd_cash.js)
   export JD_CASH_SHARECODES=$(Combin_Sub ForOtherCash)
