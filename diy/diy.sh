@@ -22,7 +22,7 @@ scripts_base_url_3=https://gitee.com/SuperManito/scripts/raw/master/
 # 将相应作者的脚本填写到以下变量中
 my_scripts_list_1="jd_jdaxc.js jd_xxl_gh.js"
 my_scripts_list_2="jd_factory_component.js"
-my_scripts_list_3="jd_entertainment.js jd_shakeBean.js jd_marketLottery.js jd_superDay.js jd_xmf.js jd_wish.js jd_lenovo.js jd_mother_jump.js jd_oneplus.js jd_super5G.js jd_mgold.js"
+my_scripts_list_3="jd_entertainment.js jd_shakeBean.js jd_marketLottery.js jd_superDay.js jd_xmf.js jd_wish.js jd_lenovo.js jd_mother_jump.js jd_oneplus.js jd_mgold.js"
 
 ## 活动脚本名称1：东东爱消除、个护爱消除
 ## 活动脚本名称2：京喜工厂Plus
@@ -82,6 +82,7 @@ rm -rf ${ScriptsDir}/jd_axc.js
 rm -rf ${ScriptsDir}/jd_shake.js
 rm -rf ${ScriptsDir}/jd_jump_jump.js
 rm -rf ${ScriptsDir}/jx_factory_component.js
+rm -rf ${ScriptsDir}/jd_super5G.js
 
 
 ##############################  修  正  定  时  任  务  ##############################
@@ -101,5 +102,4 @@ sed -i "s|bash jd jd_wish|bash ${ShellDir}/jd.sh jd_wish|g" ${ListCron}
 sed -i "s|bash jd jd_lenovo|bash ${ShellDir}/jd.sh jd_lenovo|g" ${ListCron}
 sed -i "s|bash jd jd_mother_jump|bash ${ShellDir}/jd.sh jd_mother_jump|g" ${ListCron}
 sed -i "s|bash jd jd_oneplus|bash ${ShellDir}/jd.sh jd_oneplus|g" ${ListCron}
-sed -i "s|bash jd jd_super5G|bash ${ShellDir}/jd.sh jd_super5G|g" ${ListCron}
 sed -i "s|bash jd jd_mgold|bash ${ShellDir}/jd.sh jd_mgold|g" ${ListCron}
