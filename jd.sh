@@ -40,10 +40,15 @@ function Detect_Cron() {
 
 ## 用户数量UserSum
 function Count_UserSum() {
-  for ((i = 1; i <= 1000; i++)); do
+  for ((i = 1; i <= 30; i++)); do
     Tmp=Cookie$i
     CookieTmp=${!Tmp}
     [[ ${CookieTmp} ]] && UserSum=$i || break
+  done
+
+  for ((d = 31; d <= 1000; d++)); do
+    Del=Cookie$d
+    sed -i "/${!Del}/d" ${FileConf} || break
   done
 }
 
