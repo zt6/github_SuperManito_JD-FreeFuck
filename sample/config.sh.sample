@@ -1,4 +1,4 @@
-## Version: v3.33.1
+## Version: v3.33.2
 ## Date: 2021-3-20
 ## Update Content: 增加、修正部分注释内容
 
@@ -119,10 +119,11 @@ RandomDelay="300"
 ## 目前提供：微信server酱、iOS Bark APP、pushplus(推送加)、telegram机器人、钉钉机器人、企业微信机器人、iGot等通知方式
 ## 具体教程请查看环境变量说明文档：https://gitee.com/lxk0301/jd_docker/blob/master/githubAction.md
 
-## 1. ServerChan
-## 官方网站：http://sc.ftqq.com/3.Version
+## 1. Server酱
+## 官方网站：https://sc.ftqq.com/3.version （旧版，4月停止支持）
+##          https://sct.ftqq.com          （Turbo新版，支持更多渠道）
 ## 已兼容 Server酱·Turbo版
-## 下方填写SCHKEY值
+## 下方填写 SCHKEY 值或 SendKey 值
 export PUSH_KEY=""
 
 
