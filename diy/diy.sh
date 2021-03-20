@@ -4,29 +4,32 @@
 
 ##############################  作  者  昵  称  （必填）  ##############################
 # 使用空格隔开
-author_list="shylocks whyour i-chenzhe"
+author_list="shylocks whyour 799953468 i-chenzhe"
 
 ##############################  作  者  脚  本  地  址  URL  （必填）  ##############################
 # 例如：https://raw.sevencdn.com/whyour/hundun/master/quanx/jx_nc.js
 # 1.从作者库中随意挑选一个脚本地址，每个作者的地址添加一个即可，无须重复添加
 # 2.将地址最后的 “脚本名称+后缀” 剪切到下一个变量里（my_scripts_list_xxx）
 
-## 目前使用本人收集的项目脚本库用于代替CDN加速
+## 目前使用本人收集的脚本库项目用于代替 CDN 加速
 scripts_base_url_1=https://gitee.com/SuperManito/scripts/raw/master/
 scripts_base_url_2=https://gitee.com/SuperManito/scripts/raw/master/
 scripts_base_url_3=https://gitee.com/SuperManito/scripts/raw/master/
+scripts_base_url_4=https://gitee.com/SuperManito/scripts/raw/master/
 
-## 添加更多脚本地址URL示例：scripts_base_url_3=https://raw.sevencdn.com/SuperManito/JD-FreeFuck/main/
+## 添加更多脚本地址URL示例：scripts_base_url_3=https://raw.sevencdn.com/whyour/hundun/master/quanx/
 
 ##############################  作  者  脚  本  名  称  （必填）  ##############################
 # 将相应作者的脚本填写到以下变量中
 my_scripts_list_1="jd_jdaxc.js jd_xxl_gh.js"
 my_scripts_list_2="jd_factory_component.js"
-my_scripts_list_3="jd_entertainment.js jd_shake.js jd_marketLottery.js jd_superDay.js jd_xmf.js jd_wish.js jd_lenovo.js jd_mother_jump.js jd_oneplus.js jd_mgold.js jd_city_cash.js"
+my_scripts_list_3="jd_paopao.js"
+my_scripts_list_4="jd_entertainment.js jd_shake.js jd_marketLottery.js jd_superDay.js jd_xmf.js jd_wish.js jd_lenovo.js jd_mother_jump.js jd_oneplus.js jd_mgold.js jd_city_cash.js"
 
 ## 活动脚本名称1：东东爱消除、个护爱消除
 ## 活动脚本名称2：京喜工厂Plus
-## 活动脚本名称3：百变大咖秀、超级摇一摇、京东超市-大转盘、超级品类日、众筹许愿池、科技打造品质生活、母婴跳一跳、一加盲盒、金口碑奖投票、城城分现金
+## 活动脚本名称3：京东泡泡大战
+## 活动脚本名称4：百变大咖秀、超级摇一摇、京东超市-大转盘、超级品类日、众筹许愿池、科技打造品质生活、母婴跳一跳、一加盲盒、金口碑奖投票、城城分现金（内部互助版）
 
 ## 由于CDN代理无法实时更新文件内容，目前使用本人的脚本收集库以解决不能访问 Github 的问题
 
@@ -88,11 +91,12 @@ rm -rf ${ScriptsDir}/jd_super5G.js
 ## 注意两边修改内容区别在于中间内容"jd"、"${ShellDir}/jd.sh"
 ## 修正定时任务示例：sed -i "s|bash jd jd_test|bash ${ShellDir}/jd.sh test|g" ${ListCron}
 ##                 sed -i "s|bash jd jd_ceshi|bash ${ShellDir}/jd.sh ceshi|g" ${ListCron}
-sed -i "s|bash jd jd_entertainment|bash ${ShellDir}/jd.sh jd_entertainment|g" ${ListCron}
-sed -i "s|bash jd jd_shake|bash ${ShellDir}/jd.sh jd_shake|g" ${ListCron}
 sed -i "s|bash jd jd_jdaxc|bash ${ShellDir}/jd.sh jd_jdaxc|g" ${ListCron}
 sed -i "s|bash jd jd_xxl_gh|bash ${ShellDir}/jd.sh jd_xxl_gh|g" ${ListCron}
 sed -i "s|bash jd jd_factory_component|bash ${ShellDir}/jd.sh jd_factory_component|g" ${ListCron}
+sed -i "s|bash jd jd_paopao|bash ${ShellDir}/jd.sh jd_paopao|g" ${ListCron}
+sed -i "s|bash jd jd_entertainment|bash ${ShellDir}/jd.sh jd_entertainment|g" ${ListCron}
+sed -i "s|bash jd jd_shake|bash ${ShellDir}/jd.sh jd_shake|g" ${ListCron}
 sed -i "s|bash jd jd_marketLottery|bash ${ShellDir}/jd.sh jd_marketLottery|g" ${ListCron}
 sed -i "s|bash jd jd_superDay|bash ${ShellDir}/jd.sh jd_superDay|g" ${ListCron}
 sed -i "s|bash jd jd_xmf|bash ${ShellDir}/jd.sh jd_xmf|g" ${ListCron}
