@@ -110,7 +110,13 @@ nav .active a {
 /* Login page */
 .login-form {
     width: 300px;
-    margin: 6rem auto 0 auto;
+    height: 450px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
     font-family: Tahoma, Geneva, sans-serif;
 }
 
