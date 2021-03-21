@@ -354,7 +354,7 @@ nav .active a {
 /* 按钮配置 */
 button {
     /* 静态背景颜色 */
-    background: #08abad;
+    background: #079396;
     /* 静态字体颜色 */
     color: rgb(255, 255, 255);
     border: none;
@@ -383,7 +383,7 @@ button:after {
     height: 2px;
     width: 0;
     /* 线条动画颜色 */
-    background: #08abad;
+    background: #079396;
     transition: 400ms ease all;
 }
 
