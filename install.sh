@@ -1,6 +1,6 @@
 #!/bin/env bash
 ## Author:SuperManito
-## Modified:2021-3-19
+## Modified:2021-3-22
 
 ## ======================================= 项 目 说 明 =====================================================
 ##                                                                                                        #
@@ -121,7 +121,8 @@ function EnvStructures() {
     fi
 
     ## 修改系统时区：
-    timedatectl set-timezone "Asia/Shanghai"
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime >/dev/null 2>&1
+    timedatectl set-timezone "Asia/Shanghai" >/dev/null 2>&1
     ## 放行控制面板需要用到的端口
     firewall-cmd --zone=public --add-port=5678/tcp --permanent >/dev/null 2>&1
     systemctl reload firewalld >/dev/null 2>&1
@@ -198,7 +199,7 @@ function ProjectDeployment() {
     rm -rf /usr/local/bin/rm_log
     rm -rf /usr/local/bin/export_sharecodes
     rm -rf /usr/local/bin/run_all
-    ## 克隆源码
+    ## 克隆项目
     git clone -b $JD_BASE_BRANCH $JD_BASE_URL $BASE
     ## 创建目录
     mkdir $BASE/config
