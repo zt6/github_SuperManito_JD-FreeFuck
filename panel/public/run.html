@@ -34,6 +34,9 @@
                     <li><a href="./viewScripts">查看脚本</a></li>
                     <li><a href="./changepwd">修改密码</a></li>
                     <li><a href="./logout">退出</a></li>
+                    <li>
+                        <div><button onclick="toggleAnimation(this)">Stop</button></div>
+                    </li>
                 </ul>
             </nav>
             <header>
@@ -65,7 +68,9 @@
                     </div>
                     <input style="width: 60px;height: 30px" type="submit" id="runCmd" class="ant-btn ant-btn-primary"
                         value="执行">
-                    &nbsp;&nbsp;&nbsp;<p><font color="white">Tips：手动执行的活动直到运行结束才会输出日志，时间较长请耐心等候。若执行活动脚本期间卡住或想停止运行，刷新页面即可。 </font></p>
+                    &nbsp;&nbsp;&nbsp;<p>
+                        <font color="white">Tips：手动执行的活动直到运行结束才会输出日志，时间较长请耐心等候。若执行活动脚本期间卡住或想停止运行，刷新页面即可。 </font>
+                    </p>
                 </form>
                 <br />
             </header>
