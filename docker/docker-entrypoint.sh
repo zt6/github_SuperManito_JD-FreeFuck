@@ -1,8 +1,44 @@
 #!/bin/bash
 set -e
 
+## 项目使用需知：
+function UseNotes() {
+  echo -e ''
+  echo -e "\033[32m --------------------------- 容器启动成功，请执行 bash run_all.sh 命令开始您的薅羊毛行为 --------------------------- \033[0m"
+  echo -e ''
+  echo -e "\033[32m +=================================================================================================================+ \033[0m"
+  echo -e "\033[32m |                                                                                                                 | \033[0m"
+  echo -e "\033[32m | 定义：run-all.sh 为一键执行所有活动脚本，git_pull.sh 为一键更新脚本                                             | \033[0m"
+  echo -e "\033[32m |                                                                                                                 | \033[0m"
+  echo -e "\033[32m |       如果想要执行特定活动脚本，请通过命令 bash jd.sh 查看教程                                                  | \033[0m"
+  echo -e "\033[32m |                                                                                                                 | \033[0m"
+  echo -e "\033[32m | 注意：1.  run_all.sh 为一键执行所有活动脚本， git_pull.sh 为一键更新脚本                                        | \033[0m"
+  echo -e "\033[32m |                                                                                                                 | \033[0m"
+  echo -e "\033[32m |       2. 手动执行 run_all.sh 脚本后无需守在电脑旁，会自动在最后运行挂机活动脚本                                 | \033[0m"
+  echo -e "\033[32m |                                                                                                                 | \033[0m"
+  echo -e "\033[32m |       3. 执行 run_all 脚本期间如果卡住，可按回车键尝试或通过命令 Ctrl + Z 跳过继续执行剩余活动脚本              | \033[0m"
+  echo -e "\033[32m |                                                                                                                 | \033[0m"
+  echo -e "\033[32m |       4. 由于京东活动一直变化可能会出现无法参加活动、报错等正常现象，可手动更新活动脚本                         | \033[0m"
+  echo -e "\033[32m |                                                                                                                 | \033[0m"
+  echo -e "\033[32m |       5. 如果需要更新活动脚本，请执行一键更新脚本，它会同步更新 run_all.sh 一键执行所有活动脚本                 | \033[0m"
+  echo -e "\033[32m |                                                                                                                 | \033[0m"
+  echo -e "\033[32m |       6. 除手动运行活动脚本外该项目还会通过定时的方式全天候自动运行活动脚本，具体运行记录可通过日志查看         | \033[0m"
+  echo -e "\033[32m |                                                                                                                 | \033[0m"
+  echo -e "\033[32m |       7. 该项目已默认配置好 Crontab 定时任务，定时配置文件 crontab.list 会通过活动脚本的更新而同步更新          | \033[0m"
+  echo -e "\033[32m |                                                                                                                 | \033[0m"
+  echo -e "\033[32m |       8. 之前填入的 Cookie部分内容 具有一定的时效性，若提示失效请根据教程重新获取并手动更新                     | \033[0m"
+  echo -e "\033[32m |                                                                                                                 | \033[0m"
+  echo -e "\033[32m |       9. 我不是活动脚本的开发者，但后续使用遇到任何问题都可访问本项目寻求帮助，制作不易，理解万岁               | \033[0m"
+  echo -e "\033[32m |                                                                                                                 | \033[0m"
+  echo -e "\033[32m +=================================================================================================================+ \033[0m"
+  echo -e ''
+  echo -e "\033[32m --------------------------- 更多帮助请访问   https://github.com/SuperManito/JD-FreeFuck --------------------------- \033[0m"
+  echo -e "\033[32m --------------------------- Github & Gitee   https://gitee.com/SuperManito/JD-FreeFuck  --------------------------- \033[0m"
+  echo -e ''
+}
+
 if [ ! -d ${JD_DIR}/config ]; then
-  echo -e "没有映射config配置目录给本容器，请先按教程映射config配置目录...\n"
+  echo -e "没有映射 config 配置文件目录给本容器，请先按教程映射 config 配置文件目录...\n"
   exit 1
 fi
 
@@ -16,7 +52,7 @@ echo
 echo -e "========================2. 检测配置文件========================\n"
 
 if [ -s ${JD_DIR}/config/crontab.list ]; then
-  echo -e "检测到config配置目录下存在crontab.list，自动导入定时任务...\n"
+  echo -e "检测到 config 配置文件目录下存在 crontab.list ，自动导入定时任务...\n"
   crontab ${JD_DIR}/config/crontab.list
   echo -e "成功添加定时任务...\n"
 else
@@ -28,13 +64,13 @@ else
 fi
 
 if [ ! -s ${JD_DIR}/config/config.sh ]; then
-  echo -e "检测到config配置目录下不存在config.sh，从示例文件复制一份用于初始化...\n"
+  echo -e "检测到 config 配置文件目录下不存在 config.sh ，从示例文件复制一份用于初始化...\n"
   cp -fv ${JD_DIR}/sample/config.sh.sample ${JD_DIR}/config/config.sh
   echo
 fi
 
 if [ ! -s ${JD_DIR}/config/auth.json ]; then
-  echo -e "检测到config配置目录下不存在auth.json，从示例文件复制一份用于初始化...\n"
+  echo -e "检测到 config 配置文件目录下不存在 auth.json ，从示例文件复制一份用于初始化...\n"
   cp -fv ${JD_DIR}/sample/auth.json ${JD_DIR}/config/auth.json
   echo
 fi
@@ -44,9 +80,9 @@ if [[ ${ENABLE_HANGUP} == true ]]; then
   . ${JD_DIR}/config/config.sh
   if [ -n "${Cookie1}" ]; then
     bash jd hangup 2>/dev/null
-    echo -e "挂机程序启动成功...\n"
+    echo -e "挂机程序启动成功... \n"
   else
-    echo -e "config.sh中还未填入有效的Cookie，可能是首次部署容器，因此不启动挂机程序...\n"
+    echo -e " config.sh 中还未填入有效的 Cookie，可能是首次部署容器，因此不启动挂机程序...\n"
   fi
 elif [[ ${ENABLE_HANGUP} == false ]]; then
   echo -e "已设置为不自动启动挂机程序，跳过...\n"
@@ -58,11 +94,11 @@ if [[ ${ENABLE_WEB_PANEL} == true ]]; then
   pm2 start ecosystem.config.js
   echo -e "控制面板启动成功...\n"
   echo -e "如未修改用户名密码，则初始用户名为：useradmin，初始密码为：supermanito\n"
-  echo -e "请访问 http://<ip>:5678 登陆并修改配置...\n"
+  echo -e "请访问 http://<内部或外部IP地址>:5678 登陆并修改配置...\n"
 elif [[ ${ENABLE_WEB_PANEL} == false ]]; then
   echo -e "已设置为不自动启动控制面板，跳过...\n"
 fi
-echo -e "容器启动成功......\n"
+UseNotes
 
 if [ "${1#-}" != "${1}" ] || [ -z "$(command -v "${1}")" ]; then
   set -- node "$@"
