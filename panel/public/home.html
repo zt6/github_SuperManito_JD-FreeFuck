@@ -37,12 +37,18 @@
                     <li><a href="./viewScripts">查看脚本</a></li>
                     <li><a href="./changepwd">修改密码</a></li>
                     <li><a href="./logout">退出</a></li>
+                    <li>
+                        <div><button onclick="toggleAnimation(this)">Stop</button></div>
+                    </li>
                 </ul>
             </nav>
             <header>
                 <h1>在线编辑工具</h1>
                 <button id="save" title="保存">保存</button><button id="wrap" title="切换换行">切换换行</button><button
                     id="cookietools" title="手机扫描二维码登录">扫码获取 Cookie</button>
+                &nbsp;&nbsp;&nbsp;<p>
+                    <font color="white">Tips：每次保存都会在 config/bak 目录下生成备份文件。 </font>
+                </p>
             </header>
             <h4>配置文件</h4>
             <div class="wrapper">
