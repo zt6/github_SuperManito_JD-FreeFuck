@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>自定义脚本 · 京东薅羊毛控制面板</title>
+    <title>对比工具</title>
     <script type="text/javascript" src="./js/jquery.min.js"></script>
     <script type="text/javascript" src="./js/codemirror.min.js"></script>
-    <script type="text/javascript" src="./js/comment.js"></script>
     <script type="text/javascript" src="./js/shell.js"></script>
+    <script type="text/javascript" src="./js/diff_match_patch.js"></script>
+    <script type="text/javascript" src="./js/merge.js"></script>
     <script type="text/javascript" src="./js/sublime.js"></script>
     <script type="text/javascript" src="./js/sweetalert2.js"></script>
     <script type="text/javascript" src="./js/prefixfree.min.js"></script>
@@ -16,6 +17,7 @@
     <link rel="stylesheet" href="./css/normalize.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" type="text/css" href="./css/codemirror.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/merge.css">
     <link rel="stylesheet" type="text/css" href="./css/twilight.css">
     <link rel="stylesheet" type="text/css" href="./css/dracula.css">
     <link rel="stylesheet" type="text/css" href="./css/main.css">
@@ -28,10 +30,10 @@
             <nav>
                 <ul>
                     <li><a href="./home">首页</a></li>
-                    <li><a href="./diff">对比工具</a></li>
+                    <li class="active"><a href="./diff">对比工具</a></li>
                     <li><a href="./crontab">定时任务设定</a></li>
                     <li><a href="./run">手动执行脚本</a></li>
-                    <li class="active"><a href="./diy">自定义脚本</a></li>
+                    <li><a href="./diy">自定义脚本</a></li>
                     <li><a href="./log">日志查询</a></li>
                     <li><a href="./viewScripts">查看脚本</a></li>
                     <li><a href="./changepwd">修改密码</a></li>
@@ -42,19 +44,14 @@
                 </ul>
             </nav>
             <header>
-                <h1>在线编辑工具</h1>
-                <button id="save" title="保存">保存</button>
-                <br />
-                <p>
-                    <font color="#b9b9b9">Tips：1. 此脚本的用途为收集并添加第三方作者编写的活动脚本，关于如何启用该功能详见配置文件 《DIY脚本功能设置》 模块。<br />ㅤㅤㅤ2.
-                        您还可以开启自动同步功能，默认同步本项目中的脚本，您也可以使用本项目中的模板文件自定义构建您的专属脚本。
-                </p>
-                </font>
-                </p>
+                <h1>在线对比编辑工具</h1>
+                <button id="save" title="保存">保存</button><button id="prev" title="上一个差异">上一个差异</button><button id="next"
+                    title="下一个差异">下一个差异</button><button id="wrap" title="切换换行">切换换行</button>
             </header>
-            <h4>自定义脚本</h4>
-            <div class="wrapper">
-                <textarea id="code" name="code"></textarea>
+            <h4>左侧为当前使用的配置文件，右侧为模板</h4>
+            <div class="compare-wrapper">
+                <div id="compare">
+                </div>
             </div>
         </div>
     </div>
@@ -63,40 +60,64 @@
             cache: false
         });
 
-        $(document).ready(function () {
-            var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        var editor, origLeft, origRight;
+
+        function initUI() {
+            editor = CodeMirror.MergeView(document.getElementById('compare'), {
+                value: origLeft,
+                origLeft: null,
+                orig: origRight,
                 lineNumbers: true,
-                lineWrapping: true,
-                styleActiveLine: true,
-                matchBrackets: true,
+                lineWrapping: false,
                 mode: 'shell',
                 theme: 'dracula',
-                keyMap: 'sublime'
+                keyMap: 'sublime',
+                lineNumbers: true,
+                highlightDifferences: true,
+                connect: null,
+                collapseIdentical: false
             });
-            $.get('./api/config/diy', function (data) {
-                editor.setValue(data);
+        }
+
+        Promise.all([$.get('./api/config/config'), $.get('./api/config/sample')])
+            .then((resArr) => {
+                origLeft = resArr[0];
+                origRight = resArr[1];
+
+                initUI();
             });
 
-            $('#save').click(function () {
-                var confContent = editor.getValue();
-                let timeStamp = (new Date()).getTime()
-                $.post('./api/save?t=' + timeStamp, {
-                    content: confContent,
-                    name: "diy.sh"
-                }, function (data) {
-                    let icon = (data.err == 0) ? "success" : "error"
-                    Swal.fire({
-                        title: data.title,
-                        text: data.msg,
-                        icon: icon
-                    }).then((result) => {
-                        window.location.reload(true);
-                    })
-                });
+        $('#prev').click(function () {
+            editor.editor().execCommand('goPrevDiff');
+        });
+
+        $('#next').click(function () {
+            editor.editor().execCommand('goNextDiff');
+        });
+
+        $('#wrap').click(function () {
+            var lineWrapping = editor.editor().getOption('lineWrapping');
+            editor.editor().setOption('lineWrapping', !lineWrapping);
+            editor.rightOriginal().setOption('lineWrapping', !lineWrapping);
+        });
+
+        $('#save').click(function () {
+            var confContent = editor.editor().getValue();
+            $.post('./api/save', {
+                content: confContent,
+                name: "config.sh"
+            }, function (data) {
+                let icon = (data.err == 0) ? "success" : "error"
+                Swal.fire({
+                    title: data.title,
+                    text: data.msg,
+                    icon: icon
+                }).then((result) => {
+                    window.location.reload(true);
+                })
             });
         });
     </script>
-
 </body>
 
 <!-- sakura 背景 -->
