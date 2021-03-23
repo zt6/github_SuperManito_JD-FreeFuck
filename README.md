@@ -143,8 +143,9 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 2. 如果执行脚本部署命令后没有反应直接结束并跳回终端交互说明您的网络环境存在问题，请检查您的网络连通性。
 3. 如在拉取活动脚本时失败提示 `ssh: connect to host gitee.com port 22: Connection timed out` 是由于您使用平台的 `22` 端口不可用所导致，自行解决处理。
 4. 如在拉取活动脚本时失败提示 `Repository more than 5 connections` 是由于 `Gitee` 限制了每秒同时拉取项目的IP不能超过 `5` 个所导致，此报错为正常现象，重新执行更新命令即可。
-5. 部署成功后无法访问 `控制面板` 浏览器提示 `无法访问此网站，响应时间过长` 是由于 `5678` 端口外部不能访问所导致。
-6. 如果 `控制面板` 功能未安装成功可根据《使用与更新》教程之<控制面板教程>的第6条命令重新安装。
+5. 如在拉取活动脚本时失败提示 `Could not resolve hostname gitee.com: Temporary failure in name resolution lost connection` 是由于无法解析到码云Gitee服务器地址所导致，说明您使用平台的网络环境异常，自行解决处理。
+6. 部署成功后无法访问 `控制面板` 浏览器提示 `无法访问此网站，响应时间过长` 是由于 `5678` 端口外部不能访问所导致。
+7. 如果 `控制面板` 功能未安装成功可根据《使用与更新》教程之<控制面板教程>的第6条命令重新安装。
 ㅤ
 
 ***
@@ -213,8 +214,9 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 #### __常见问题与帮助：__
 1. 如在拉取活动脚本时失败提示 `ssh: connect to host gitee.com port 22: Connection timed out` 是由于您使用平台的 `22` 端口不可用所导致，自行解决处理。
 2. 如在拉取活动脚本时失败提示 `Repository more than 5 connections` 是由于 `Gitee` 限制了每秒同时拉取项目的IP不能超过 `5` 个所导致，此报错为正常现象，重新执行更新命令即可。
-3. 部署成功后无法访问 `控制面板` 浏览器提示 `无法访问此网站，响应时间过长` 是由于容器映射的 `主机端口` （默认5678）外部不能访问所导致。
-4. 如果 `控制面板` 功能未安装成功可根据《使用与更新》教程之<控制面板教程>的第6条命令重新安装。
+3. 如在拉取活动脚本时失败提示 `Could not resolve hostname gitee.com: Temporary failure in name resolution lost connection` 是由于无法解析到码云Gitee服务器地址所导致，说明您使用平台的网络环境异常，自行解决处理。
+4. 部署成功后无法访问 `控制面板` 浏览器提示 `无法访问此网站，响应时间过长` 是由于容器映射的 `主机端口` （默认5678）外部不能访问所导致。
+5. 如果 `控制面板` 功能未安装成功可根据《使用与更新》教程之<控制面板教程>的第6条命令重新安装。
 
 
 ***
@@ -310,7 +312,7 @@ __请ㅤㅤ认ㅤㅤ真ㅤㅤ阅ㅤㅤ读ㅤㅤ教ㅤㅤ程ㅤ，ㅤ90%ㅤㅤ的
 ***
 
 ## Stargazers over time
-<img src="https://starchart.cc/SuperManito/JD-FreeFuck.svg" width="500" height="250" alt="Stargazers over time"/><br/>
+<img src="https://starchart.cc/SuperManito/JD-FreeFuck.svg" width="600" height="300" alt="Stargazers over time"/><br/>
 
 ***
 
