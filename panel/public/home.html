@@ -46,11 +46,15 @@
                 <h1>在线编辑工具</h1>
                 <button id="save" title="保存">保存</button><button id="wrap" title="切换换行">切换换行</button><button
                     id="cookietools" title="手机扫描二维码登录">扫码获取 Cookie</button>
-                &nbsp;&nbsp;&nbsp;<p>
-                    <font color="white">Tips：每次保存都会在 config/bak 目录下生成备份文件。 </font>
-                </p>
+                <span>
+                    <input type="checkbox" id="autoReplace" checked="checked">
+                    <label for="autoReplace">
+                        <font color="white">扫码后自动替换</font>
+                    </label>
+                </span>
             </header>
-            <h4>配置文件</h4>
+            <h4>配置文件&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="grey" size="2">温馨提示：每次保存都会在 config/bak 目录下生成备份文件</font>
+            </h4>
             <div class="wrapper">
                 <textarea id="code" name="code"></textarea>
             </div>
@@ -65,7 +69,7 @@
                 </div>
             </div>
             <div id="qrcode"></div>
-            <div class="info">请使用京东手机APP扫码</div>
+            <div class="info">请使用手机京东APP扫码</div>
             <div class="qframe-close" title="关闭">✖</div>
         </div>
     </div>
@@ -239,9 +243,6 @@
 <body>
     <!-- partial:index.partial.html -->
     <canvas id="sakura"></canvas>
-    <div class="btnbg">
-        <button type="button" onclick="toggleAnimation(this)">Stop</button>
-    </div>
 
     <!-- sakura shader -->
     <script id="sakura_point_vsh" type="x-shader/x_vertex">
