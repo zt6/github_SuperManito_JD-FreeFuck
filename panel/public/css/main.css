@@ -2,13 +2,12 @@ body,
 html {
     margin: 0;
     padding: 0;
-
 }
 
 h1,
 ul {
     color: #ffffff;
-    margin: 0.2em 0 0.2em 0;
+    margin: 0.2em 0 0.4em 0;
     margin-left: 0.5em;
     font-size: 1.5rem;
     padding-right: 1rem;
@@ -30,20 +29,14 @@ nav ul li {
     display: inline;
 }
 
-nav ul li .switch {
-    text-align: center;
-}
-
 nav ul li a:link,
 nav ul li a:visited,
 nav ul li a:active {
     font-size: 0.875rem;
-    padding: 0.5rem 1.6rem;
+    padding: 0.5rem 1.4rem;
     color: white;
     text-decoration: none;
     background-color: #535252;
-    border-bottom-left-radius: 0.4rem;
-    border-bottom-right-radius: 0.4rem;
     transition: background-color 200ms;
 }
 
