@@ -5,31 +5,18 @@ html {
 
 }
 
-
-.footer {
-    color: rgb(185, 185, 185);
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-    height: 100px;
-    position: absolute;
-    z-index: 9999;
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-}
-
-
 h1,
 ul {
     color: #ffffff;
-    margin: .2em 0 .2em 0;
+    margin: 0.2em 0 0.2em 0;
+    margin-left: 0.5em;
     font-size: 1.5rem;
     padding-right: 1rem;
 }
 
 h4 {
     margin-top: 0.5em;
+    margin-left: 0.5em;
     color: rgb(185, 185, 185);
 }
 
@@ -52,7 +39,7 @@ nav ul li a:active {
     background-color: #535252;
     border-bottom-left-radius: 0.4rem;
     border-bottom-right-radius: 0.4rem;
-    transition: background-color 0.6s;
+    transition: background-color 0.5s;
 }
 
 nav ul li a:hover {
@@ -63,12 +50,25 @@ nav .active a {
     background-color: #c51414 !important;
 }
 
+.footer {
+    color: rgb(185, 185, 185);
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
 .container {
 
     display: flex;
     flex-direction: column;
     height: 100vh;
-    margin: 0 .5em;
 
     width: 100%;
     height: 100%;
@@ -354,21 +354,22 @@ nav .active a {
     position: static;
 }
 
+/* 对比工具差异处颜色 */
 .CodeMirror-merge-r-chunk {
-    background: rgb(174, 129, 224)
+    background: #9D2932
 }
 
 .CodeMirror-merge-r-chunk-start {
-    border-top: 1px solid #aaa;
+    border-top: 1px solid #9D2932;
 }
 
 .CodeMirror-merge-r-chunk-end {
-    border-bottom: 1px solid #aaa;
+    border-bottom: 1px solid #9D2932;
 }
 
 .CodeMirror-merge-r-connect {
-    fill: #ffffe0;
-    stroke: #ee8;
+    fill: #ebdc5c;
+    stroke: rgb(148, 238, 136);
     stroke-width: 1px;
 }
 
@@ -449,7 +450,7 @@ button:after {
 button:hover:before,
 button:hover:after {
     width: 100%;
-    transition: 600ms ease all;
+    transition: 500ms ease all;
 }
 
 .ant-btn {
@@ -497,25 +498,4 @@ button:hover:after {
     border-radius: 6px 6px 6px 6px;
     -moz-border-radius: 6px 6px 6px 6px;
     -webkit-border-radius: 6px 6px 6px 6px;
-}
-
-
-/* chrome 滚动条 */
-::-webkit-scrollbar-track-piece {
-    width: 10px;
-    background-color: rgba(231, 221, 221, 0.959);
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background: rgba(177, 163, 163, .5);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(177, 163, 163, .8);
 }
