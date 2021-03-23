@@ -1,5 +1,5 @@
 # 关于 Linux 版本的《使用与更新》教程
-## 修订日期：2021 年 3 月 20 日
+## 修订日期：2021 年 3 月 24 日
 ㅤ
 ## 一、基础使用教程
 #### 1. 进入项目安装目录：
@@ -14,6 +14,11 @@
 #### 3. 一键更新脚本：
     bash git_pull.sh
 > _注意：每次使用前请执行此命令，确保使用最新的项目脚本和活动脚本，此脚本也配置了定时任务可自动执行。_
+
+> 常见报错：\
+> 提示 `Repository more than 5 connections` 是由于 `Gitee` 限制了每秒同时拉取项目的IP不能超过 `5` 个所导致，此报错为正常现象，重新执行更新命令即可。\
+> 提示 `ssh: connect to host gitee.com port 22: Connection timed out` 是由于您使用平台的 `22` 端口不可用所导致，自行解决处理。\
+> 提示 `Could not resolve hostname gitee.com: Temporary failure in name resolution lost connection` 是由于无法解析到 `Gitee` 服务器地址所导致，表明网络环境异常，自行解决处理。
 #### 4. 执行特定活动脚本：
     bash jd.sh xxx      # 如果设置了随机延迟并且当时时间不在0-2、30-31、59分内，将随机延迟一定秒数
     bash jd.sh xxx now  # 无论是否设置了随机延迟，均立即运行
@@ -91,17 +96,20 @@
 > ForOtherPet6="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
 > ForOtherPet7="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
 > ForOtherPet8="${MyPet1}@${MyPet2}@${MyPet3}@${MyPet4}@${MyPet5}@${MyPet6}@${MyPet7}@${MyPet8}"
-#### 4. 启动/重启后台运行挂机活动脚本程序：
+#### 4. 提交您的互助码到公共库：
+    Telegram 机器人： @LvanLamCommitCodeBot  @TuringLabbot
+> _注意：此公共库由活动脚本作者开发并维护，用于活动间的相互助力以解决助力机会和被助力次数不足的问题，此库定时清空且名额有限，具体提交教程详见回复信息。_
+#### 5. 启动/重启后台运行挂机活动脚本程序：
     bash jd.sh hangup
 > _注意：当有新的账号添加后必须重启此程序，否则此程序将继续执行之前配置文件中的账号。_
-#### 5. 停止后台运行挂机活动脚本程序：
+#### 6. 停止后台运行挂机活动脚本程序：
     pm2 stop jd_crazy_joy_coin
-#### 6. 导入并使用第三方活动脚本：
+#### 7. 导入并使用第三方活动脚本：
     1. 将脚本放置在该项目 scripts 子目录下
     2. 然后通过命令 bash jd.sh xxx now 运行
     3. 如果您想将第三方脚本加入到 run_all.sh 一键脚本中可将脚本名改为"jd_"开头即可
 > _注意：导入的第三方活动脚本不会随项目本身活动脚本的更新而删除。_
-#### 7. 删除活动运行日志：
+#### 8. 删除活动运行日志：
     bash rm_log.sh 
 > _注意：默认删除 `7天` 以上的日志文件，可以通过配置文件中的相关变量更改默认时间值。_
 
