@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 ## Author:SuperManito
-## Modified:2021-3-24
+## Modified:2021-3-25
 
 ##############################  作  者  昵  称  （必填）  ##############################
 # 使用空格隔开
@@ -24,12 +24,12 @@ scripts_base_url_4=https://gitee.com/SuperManito/scripts/raw/master/
 my_scripts_list_1="jd_jdaxc.js jd_xxl_gh.js"
 my_scripts_list_2="jd_factory_component.js"
 my_scripts_list_3="jd_paopao.js"
-my_scripts_list_4="jd_entertainment.js jd_shake.js jd_marketLottery.js jd_superDay.js jd_xmf.js jd_wish.js jd_lenovo.js jd_mother_jump.js jd_oneplus.js jd_mgold.js jd_city_cash.js jd_grassy.js jd_sister.js"
+my_scripts_list_4="jd_entertainment.js jd_shake.js jd_marketLottery.js jd_superDay.js jd_xmf.js jd_wish.js jd_lenovo.js jd_oneplus.js jd_mgold.js jd_grassy.js jd_sister.js"
 
 ## 活动脚本名称1：东东爱消除、个护爱消除
 ## 活动脚本名称2：京喜工厂Plus
 ## 活动脚本名称3：京东泡泡大战
-## 活动脚本名称4：百变大咖秀、超级摇一摇、京东超市-大转盘、超级品类日、众筹许愿池、科技打造品质生活、母婴跳一跳、一加盲盒、金口碑奖投票、城城分现金（内部互助版）、答题赢京豆、乘风破浪的姐姐
+## 活动脚本名称4：百变大咖秀、超级摇一摇、京东超市-大转盘、超级品类日、众筹许愿池、科技打造品质生活、一加盲盒、金口碑奖投票、答题赢京豆、乘风破浪的姐姐
 
 ## 由于CDN代理无法实时更新文件内容，目前使用本人的脚本收集库以解决不能访问 Github 的问题
 
@@ -84,7 +84,8 @@ done
 rm -rf ${ScriptsDir}/jd_axc.js
 rm -rf ${ScriptsDir}/jd_shakeBean.js
 rm -rf ${ScriptsDir}/jd_super5G.js
-# rm -rf ${ScriptsDir}/jd_city_cash.js
+rm -rf ${ScriptsDir}/jd_mother_jump.js
+rm -rf ${ScriptsDir}/jd_city_cash.js
 
 ##############################  修  正  定  时  任  务  ##############################
 ## 目前两个版本都做了软链接，但为了 Linux 旧版用户可以使用，继续将软链接更改为具体文件
@@ -102,11 +103,7 @@ sed -i "s|bash jd jd_superDay|bash ${ShellDir}/jd.sh jd_superDay|g" ${ListCron}
 sed -i "s|bash jd jd_xmf|bash ${ShellDir}/jd.sh jd_xmf|g" ${ListCron}
 sed -i "s|bash jd jd_wish|bash ${ShellDir}/jd.sh jd_wish|g" ${ListCron}
 sed -i "s|bash jd jd_lenovo|bash ${ShellDir}/jd.sh jd_lenovo|g" ${ListCron}
-sed -i "s|bash jd jd_mother_jump|bash ${ShellDir}/jd.sh jd_mother_jump|g" ${ListCron}
 sed -i "s|bash jd jd_oneplus|bash ${ShellDir}/jd.sh jd_oneplus|g" ${ListCron}
 sed -i "s|bash jd jd_mgold|bash ${ShellDir}/jd.sh jd_mgold|g" ${ListCron}
-
-sed -i "s|bash jd jd_city_cash|bash ${ShellDir}/jd.sh jd_city_cash|g" ${ListCron}
-
 sed -i "s|bash jd jd_grassy|bash ${ShellDir}/jd.sh jd_grassy|g" ${ListCron}
 sed -i "s|bash jd jd_sister|bash ${ShellDir}/jd.sh jd_sister|g" ${ListCron}
