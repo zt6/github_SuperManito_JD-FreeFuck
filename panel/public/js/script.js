@@ -761,7 +761,7 @@ function render() {
     renderScene();
 }
 
-var animating = true;
+var animating = false;
 
 function toggleAnimation(elm) {
     animating ^= true;
