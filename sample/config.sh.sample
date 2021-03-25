@@ -1,6 +1,6 @@
-## Version: v3.34.1
-## Date: 2021-3-25
-## Update Content: 去除 "城城领现金" 过期活动互助码类与控制脚本功能环境变量
+## Version: v3.34.2
+## Date: 2021-3-26
+## Update Content: 新增 "Telegram 代理的认证参数" 推送通知环境变量(3)
 
 
 ## 上面版本号中，如果第2位数字有变化，那么代表增加了新的参数，如果只有第3位数字有变化，仅代表更新了注释，没有增加新的参数，可更新可不更新
@@ -155,7 +155,10 @@ export TG_USER_ID=""
 ## 如需使用，请自行解除下一行的注释
 # export TG_PROXY_PORT=""
 
-## Telegram api自建反向代理（选填）
+## Telegram 代理的认证参数（选填）
+# export TG_PROXY_AUTH=""
+
+## Telegram api自建反向代理地址（选填）
 ## 教程：https://www.hostloc.com/thread-805441-1-1.html
 ## 如反向代理地址 http://aaa.bbb.ccc 则填写 aaa.bbb.ccc
 ## 如需使用，请赋值代理地址链接，并自行解除下一行的注释
