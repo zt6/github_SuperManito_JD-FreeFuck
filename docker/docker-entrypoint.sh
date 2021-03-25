@@ -47,7 +47,6 @@ bash git_pull >/dev/null 2>&1
 echo
 
 echo -e "========================2. 检测配置文件========================\n"
-
 if [ -s ${JD_DIR}/config/crontab.list ]; then
   echo -e "检测到 config 配置文件目录下存在 crontab.list ，自动导入定时任务...\n"
   crontab ${JD_DIR}/config/crontab.list
