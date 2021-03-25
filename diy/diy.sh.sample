@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-
 ## 您需要填写此脚本的以下几处地方：
 ## 1. 作者昵称
 ## 2. 作者脚本地址URL
 ## 3. 作者脚本名称
-## 4. 修正定时任务 （ Linux 版本用户）
 
 ##############################  作  者  昵  称  （必填）  ##############################
 # 使用空格隔开
@@ -20,8 +18,8 @@ author_list=""
 scripts_base_url_1=
 
 
-## 添加更多脚本地址URL示例：scripts_base_url_2=https://raw.sevencdn.com/SuperManito/JD-FreeFuck/main/
-##                        scripts_base_url_3=https://raw.sevencdn.com/xxxxxx/xxxxxx/main/
+## 添加更多脚本地址URL示例：scripts_base_url_2=https://raw.githubusercontent.com/SuperManito/JD-FreeFuck/main/
+## 注意带上项目分支名称，可自行更换 CDN 代理加速
 
 ##############################  作  者  脚  本  名  称  （必填）  ##############################
 # 将相应作者的脚本填写到以下变量中
@@ -31,17 +29,18 @@ my_scripts_list_1=""
 ## 添加脚本名称示例：my_scripts_list_2="jd_test1.js jd_test2.js jd_test3.js"
 ##                 my_scripts_list_3="jd_ceshi1.js jd_ceshi2.js jd_ceshi3.js"
 
-##############################  随  机  函  数  ##########################################
+##############################  随  机  函  数  ##############################
 rand() {
   min=$1
   max=$(($2 - $min + 1))
   num=$(cat /proc/sys/kernel/random/uuid | cksum | awk -F ' ' '{print $1}')
   echo $(($num % $max + $min))
 }
-cd $BASE
+cd ${ShellDir}
 index=1
 for author in $author_list; do
-  echo -e "开始下载 $author 的脚本"
+  echo -e "开始下载 $author 的活动脚本："
+  echo -e ''
   # 下载my_scripts_list中的每个js文件，重命名增加前缀"作者昵称_"，增加后缀".new"
   eval scripts_list=\$my_scripts_list_${index}
   #echo $scripts_list
@@ -52,7 +51,7 @@ for author in $author_list; do
     echo $url
     eval name=$js
     echo $name
-    wget -q --no-check-certificate $Proxy_URL$url -O scripts/$name.new
+    wget -q --no-check-certificate $url -O scripts/$name.new
 
     # 如果上一步下载没问题，才去掉后缀".new"，如果上一步下载有问题，就保留之前正常下载的版本
     # 随机添加个cron到crontab.list
@@ -64,9 +63,9 @@ for author in $author_list; do
       if [ -z "${script_date}" ]; then
         cron_min=$(rand 1 59)
         cron_hour=$(rand 7 9)
-        [ $(grep -c "$croname" ${ListCron}) -eq 0 ] && sed -i "/hangup/a${cron_min} ${cron_hour} * * * bash jd $croname" ${ListCron}
+        [ $(grep -c "$croname" ${ListCron}) -eq 0 ] && sed -i "/hangup/a${cron_min} ${cron_hour} * * * bash ${ShellDir}/jd.sh $croname" ${ListCron}
       else
-        [ $(grep -c "$croname" ${ListCron}) -eq 0 ] && sed -i "/hangup/a${script_date} bash jd $croname" ${ListCron}
+        [ $(grep -c "$croname" ${ListCron}) -eq 0 ] && sed -i "/hangup/a${script_date} bash ${ShellDir}/jd.sh $croname" ${ListCron}
       fi
     else
       [ -f scripts/$name.new ] && rm -f scripts/$name.new
@@ -76,15 +75,7 @@ for author in $author_list; do
   index=$(($index + 1))
 done
 
-##########################  删  除  旧  的  失  效  活  动  ##########################
+##########################  删  除  失  效  的  活  动  脚  本  ##########################
 ## 删除旧版本失效的活动示例： rm -rf ${ScriptsDir}/jd_test.js
-
-
-
-##############################  修  正  定  时  任  务  ##########################################
-## Linux 用户请填写此部分内容，Docker 版本因为有软连接的存在可忽略
-## 注意两边修改内容区别在于中间内容"jd"、"${ShellDir}/jd.sh"
-## 修正定时任务示例：sed -i "s|bash jd jd_test|bash ${ShellDir}/jd.sh test|g" ${ListCron}
-##                 sed -i "s|bash jd jd_ceshi|bash ${ShellDir}/jd.sh ceshi|g" ${ListCron}
 
 
