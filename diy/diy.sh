@@ -29,7 +29,7 @@ my_scripts_list_4="jd_shake.js jd_marketLottery.js jd_superDay.js jd_xmf.js jd_w
 ## 活动脚本名称1：东东爱消除、个护爱消除
 ## 活动脚本名称2：京喜工厂Plus
 ## 活动脚本名称3：京东泡泡大战
-## 活动脚本名称4：超级摇一摇、京东超市-大转盘、超级品类日、众筹许愿池、科技打造品质生活、一加盲盒、金口碑奖投票、答题赢京豆、乘风破浪的姐姐
+## 活动脚本名称4：百变大咖秀、超级摇一摇、京东超市-大转盘、超级品类日、众筹许愿池、科技打造品质生活、一加盲盒、金口碑奖投票、答题赢京豆、乘风破浪的姐姐
 
 ## 由于CDN代理无法实时更新文件内容，目前使用本人的脚本收集库以解决不能访问 Github 的问题
 
@@ -86,3 +86,4 @@ rm -rf ${ScriptsDir}/jd_shakeBean.js
 rm -rf ${ScriptsDir}/jd_super5G.js
 rm -rf ${ScriptsDir}/jd_mother_jump.js
 rm -rf ${ScriptsDir}/jd_city_cash.js
+rm -rf ${ScriptsDir}/jd_entertainment.js
